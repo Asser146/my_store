@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
+import 'package:my_store/features/Home/presentation/cubit/Item_card_cubit/item_card_cubit.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard({
@@ -36,9 +38,9 @@ class ItemCard extends StatelessWidget {
           children: [
             Center(
               child: Image.network(
+                image, // Use the image parameter
                 width: 100.r,
                 height: 100.r,
-                "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg", // Use the image parameter
                 fit: BoxFit.cover, // Ensure the image covers the container
               ),
             ),
@@ -64,12 +66,20 @@ class ItemCard extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.favorite_outline,
-                    size: 25.sp,
-                  ),
-                  onPressed: () {},
+                BlocBuilder<ItemCardCubit, ItemCardState>(
+                  builder: (context, state) {
+                    bool isFavorite =
+                        state is ItemCardFavourite && state.favorite;
+                    return IconButton(
+                      icon: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_outline,
+                        size: 25.sp,
+                      ),
+                      onPressed: () {
+                        context.read<ItemCardCubit>().clickFav();
+                      },
+                    );
+                  },
                 ),
               ],
             ),
@@ -96,7 +106,7 @@ class ItemCard extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

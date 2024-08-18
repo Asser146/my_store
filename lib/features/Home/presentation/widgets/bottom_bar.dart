@@ -18,18 +18,16 @@ class BottomBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             NavigationItem(
-              icon: Icons.home_outlined, // Ensure correct SVG path
-              ontap: () {
-                // Handle home icon tap
-              },
+              icon: Icons.home_outlined,
+              index: 1,
             ),
             NavigationItem(
-              icon: Icons.search, // Ensure correct SVG path
-              ontap: () {},
+              icon: Icons.search,
+              index: 2,
             ),
             NavigationItem(
-              icon: Icons.favorite_outline, // Ensure correct SVG path
-              ontap: () {},
+              icon: Icons.favorite_outline,
+              index: 3,
             ),
           ],
         ),

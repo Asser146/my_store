@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:my_store/features/Home/presentation/widgets/products_cards_list.dart';
+import 'package:my_store/features/Home/presentation/widgets/items_cards_list.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
@@ -16,7 +16,7 @@ class HomeScreenBody extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 5.w),
             child: Text("Recent Products"),
           ),
-          ProductsCardsList(),
+          ItemsCardsList(),
         ],
       ),
     );
