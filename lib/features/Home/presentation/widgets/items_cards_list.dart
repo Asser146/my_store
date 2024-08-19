@@ -21,7 +21,7 @@ class ItemsCardsList extends StatelessWidget {
             mainAxisSpacing: 5.h,
             childAspectRatio: 0.7,
           ),
-          itemCount: 20,
+          itemCount: 5,
           itemBuilder: (BuildContext context, int index) {
             return BlocProvider(
               create: (context) => ItemCardCubit(),
