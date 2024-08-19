@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
-import 'package:my_store/features/Home/presentation/cubit/bottom_bar_cubit/cubit/bottom_bar_cubit.dart';
+import 'package:my_store/features/main%20screen/bottom_bar_cubit/bottom_bar_cubit.dart';
 
 class NavigationItem extends StatelessWidget {
   final IconData icon; // Use IconData for material icons
@@ -22,7 +22,7 @@ class NavigationItem extends StatelessWidget {
           color: ColorsManager.buttonColor,
           iconSize: 35.r,
           onPressed: () {
-            context.read<BottomBarCubit>().chooseTab(index);
+            context.read<BottomBarCubit>().updateIndex(index);
           },
         );
       },

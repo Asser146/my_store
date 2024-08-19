@@ -1,18 +1,19 @@
 part of 'item_card_cubit.dart';
 
 abstract class ItemCardState extends Equatable {
+  const ItemCardState();
+
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
-final class ItemCardInitial extends ItemCardState {}
+class ItemCardInitial extends ItemCardState {}
 
-final class ItemCardFavourite extends ItemCardState {
-  ItemCardFavourite({required this.favorite});
+class ItemCardFavourite extends ItemCardState {
   final bool favorite;
 
-  @override
-  List<Object> get props => [favorite];
-}
+  const ItemCardFavourite({required this.favorite});
 
-final class ItemCardSelected extends ItemCardState {}
+  @override
+  List<Object?> get props => [favorite];
+}

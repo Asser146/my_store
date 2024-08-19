@@ -4,10 +4,11 @@ part 'item_card_state.dart';
 
 class ItemCardCubit extends Cubit<ItemCardState> {
   ItemCardCubit() : super(ItemCardInitial());
-  bool favorite = true;
-  bool selected = false;
+
+  bool _isFavorite = false;
+
   void clickFav() {
-    favorite = !favorite;
-    emit(ItemCardFavourite(favorite: favorite));
+    _isFavorite = !_isFavorite;
+    emit(ItemCardFavourite(favorite: _isFavorite));
   }
 }
