@@ -9,23 +9,32 @@ part 'items_list_state.dart';
 class ItemsListCubit extends Cubit<ItemsListState> {
   late final List<Item> itemsList;
   late final ItemRepository repo;
+  final Set<String> _favorites = {}; // Keep track of favorite items
 
   ItemsListCubit() : super(ItemsListStateInitial());
 
   Future<void> init() async {
     try {
-      print("here");
       emit(ItemsListStateLoading());
-      print("here2");
       repo = getIt<ItemRepository>();
-      print("her3");
-
       itemsList = await repo.fetchAllProducts();
-      print("here4");
-
-      emit(ItemsListStateLoaded(itemsList: itemsList));
+      emit(ItemsListStateLoaded(itemsList: itemsList, favorites: _favorites));
     } catch (e) {
       emit(ItemsListStateError(message: 'Failed to load items'));
     }
+  }
+
+  void toggleFavorite(String itemId) {
+    emit(ItemsListStateLoading());
+    if (_favorites.contains(itemId)) {
+      _favorites.remove(itemId);
+    } else {
+      _favorites.add(itemId);
+    }
+    emit(ItemsListStateLoaded(itemsList: itemsList, favorites: _favorites));
+  }
+
+  bool isFavorite(String itemId) {
+    return _favorites.contains(itemId);
   }
 }

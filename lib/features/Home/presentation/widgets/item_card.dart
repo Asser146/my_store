@@ -2,20 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
-import 'package:my_store/features/Home/presentation/cubit/Item_card_cubit/item_card_cubit.dart';
+import 'package:my_store/features/Home/data/item.dart';
+import 'package:my_store/features/main%20screen/items_list_cubit/items_list_cubit.dart';
 
 class ItemCard extends StatelessWidget {
-  const ItemCard({
-    super.key,
-    required this.image,
-    required this.label,
-    required this.price,
-    required this.description,
-    required this.id,
-  });
+  const ItemCard({super.key, required this.item});
 
-  final String label, image, description, id;
-  final double price;
+  final Item item;
 
   @override
   Widget build(BuildContext context) {
@@ -37,18 +30,18 @@ class ItemCard extends StatelessWidget {
           children: [
             Center(
               child: Image.network(
-                image, // Use the image parameter
+                item.image!,
                 width: 100.r,
                 height: 100.r,
-                fit: BoxFit.cover, // Ensure the image covers the container
+                fit: BoxFit.cover,
               ),
             ),
             const Spacer(),
             Text(
-              label,
+              item.title!,
               style: TextStyle(
-                fontSize: 16.sp, // Font size with ScreenUtil
-                fontWeight: FontWeight.bold, // Example style
+                fontSize: 16.sp,
+                fontWeight: FontWeight.bold,
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -57,25 +50,29 @@ class ItemCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${price.toStringAsFixed(2)} \$",
+                  "${item.price!.toStringAsFixed(2)} \$",
                   style: TextStyle(
-                    fontSize: 16.sp, // Font size with ScreenUtil
-                    fontWeight: FontWeight.bold, // Example style
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                BlocBuilder<ItemCardCubit, ItemCardState>(
+                BlocBuilder<ItemsListCubit, ItemsListState>(
                   builder: (context, state) {
-                    bool isFavorite =
-                        state is ItemCardFavourite && state.favorite;
                     return IconButton(
                       icon: Icon(
-                        isFavorite ? Icons.favorite : Icons.favorite_outline,
+                        context
+                                .watch<ItemsListCubit>()
+                                .isFavorite(item.id!.toString())
+                            ? Icons.favorite
+                            : Icons.favorite_outline,
                         size: 25.sp,
                       ),
                       onPressed: () {
-                        context.read<ItemCardCubit>().clickFav();
+                        context
+                            .read<ItemsListCubit>()
+                            .toggleFavorite(item.id!.toString());
                       },
                     );
                   },
@@ -86,7 +83,7 @@ class ItemCard extends StatelessWidget {
             GestureDetector(
               onTap: () {},
               child: Container(
-                height: 40.h, // Adjusted height for better button appearance
+                height: 40.h,
                 decoration: BoxDecoration(
                   color: ColorsManager.buttonColor,
                   borderRadius: BorderRadius.all(
@@ -99,8 +96,8 @@ class ItemCard extends StatelessWidget {
                     "Add to Cart",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16.sp, // Font size with ScreenUtil
-                      fontWeight: FontWeight.bold, // Example style
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

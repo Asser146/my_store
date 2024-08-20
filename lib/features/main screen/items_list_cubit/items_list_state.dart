@@ -12,17 +12,21 @@ class ItemsListStateInitial extends ItemsListState {}
 class ItemsListStateLoading extends ItemsListState {}
 
 class ItemsListStateLoaded extends ItemsListState {
-  const ItemsListStateLoaded({required this.itemsList});
   final List<Item> itemsList;
+  final Set<String> favorites; // Add favorites set
+
+  const ItemsListStateLoaded(
+      {required this.itemsList, required this.favorites});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [itemsList, favorites];
 }
 
 class ItemsListStateError extends ItemsListState {
-  const ItemsListStateError({required this.message});
   final String message;
 
+  const ItemsListStateError({required this.message});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [message];
 }
