@@ -16,7 +16,7 @@ class SearchScreen extends StatelessWidget {
         SizedBox(height: 15.h),
         Text("Searched products", style: TextStyles.font24BlackBold),
         SizedBox(height: 12.h),
-        ItemsCardsList(),
+        // ItemsCardsList(),
       ],
     );
   }

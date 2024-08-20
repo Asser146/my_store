@@ -11,12 +11,11 @@ class ItemCard extends StatelessWidget {
     required this.label,
     required this.price,
     required this.description,
-    required this.salePrice,
     required this.id,
   });
 
   final String label, image, description, id;
-  final double price, salePrice;
+  final double price;
 
   @override
   Widget build(BuildContext context) {
