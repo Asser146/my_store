@@ -14,7 +14,8 @@ class HomeScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Recent products", style: TextStyles.font24BlackBold),
+        Center(
+            child: Text("Recent products", style: TextStyles.font24BlackBold)),
         SizedBox(height: 12.h),
         ItemsCardsList(itemsList: itemsList),
       ],

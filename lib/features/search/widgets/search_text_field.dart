@@ -8,9 +8,10 @@ class SearchTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 45.h, // Adjust height if needed
+      height: 50.h, // Adjust height if needed
       decoration: BoxDecoration(
-        color: ColorsManager.cardColor, // Background color of the container
+        color: ColorsManager
+            .bottombarIconsColor, // Background color of the container
         borderRadius: BorderRadius.only(
           bottomRight: Radius.circular(20.r),
           bottomLeft: Radius.circular(20.r),

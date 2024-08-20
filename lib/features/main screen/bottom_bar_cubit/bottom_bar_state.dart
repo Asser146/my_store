@@ -12,3 +12,5 @@ final class BottomBarHomeSelected extends BottomBarState {}
 final class BottomBarSearchSelected extends BottomBarState {}
 
 final class BottomBarCartSelected extends BottomBarState {}
+
+final class BottomBarFavouritesSelected extends BottomBarState {}

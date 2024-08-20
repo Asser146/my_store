@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/features/Cart/widgets/build_cart.dart';
+import 'package:my_store/features/Favourites/widgets/build_favourites.dart';
 import 'package:my_store/features/Home/presentation/widgets/build_home.dart';
 import 'package:my_store/features/main%20screen/bottom_bar_cubit/bottom_bar_cubit.dart';
 import 'package:my_store/features/main%20screen/widgets/bottom_bar.dart';
@@ -19,6 +20,8 @@ class MainScreen extends StatelessWidget {
               return const BuildHome();
             } else if (state is BottomBarSearchSelected) {
               return const SearchScreen();
+            } else if (state is BottomBarFavouritesSelected) {
+              return const BuildFavourites();
             } else if (state is BottomBarCartSelected) {
               return const BuildCart();
             }

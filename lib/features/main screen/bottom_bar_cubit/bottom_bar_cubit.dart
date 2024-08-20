@@ -14,6 +14,9 @@ class BottomBarCubit extends Cubit<BottomBarState> {
         emit(BottomBarSearchSelected());
         break;
       case 2:
+        emit(BottomBarFavouritesSelected());
+        break;
+      case 3:
         emit(BottomBarCartSelected());
         break;
       default:

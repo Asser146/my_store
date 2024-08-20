@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
             ],
             child: const MainScreen(),
           ),
+          debugShowCheckedModeBanner: false,
         );
       },
     );
