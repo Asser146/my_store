@@ -58,34 +58,37 @@ class ItemCard extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                BlocBuilder<ItemsListCubit, ItemsListState>(
-                  builder: (context, state) {
-                    return IconButton(
-                      icon: Icon(
-                        context
-                                .watch<ItemsListCubit>()
-                                .isFavorite(item.id!.toString())
-                            ? Icons.favorite
-                            : Icons.favorite_outline,
-                        size: 25.sp,
-                      ),
-                      onPressed: () {
-                        context
-                            .read<ItemsListCubit>()
-                            .toggleFavorite(item.id!.toString());
-                      },
-                    );
+                IconButton(
+                  icon: Icon(
+                    context
+                            .watch<ItemsListCubit>()
+                            .isFavorite(item.id!.toString())
+                        ? Icons.favorite
+                        : Icons.favorite_outline,
+                    color: context
+                            .watch<ItemsListCubit>()
+                            .isFavorite(item.id!.toString())
+                        ? ColorsManager.inCartColor
+                        : null,
+                    size: 25.sp,
+                  ),
+                  onPressed: () {
+                    context.read<ItemsListCubit>().toggleFavorite(item);
                   },
-                ),
+                )
               ],
             ),
             const Spacer(),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context.read<ItemsListCubit>().toggleCart(item);
+              },
               child: Container(
                 height: 40.h,
                 decoration: BoxDecoration(
-                  color: ColorsManager.buttonColor,
+                  color: context.read<ItemsListCubit>().inCart(item)
+                      ? ColorsManager.inCartColor
+                      : ColorsManager.buttonColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(15.r),
                   ),
@@ -93,7 +96,9 @@ class ItemCard extends StatelessWidget {
                 width: double.infinity,
                 child: Center(
                   child: Text(
-                    "Add to Cart",
+                    context.read<ItemsListCubit>().inCart(item)
+                        ? "In Cart"
+                        : "Add to Cart",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.sp,

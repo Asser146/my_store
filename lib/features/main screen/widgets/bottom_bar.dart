@@ -27,9 +27,10 @@ class BottomBar extends StatelessWidget {
             context.read<BottomBarCubit>().updateIndex(index);
           },
           selectedItemColor: ColorsManager.buttonColor,
-          unselectedItemColor: ColorsManager.cardColor,
+          unselectedItemColor: ColorsManager.bottombarIconsColor,
           selectedLabelStyle: TextStyles.font12greenRegular,
-          unselectedLabelStyle: TextStyle(color: ColorsManager.cardColor),
+          unselectedLabelStyle:
+              TextStyle(color: ColorsManager.bottombarIconsColor),
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home, size: 30.r),
