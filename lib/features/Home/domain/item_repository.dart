@@ -13,4 +13,15 @@ class ItemRepository {
       rethrow;
     }
   }
+
+  Future<List<Item>> limit5Products() async {
+    try {
+      ApiService client = getIt<ApiService>();
+      final products = await client.limit5Products();
+      return products;
+    } catch (e) {
+      print('Error fetching products: $e');
+      rethrow;
+    }
+  }
 }

@@ -10,4 +10,7 @@ abstract class ApiService {
 
   @GET(ApiConstants.products)
   Future<List<Item>> getAllProducts();
+
+  @GET(ApiConstants.limit5)
+  Future<List<Item>> limit5Products();
 }

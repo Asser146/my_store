@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/Home/data/item.dart';
 import 'package:my_store/features/Home/presentation/widgets/items_cards_list.dart';
+import 'package:my_store/features/main%20screen/items_list_cubit/items_list_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Item> itemsList;
@@ -14,8 +16,35 @@ class HomeScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-            child: Text("Recent products", style: TextStyles.font24BlackBold)),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Recent products", style: TextStyles.font24BlackBold),
+              DropdownButton(
+                icon: Icon(Icons.filter_list, size: 24.sp),
+                underline:
+                    SizedBox(), // Removes the underline from the dropdown
+                items: const [
+                  DropdownMenuItem(
+                    value: 'price',
+                    child: Text('Price'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'limit5',
+                    child: Text('limit5'),
+                  ),
+                ],
+                onChanged: (value) async {
+                  if (value == 'limit5') {
+                    await context.read<ItemsListCubit>().limit5Products();
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
         SizedBox(height: 12.h),
         ItemsCardsList(itemsList: itemsList),
       ],
