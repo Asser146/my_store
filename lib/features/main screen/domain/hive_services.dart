@@ -16,8 +16,6 @@ class HiveServices {
   Future<void> init() async {
     _itemsBox = await Hive.openBox<Item>('itemsBox');
     _favoritesBox = await Hive.openBox<Item>('favoritesBox');
-    // print("retrieved ${_favoritesBox.values.length}");
-
     _cartBox = await Hive.openBox<Item>('cartBox');
   }
 
@@ -40,7 +38,7 @@ class HiveServices {
     if (isFavorite(item)) {
       await _favoritesBox.delete(item.id);
     } else {
-      await _favoritesBox.put(item.id, item);
+      await _favoritesBox.put(item.id, item.copyWith());
     }
   }
 
@@ -57,7 +55,7 @@ class HiveServices {
     if (isInCart(item)) {
       await _cartBox.delete(item.id);
     } else {
-      await _cartBox.put(item.id, item);
+      await _cartBox.put(item.id, item.copyWith());
     }
   }
 
@@ -74,6 +72,6 @@ class HiveServices {
   }
 
   Future<void> clearItems() async {
-    await _cartBox.clear();
+    await _itemsBox.clear();
   }
 }

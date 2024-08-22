@@ -36,7 +36,7 @@ class ItemCardProvider extends ChangeNotifier {
     } else {
       _favorites.add(item);
     }
-    // _hiveServices.toggleFavorite(item); // Persist changes to Hive
+    _hiveServices.toggleFavorite(item); // Persist changes to Hive
     notifyListeners();
   }
 

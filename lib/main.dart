@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: (context, child) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           onGenerateRoute:
               _appRouter.generateRoute, // Use the AppRouter for navigation
           initialRoute: Routes.login, // Set the initial route
