@@ -4,15 +4,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/Home/data/item.dart';
-import 'package:my_store/features/main%20screen/items_list_cubit/items_list_cubit.dart';
+import 'package:my_store/features/Home/presentation/widgets/item_card_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
+import 'package:my_store/features/search/cubit/search_cubit.dart';
 
 class ItemCard extends StatelessWidget {
-  const ItemCard({super.key, required this.item});
-
   final Item item;
+
+  const ItemCard({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
+    final favoritesProvider = Provider.of<ItemCardProvider>(context);
+
     return Container(
       width: 0.4.sw,
       decoration: BoxDecoration(
@@ -41,21 +46,22 @@ class ItemCard extends StatelessWidget {
                   ),
                 ),
                 Align(
-                    alignment: Alignment.topRight,
-                    child: IconButton(
-                      icon: Icon(
-                        context.watch<ItemsListCubit>().isFavorite(item)
-                            ? Icons.favorite
-                            : Icons.favorite_outline,
-                        color: context.watch<ItemsListCubit>().isFavorite(item)
-                            ? ColorsManager.inCartColor
-                            : null,
-                        size: 25.sp,
-                      ),
-                      onPressed: () {
-                        context.read<ItemsListCubit>().toggleFavorite(item);
-                      },
-                    )),
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    icon: Icon(
+                      favoritesProvider.isFavorite(item)
+                          ? Icons.favorite
+                          : Icons.favorite_outline,
+                      color: favoritesProvider.isFavorite(item)
+                          ? ColorsManager.inCartColor
+                          : null,
+                      size: 25.sp,
+                    ),
+                    onPressed: () {
+                      favoritesProvider.toggleFavorite(item);
+                    },
+                  ),
+                ),
               ],
             ),
           ),
@@ -89,21 +95,22 @@ class ItemCard extends StatelessWidget {
                 const Spacer(),
                 const Icon(Icons.star, color: Colors.orangeAccent),
                 SizedBox(width: 5.w),
-                Text("${item.rating!.rate}",
-                    style:
-                        TextStyles.font15BlackMedium.copyWith(fontSize: 17.sp))
+                Text(
+                  "${item.rating!.rate}",
+                  style: TextStyles.font15BlackMedium.copyWith(fontSize: 17.sp),
+                )
               ],
             ),
           ),
           const Spacer(),
           GestureDetector(
             onTap: () {
-              context.read<ItemsListCubit>().toggleCart(item);
+              favoritesProvider.toggleCart(item);
             },
             child: Container(
               height: 40.h,
               decoration: BoxDecoration(
-                color: context.read<ItemsListCubit>().inCart(item)
+                color: favoritesProvider.inCart(item)
                     ? ColorsManager.inCartColor
                     : ColorsManager.buttonColor,
                 borderRadius: BorderRadius.all(
@@ -113,9 +120,7 @@ class ItemCard extends StatelessWidget {
               width: double.infinity,
               child: Center(
                 child: Text(
-                  context.read<ItemsListCubit>().inCart(item)
-                      ? "In Cart"
-                      : "Add to Cart",
+                  favoritesProvider.inCart(item) ? "In Cart" : "Add to Cart",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.sp,

@@ -3,13 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/Home/data/item.dart';
+import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
 import 'package:my_store/features/Home/presentation/widgets/items_cards_list.dart';
-import 'package:my_store/features/main%20screen/items_list_cubit/items_list_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
-  final List<Item> itemsList;
+  // final List<Item> itemsList;
 
-  const HomeScreen({super.key, required this.itemsList});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                 ],
                 onChanged: (value) async {
                   if (value == 'limit5') {
-                    await context.read<ItemsListCubit>().limit5Products();
+                    // await context.read<ItemsListCubit>().limit5Products();
                   }
                 },
               ),
@@ -46,7 +46,9 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 12.h),
-        ItemsCardsList(itemsList: itemsList),
+        ItemsCardsList(
+          itemsList: context.watch<HomeCubit>().itemsList,
+        )
       ],
     );
   }

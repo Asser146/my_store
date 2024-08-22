@@ -1,14 +1,24 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/features/Home/data/item.dart';
+import 'package:my_store/features/main%20screen/domain/hive_services.dart';
 
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
-  final List<Item> itemsList;
+  List<Item> itemsList = [];
+  final HiveServices hiveServices; // Access the singleton
   List<Item> filteredItems = [];
 
-  SearchCubit(this.itemsList) : super(SearchInitial());
+  SearchCubit({required this.hiveServices}) : super(SearchInitial());
+
+  Future<void> init() async {
+    try {
+      itemsList = hiveServices.getItems();
+    } catch (e) {
+      print('Error retrieving items: $e');
+    }
+  }
 
   void search(String query) {
     if (query.isEmpty) {
