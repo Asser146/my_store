@@ -15,13 +15,20 @@ class HiveServices {
 
   Future<void> init() async {
     _itemsBox = await Hive.openBox<Item>('itemsBox');
-
     _favoritesBox = await Hive.openBox<Item>('favoritesBox');
+    // print("retrieved ${_favoritesBox.values.length}");
+
     _cartBox = await Hive.openBox<Item>('cartBox');
   }
 
   List<Item> getItems() {
     return _itemsBox.values.toList();
+  }
+
+  Future<void> addItems(List<Item> itemsList) async {
+    for (Item item in itemsList) {
+      await _itemsBox.put(item.id, item);
+    }
   }
 
   // Favorite Items Methods
@@ -63,6 +70,10 @@ class HiveServices {
   }
 
   Future<void> clearCartItems() async {
+    await _cartBox.clear();
+  }
+
+  Future<void> clearItems() async {
     await _cartBox.clear();
   }
 }

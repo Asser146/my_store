@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
+import 'package:my_store/features/Home/presentation/widgets/item_card_provider.dart';
 import 'package:my_store/features/Home/presentation/widgets/items_cards_list.dart';
 import 'package:my_store/features/search/cubit/search_cubit.dart';
 import 'package:my_store/features/search/widgets/search_text_field.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -44,13 +46,16 @@ class SearchScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 12.h),
-        context.watch<SearchCubit>().filteredItems.isEmpty
-            ? ItemsCardsList(
-                itemsList: context.watch<SearchCubit>().itemsList,
-              )
-            : ItemsCardsList(
-                itemsList: context.read<SearchCubit>().filteredItems,
-              ),
+        // ItemsCardsList(
+        //     // itemsList: context.watch<HomeCubit>().itemsList,
+        //     )
+        // context.watch<SearchCubit>().filteredItems.isEmpty
+        // ? ItemsCardsList(
+        //     // itemsList: context.watch<SearchCubit>().itemsList,
+        //     )
+        // : ItemsCardsList(
+        //     // itemsList: context.read<SearchCubit>().filteredItems,
+        //     ),
       ],
     );
   }

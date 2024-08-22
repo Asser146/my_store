@@ -11,29 +11,28 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> _checkAuthStatus() async {
+    emit(LoginInitial());
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('token');
+    print("token= $token");
     if (token != null) {
       emit(Logined());
     } else {
-      emit(UnLogined());
+      emit(LogineStarted());
     }
     // logout();
   }
 
   Future<void> login(String token) async {
-    emit(LoginInitial());
-
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('token', token);
     print("cred setted");
-
     emit(Logined());
   }
 
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
-    emit(UnLogined());
+    emit(LogineStarted());
   }
 }

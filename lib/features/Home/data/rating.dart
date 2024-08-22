@@ -5,7 +5,7 @@ part 'rating.g.dart';
 
 @HiveType(typeId: 1)
 @JsonSerializable()
-class Rating extends HiveObject {
+class Rating {
   @HiveField(0)
   double? rate;
   @HiveField(1)

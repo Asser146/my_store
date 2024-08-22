@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/Home/data/item.dart';
 import 'package:my_store/features/Home/presentation/widgets/item_card_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
-import 'package:my_store/features/search/cubit/search_cubit.dart';
 
 class ItemCard extends StatelessWidget {
   final Item item;

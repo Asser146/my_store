@@ -7,13 +7,14 @@ part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   List<Item> itemsList = [];
-  final HiveServices hiveServices; // Access the singleton
+  HiveServices hiveServices;
   List<Item> filteredItems = [];
 
   SearchCubit({required this.hiveServices}) : super(SearchInitial());
 
   Future<void> init() async {
     try {
+      hiveServices = HiveServices();
       itemsList = hiveServices.getItems();
     } catch (e) {
       print('Error retrieving items: $e');

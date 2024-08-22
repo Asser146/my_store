@@ -9,4 +9,4 @@ class LoginInitial extends LoginState {}
 
 class Logined extends LoginState {}
 
-class UnLogined extends LoginState {}
+class LogineStarted extends LoginState {}

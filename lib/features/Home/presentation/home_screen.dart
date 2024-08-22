@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/Home/data/item.dart';
 import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
+import 'package:my_store/features/Home/presentation/widgets/item_card_provider.dart';
 import 'package:my_store/features/Home/presentation/widgets/items_cards_list.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   // final List<Item> itemsList;
@@ -46,9 +48,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 12.h),
-        ItemsCardsList(
-          itemsList: context.watch<HomeCubit>().itemsList,
-        )
+        ItemsCardsList()
       ],
     );
   }

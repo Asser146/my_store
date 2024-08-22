@@ -6,7 +6,7 @@ part 'item.g.dart';
 
 @HiveType(typeId: 0) // Specify a unique typeId for Hive
 @JsonSerializable()
-class Item extends HiveObject {
+class Item {
   @HiveField(0)
   int? id;
 

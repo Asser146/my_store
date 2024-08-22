@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/widgets/my_app_bar.dart';
-import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
 import 'package:my_store/features/Home/presentation/home_screen.dart';
 import 'package:my_store/features/Search/search_screen.dart';
 import 'package:my_store/features/main%20screen/domain/hive_services.dart';
-import 'package:my_store/features/search/cubit/search_cubit.dart';
+import 'package:provider/provider.dart';
+import 'package:my_store/features/Home/presentation/widgets/item_card_provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,29 +16,18 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int currentPageIndex = 0;
-  final HiveServices _hiveServices = HiveServices(); // Access the singleton
+  late HiveServices _hiveServices;
   late Future<void> _initFuture;
-  late HomeCubit _homeCubit;
-  late SearchCubit _searchCubit;
-
-  @override
-  void dispose() {
-    _homeCubit.close();
-    _searchCubit.close();
-    super.dispose();
-  }
 
   @override
   void initState() {
     super.initState();
-    _homeCubit = HomeCubit(hiveServices: _hiveServices);
-    _searchCubit = SearchCubit(hiveServices: _hiveServices);
-    _initFuture = _initializeCubits();
+    _hiveServices = HiveServices();
+    _initFuture = _initializeHiveServices();
   }
 
-  Future<void> _initializeCubits() async {
-    await _homeCubit.init(); // Initialize HomeCubit
-    await _searchCubit.init(); // Initialize SearchCubit after HomeCubit
+  Future<void> _initializeHiveServices() async {
+    await _hiveServices.init(); // Initialize Hive services
   }
 
   @override
@@ -78,32 +66,24 @@ class _MainScreenState extends State<MainScreen> {
         future: _initFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return IndexedStack(
-              index: currentPageIndex,
-              children: <Widget>[
-                BlocProvider.value(
-                  value: _homeCubit,
-                  child: const HomeScreen(),
-                ),
-                BlocProvider.value(
-                  value: _searchCubit,
-                  child: const SearchScreen(),
-                ),
-                BlocProvider.value(
-                  value: _homeCubit, // Use appropriate cubit if needed
-                  child: const HomeScreen(),
-                ),
-                BlocProvider.value(
-                  value: _homeCubit, // Use appropriate cubit if needed
-                  child: const HomeScreen(),
-                ),
-              ],
+            return ChangeNotifierProvider(
+              create: (context) => ItemCardProvider(),
+              child: IndexedStack(
+                index: currentPageIndex,
+                children: const <Widget>[
+                  HomeScreen(),
+                  SearchScreen(),
+                  HomeScreen(), // Placeholder for Favourites screen
+                  HomeScreen(), // Placeholder for Cart screen
+                ],
+              ),
             );
           } else if (snapshot.hasError) {
             return Center(
-                child: Text('Error initializing cubits: ${snapshot.error}'));
+                child: Text(
+                    'Error initializing Hive services: ${snapshot.error}'));
           }
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );
