@@ -3,9 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
+import 'package:my_store/features/Home/data/item.dart';
+import 'package:my_store/features/main%20screen/widgets/item_card_provider.dart';
 import 'package:my_store/features/search/cubit/search_cubit.dart';
+import 'package:provider/provider.dart';
 
 class SearchTextField extends StatelessWidget {
+  final List<Item> list;
+
+  const SearchTextField({super.key, required this.list});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,7 +31,7 @@ class SearchTextField extends StatelessWidget {
           child: TextField(
             cursorColor: ColorsManager.buttonColor,
             onChanged: (query) {
-              context.read<SearchCubit>().search(query);
+              context.read<SearchCubit>().search(list, query);
             },
             decoration: InputDecoration(
               border: InputBorder.none,

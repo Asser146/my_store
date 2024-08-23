@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/Home/presentation/widgets/items_cards_list.dart';
+import 'package:my_store/features/main%20screen/widgets/item_card_provider.dart';
+import 'package:my_store/features/main%20screen/widgets/items_cards_list.dart';
+import 'package:provider/provider.dart';
 
 class FavouritesScreen extends StatelessWidget {
   const FavouritesScreen({super.key});
@@ -12,7 +14,7 @@ class FavouritesScreen extends StatelessWidget {
       children: [
         Center(child: Text("My Favourites", style: TextStyles.font24BlackBold)),
         SizedBox(height: 12.h),
-        const ItemsCardsList(type: 2),
+        ItemsCardsList(list: Provider.of<ItemCardProvider>(context).favorites),
       ],
     );
   }

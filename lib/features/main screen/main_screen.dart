@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/widgets/my_app_bar.dart';
 import 'package:my_store/features/Cart/cart_screen.dart';
 import 'package:my_store/features/Favourites/favourites_screen.dart';
+import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
 import 'package:my_store/features/Home/presentation/home_screen.dart';
 import 'package:my_store/features/Search/search_screen.dart';
 import 'package:my_store/features/main%20screen/domain/hive_services.dart';
+import 'package:my_store/features/main%20screen/widgets/item_card_provider.dart';
+import 'package:my_store/features/search/cubit/search_cubit.dart';
 import 'package:provider/provider.dart';
-import 'package:my_store/features/Home/presentation/widgets/item_card_provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -72,11 +75,17 @@ class _MainScreenState extends State<MainScreen> {
               create: (context) => ItemCardProvider(),
               child: IndexedStack(
                 index: currentPageIndex,
-                children: const <Widget>[
-                  HomeScreen(),
-                  SearchScreen(),
-                  FavouritesScreen(),
-                  CartScreen(),
+                children: <Widget>[
+                  BlocProvider(
+                    create: (context) => HomeCubit(),
+                    child: const HomeScreen(),
+                  ),
+                  BlocProvider(
+                    create: (context) => SearchCubit(),
+                    child: const SearchScreen(),
+                  ),
+                  const FavouritesScreen(),
+                  const CartScreen(),
                 ],
               ),
             );

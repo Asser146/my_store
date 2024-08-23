@@ -9,22 +9,10 @@ abstract class HomeState extends Equatable {
 
 class HomeStateInitial extends HomeState {}
 
-class HomeStateLoading extends HomeState {}
-
-class HomeStateLoaded extends HomeState {
-  final List<Item> itemsList;
-
-  const HomeStateLoaded({required this.itemsList});
+class HomeStateTabChanged extends HomeState {
+  final int index;
+  const HomeStateTabChanged({required this.index});
 
   @override
-  List<Object> get props => [itemsList];
-}
-
-class HomeStateError extends HomeState {
-  final String message;
-
-  const HomeStateError({required this.message});
-
-  @override
-  List<Object> get props => [message];
+  List<Object> get props => [index];
 }

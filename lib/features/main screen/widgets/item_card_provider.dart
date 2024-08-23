@@ -8,6 +8,7 @@ class ItemCardProvider extends ChangeNotifier {
   List<Item> _favorites = [];
   List<Item> _cartItems = [];
   List<Item> _items = [];
+  List<String> categories = ["ALL"];
   late final ItemRepository repo;
   late HiveServices _hiveServices;
 
@@ -22,20 +23,17 @@ class ItemCardProvider extends ChangeNotifier {
   Future<void> _initialize() async {
     repo = getIt<ItemRepository>();
 
-    // Fetch items from repository
     _hiveServices = HiveServices();
-    _items = await _hiveServices.getItems();
+    _items = _hiveServices.getItems();
     if (_items.isEmpty) {
       _items = await repo.fetchAllProducts();
       await _hiveServices.addItems(_items);
-      print("Fetched from Api");
     } else {
-      print("Already Fetched");
-      _favorites = _hiveServices.getFavorites(); // Load favorites from Hive
+      _favorites = _hiveServices.getFavorites();
       _cartItems = _hiveServices.getCartItems();
     }
-
-    // Load cart items from Hive
+    final List<String> cat = await repo.getCategories();
+    categories.addAll(cat);
     notifyListeners();
   }
 
@@ -45,7 +43,7 @@ class ItemCardProvider extends ChangeNotifier {
     } else {
       _favorites.add(item);
     }
-    _hiveServices.toggleFavorite(item); // Persist changes to Hive
+    _hiveServices.toggleFavorite(item);
     notifyListeners();
   }
 
@@ -55,7 +53,7 @@ class ItemCardProvider extends ChangeNotifier {
     } else {
       _cartItems.add(item);
     }
-    _hiveServices.toggleCartItem(item); // Persist changes to Hive
+    _hiveServices.toggleCartItem(item);
     notifyListeners();
   }
 
