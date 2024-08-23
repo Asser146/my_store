@@ -24,9 +24,18 @@ class ItemCardProvider extends ChangeNotifier {
 
     // Fetch items from repository
     _hiveServices = HiveServices();
-    _items = _hiveServices.getItems();
-    _favorites = _hiveServices.getFavorites(); // Load favorites from Hive
-    _cartItems = _hiveServices.getCartItems(); // Load cart items from Hive
+    _items = await _hiveServices.getItems();
+    if (_items.isEmpty) {
+      _items = await repo.fetchAllProducts();
+      await _hiveServices.addItems(_items);
+      print("Fetched from Api");
+    } else {
+      print("Already Fetched");
+      _favorites = _hiveServices.getFavorites(); // Load favorites from Hive
+      _cartItems = _hiveServices.getCartItems();
+    }
+
+    // Load cart items from Hive
     notifyListeners();
   }
 

@@ -17,6 +17,9 @@ class HiveServices {
     _itemsBox = await Hive.openBox<Item>('itemsBox');
     _favoritesBox = await Hive.openBox<Item>('favoritesBox');
     _cartBox = await Hive.openBox<Item>('cartBox');
+    // _cartBox.clear();
+    // _itemsBox.clear();
+    // _cartBox.clear();
   }
 
   List<Item> getItems() {

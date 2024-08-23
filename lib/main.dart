@@ -13,9 +13,6 @@ void main() async {
   await Hive.initFlutter(); // Initialize Hive
   Hive.registerAdapter(ItemAdapter());
   Hive.registerAdapter(RatingAdapter());
-  await Hive.openBox<Item>('favoritesBox');
-  await Hive.openBox<Item>('cartBox');
-  await Hive.openBox<Item>('itemsBox');
   runApp(MyApp());
 }
 

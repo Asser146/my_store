@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/widgets/my_app_bar.dart';
+import 'package:my_store/features/Cart/cart_screen.dart';
+import 'package:my_store/features/Favourites/favourites_screen.dart';
 import 'package:my_store/features/Home/presentation/home_screen.dart';
 import 'package:my_store/features/Search/search_screen.dart';
 import 'package:my_store/features/main%20screen/domain/hive_services.dart';
@@ -73,8 +75,8 @@ class _MainScreenState extends State<MainScreen> {
                 children: const <Widget>[
                   HomeScreen(),
                   SearchScreen(),
-                  HomeScreen(), // Placeholder for Favourites screen
-                  HomeScreen(), // Placeholder for Cart screen
+                  FavouritesScreen(),
+                  CartScreen(),
                 ],
               ),
             );

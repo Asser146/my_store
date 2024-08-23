@@ -48,7 +48,9 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 12.h),
-        ItemsCardsList()
+        ItemsCardsList(
+          type: 0,
+        )
       ],
     );
   }
