@@ -6,6 +6,7 @@ import 'package:my_store/features/Cart/cart_screen.dart';
 import 'package:my_store/features/Favourites/favourites_screen.dart';
 import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
 import 'package:my_store/features/Home/presentation/home_screen.dart';
+import 'package:my_store/features/Login/login_cubit/login_cubit.dart';
 import 'package:my_store/features/Search/search_screen.dart';
 import 'package:my_store/features/main%20screen/domain/hive_services.dart';
 import 'package:my_store/features/main%20screen/widgets/item_card_provider.dart';
@@ -23,10 +24,12 @@ class _MainScreenState extends State<MainScreen> {
   int currentPageIndex = 0;
   late HiveServices _hiveServices;
   late Future<void> _initFuture;
+  late final LoginCubit logincubit;
 
   @override
   void initState() {
     super.initState();
+    logincubit = LoginCubit();
     _hiveServices = HiveServices();
     _initFuture = _initializeHiveServices();
   }
@@ -38,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(),
+      appBar: MyAppBar(logincubit: logincubit),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {

@@ -1,21 +1,22 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'login_state.dart';
 
 // Create the Cubit
 class LoginCubit extends Cubit<LoginState> {
+  final storage = const FlutterSecureStorage();
   LoginCubit() : super(LoginInitial()) {
     _checkAuthStatus();
   }
 
   Future<void> _checkAuthStatus() async {
     emit(LoginInitial());
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('token');
-    print("token= $token");
-    if (token != null) {
+    final String? tok = await storage.read(key: "token");
+    print("token= $tok");
+    if (tok != null) {
       emit(Logined());
     } else {
       emit(LogineStarted());
@@ -24,15 +25,14 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   Future<void> login(String token) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('token', token);
+    await storage.write(key: "token", value: token);
     print("cred setted");
     emit(Logined());
   }
 
   Future<void> logout() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove('token');
+    await storage.delete(key: "token");
+
     emit(LogineStarted());
   }
 }
