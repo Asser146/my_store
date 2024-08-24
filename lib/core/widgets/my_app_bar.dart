@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/theming/colors.dart';
@@ -26,7 +25,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: EdgeInsets.only(right: 15.w),
           child: DropdownButton(
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
             underline: const SizedBox(),
             items: const [
               DropdownMenuItem(
