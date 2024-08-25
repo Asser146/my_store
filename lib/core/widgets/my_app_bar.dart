@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/theming/colors.dart';
-import 'package:my_store/features/Login/login_cubit/login_cubit.dart';
+import 'package:my_store/features/Auth/login_cubit/login_cubit.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final LoginCubit logincubit;
