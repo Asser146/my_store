@@ -67,8 +67,8 @@ class RegisterBody extends StatelessWidget {
                         final password = passwordController.text;
                         final token = username + password;
 
-                        if (token == "asser14") {
-                          context.read<LoginCubit>().login(token);
+                        if (token.isNotEmpty) {
+                          context.read<LoginCubit>().register(token);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -76,7 +76,7 @@ class RegisterBody extends StatelessWidget {
                           );
                         }
                       },
-                      child: Text('Login',
+                      child: Text('Register',
                           style: TextStyles.font24BlackBold
                               .copyWith(fontSize: 20.sp))),
                   SizedBox(height: 15.h),

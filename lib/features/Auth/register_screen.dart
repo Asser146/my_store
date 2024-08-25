@@ -20,8 +20,6 @@ class RegisterScreen extends StatelessWidget {
               Navigator.pushNamed(context, Routes.main);
             });
             return const Center(child: CircularProgressIndicator());
-          } else if (state is LoginInitial) {
-            return const Center(child: CircularProgressIndicator());
           } else {
             return SingleChildScrollView(
               child: RegisterBody(

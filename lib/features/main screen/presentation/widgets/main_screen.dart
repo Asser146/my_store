@@ -10,6 +10,7 @@ import 'package:my_store/features/Auth/login_cubit/login_cubit.dart';
 import 'package:my_store/features/Search/search_screen.dart';
 import 'package:my_store/features/main%20screen/domain/hive_services.dart';
 import 'package:my_store/features/main%20screen/presentation/widgets/item_card_provider.dart';
+import 'package:my_store/features/profile/profile_screen.dart';
 import 'package:my_store/features/search/cubit/search_cubit.dart';
 import 'package:provider/provider.dart';
 
@@ -24,12 +25,10 @@ class _MainScreenState extends State<MainScreen> {
   int currentPageIndex = 0;
   late HiveServices _hiveServices;
   late Future<void> _initFuture;
-  late final LoginCubit logincubit;
 
   @override
   void initState() {
     super.initState();
-    logincubit = LoginCubit();
     _hiveServices = HiveServices();
     _initFuture = _initializeHiveServices();
   }
@@ -41,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(logincubit: logincubit),
+      appBar: MyAppBar(),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
@@ -68,6 +67,10 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.shopping_cart),
             label: 'Cart',
           ),
+          NavigationDestination(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
         ],
       ),
       body: FutureBuilder<void>(
@@ -89,6 +92,10 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   const FavouritesScreen(),
                   const CartScreen(),
+                  BlocProvider(
+                    create: (context) => LoginCubit(type: 0),
+                    child: const ProfileScreen(),
+                  ),
                 ],
               ),
             );

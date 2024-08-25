@@ -62,14 +62,13 @@ class LoginBody extends StatelessWidget {
                   ),
                   SizedBox(height: 50.h),
                   ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         final username = usernameController.text;
                         final password = passwordController.text;
                         final token = username + password;
 
-                        if (token == "asser14") {
-                          context.read<LoginCubit>().login(token);
-                        } else {
+                        if (token.isEmpty ||
+                            !await context.read<LoginCubit>().login(token)) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('Invalid credentials')),
@@ -88,7 +87,10 @@ class LoginBody extends StatelessWidget {
                               .copyWith(fontSize: 18.sp)),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, Routes.register);
+                          Navigator.pushNamed(
+                            context,
+                            Routes.register,
+                          );
                         },
                         child: Text("Register",
                             style: TextStyles.font15BlackMedium

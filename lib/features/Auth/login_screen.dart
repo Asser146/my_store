@@ -22,6 +22,11 @@ class LoginScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           } else if (state is LoginInitial) {
             return const Center(child: CircularProgressIndicator());
+          } else if (state is RegisterStarted) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              Navigator.pushNamed(context, Routes.register);
+            });
+            return const Center(child: CircularProgressIndicator());
           } else {
             return SingleChildScrollView(
               child: LoginBody(
