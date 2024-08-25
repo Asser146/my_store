@@ -40,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: const MyAppBar(),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {

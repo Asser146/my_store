@@ -19,27 +19,26 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: ColorsManager.buttonColor,
       centerTitle: true,
       title: const Text("A-Store"),
-      // actions: [
-      //   Padding(
-      //     padding: EdgeInsets.only(right: 15.w),
-      //     child: DropdownButton(
-      //       icon: const Icon(Icons.settings),
-      //       underline: const SizedBox(),
-      //       items: const [
-      //         DropdownMenuItem(
-      //           value: 'logout',
-      //           child: Text('Logout'),
-      //         ),
-      //       ],
-      //       onChanged: (value) async {
-      //         if (value == 'logout') {
-      //           logincubit.logout();
-      //           Navigator.pushNamed(context, Routes.register);
-      //         }
-      //       },
-      //     ),
-      //   ),
-      // ],
+      actions: [
+        Padding(
+          padding: EdgeInsets.only(right: 15.w),
+          child: DropdownButton(
+            icon: const Icon(Icons.settings),
+            underline: const SizedBox(),
+            items: const [
+              DropdownMenuItem(
+                value: 'logout',
+                child: Text('Logout'),
+              ),
+            ],
+            onChanged: (value) async {
+              if (value == 'logout') {
+                Navigator.pushNamed(context, Routes.login, arguments: 1);
+              }
+            },
+          ),
+        ),
+      ],
     );
   }
 
