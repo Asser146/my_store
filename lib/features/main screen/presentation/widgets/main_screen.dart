@@ -6,10 +6,10 @@ import 'package:my_store/features/Cart/cart_screen.dart';
 import 'package:my_store/features/Favourites/favourites_screen.dart';
 import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
 import 'package:my_store/features/Home/presentation/home_screen.dart';
-import 'package:my_store/features/Login/login_cubit/login_cubit.dart';
+import 'package:my_store/features/Auth/login_cubit/login_cubit.dart';
 import 'package:my_store/features/Search/search_screen.dart';
 import 'package:my_store/features/main%20screen/domain/hive_services.dart';
-import 'package:my_store/features/main%20screen/widgets/item_card_provider.dart';
+import 'package:my_store/features/main%20screen/presentation/widgets/item_card_provider.dart';
 import 'package:my_store/features/search/cubit/search_cubit.dart';
 import 'package:provider/provider.dart';
 

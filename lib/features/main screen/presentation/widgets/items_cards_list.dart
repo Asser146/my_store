@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/features/Home/data/item.dart';
-import 'package:my_store/features/main%20screen/widgets/item_card.dart';
+import 'package:my_store/features/main%20screen/presentation/widgets/item_card.dart';
 
 class ItemsCardsList extends StatelessWidget {
   const ItemsCardsList({super.key, required this.list});

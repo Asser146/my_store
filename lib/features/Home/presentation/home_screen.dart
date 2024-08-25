@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
-import 'package:my_store/features/main%20screen/widgets/item_card_provider.dart';
-import 'package:my_store/features/main%20screen/widgets/items_cards_list.dart';
+import 'package:my_store/features/main%20screen/presentation/widgets/item_card_provider.dart';
+import 'package:my_store/features/main%20screen/presentation/widgets/items_cards_list.dart';
 import 'package:my_store/features/Home/presentation/widgets/tabs_list.dart';
 import 'package:provider/provider.dart';
 

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/Login/login_cubit/login_cubit.dart';
+import 'package:my_store/features/Auth/login_cubit/login_cubit.dart';
 
-class LoginBody extends StatelessWidget {
-  const LoginBody({
+class RegisterBody extends StatelessWidget {
+  const RegisterBody({
     super.key,
     required this.usernameController,
     required this.passwordController,
@@ -78,6 +79,23 @@ class LoginBody extends StatelessWidget {
                       child: Text('Login',
                           style: TextStyles.font24BlackBold
                               .copyWith(fontSize: 20.sp))),
+                  SizedBox(height: 15.h),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("Already Have an Account?",
+                          style: TextStyles.font15BlackMedium
+                              .copyWith(fontSize: 18.sp)),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, Routes.login);
+                        },
+                        child: Text("Login",
+                            style: TextStyles.font15BlackMedium
+                                .copyWith(fontSize: 20.sp, color: Colors.blue)),
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
