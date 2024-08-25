@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/Home/data/item.dart';
+import 'package:my_store/features/main%20screen/data/item.dart';
 
 class HorizontaItemCar extends StatelessWidget {
   const HorizontaItemCar({
@@ -15,7 +15,7 @@ class HorizontaItemCar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.symmetric (horizontal:  8.w),
+      padding: EdgeInsets.symmetric(horizontal: 8.w),
       child: Container(
         decoration: BoxDecoration(
           color: ColorsManager.cardColor,
@@ -51,7 +51,8 @@ class HorizontaItemCar extends StatelessWidget {
                 SizedBox(height: 10.h),
                 Text(
                   "${item.price!.toStringAsFixed(2)} \$",
-                  style: TextStyles.font12greenRegular.copyWith(fontSize: 20.sp),
+                  style:
+                      TextStyles.font12greenRegular.copyWith(fontSize: 20.sp),
                 ),
               ],
             ),

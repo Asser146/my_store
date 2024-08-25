@@ -88,7 +88,8 @@ class RegisterBody extends StatelessWidget {
                               .copyWith(fontSize: 18.sp)),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, Routes.login);
+                          Navigator.pushNamed(context, Routes.login,
+                              arguments: 1);
                         },
                         child: Text("Login",
                             style: TextStyles.font15BlackMedium

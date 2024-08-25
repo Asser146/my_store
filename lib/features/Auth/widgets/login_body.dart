@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/Auth/login_cubit/login_cubit.dart';
+import 'package:my_store/features/Auth/widgets/login_button.dart';
 
 class LoginBody extends StatelessWidget {
   const LoginBody({
@@ -61,23 +60,9 @@ class LoginBody extends StatelessWidget {
                     obscureText: true,
                   ),
                   SizedBox(height: 50.h),
-                  ElevatedButton(
-                      onPressed: () async {
-                        final username = usernameController.text;
-                        final password = passwordController.text;
-                        final token = username + password;
-
-                        if (token.isEmpty ||
-                            !await context.read<LoginCubit>().login(token)) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Invalid credentials')),
-                          );
-                        }
-                      },
-                      child: Text('Login',
-                          style: TextStyles.font24BlackBold
-                              .copyWith(fontSize: 20.sp))),
+                  LoginButton(
+                      usernameController: usernameController,
+                      passwordController: passwordController),
                   SizedBox(height: 15.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,

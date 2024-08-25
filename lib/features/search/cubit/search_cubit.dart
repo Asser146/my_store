@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_store/features/Home/data/item.dart';
+import 'package:my_store/features/main%20screen/data/item.dart';
 
 part 'search_state.dart';
 

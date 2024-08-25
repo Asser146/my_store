@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_store/core/di/dependency_injection.dart';
-import 'package:my_store/features/Home/data/item.dart';
-import 'package:my_store/features/Home/domain/item_repository.dart';
+import 'package:my_store/features/main%20screen/data/item.dart';
+import 'package:my_store/features/main%20screen/domain/item_repository.dart';
 import 'package:my_store/features/main%20screen/domain/hive_services.dart';
 
 class ItemCardProvider extends ChangeNotifier {

@@ -1,6 +1,6 @@
 import 'package:my_store/core/di/dependency_injection.dart';
 import 'package:my_store/core/networking/api_service.dart';
-import 'package:my_store/features/Home/data/item.dart';
+import 'package:my_store/features/main%20screen/data/item.dart';
 
 class ItemRepository {
   Future<List<Item>> fetchAllProducts() async {

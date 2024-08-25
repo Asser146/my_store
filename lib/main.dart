@@ -4,8 +4,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_store/core/di/dependency_injection.dart';
 import 'package:my_store/core/routing/app_router.dart';
 import 'package:my_store/core/routing/routes.dart';
-import 'package:my_store/features/Home/data/item.dart';
-import 'package:my_store/features/Home/data/rating.dart';
+import 'package:my_store/features/main%20screen/data/item.dart';
+import 'package:my_store/features/main%20screen/data/rating.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
