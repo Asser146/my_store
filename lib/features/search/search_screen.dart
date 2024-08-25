@@ -28,8 +28,7 @@ class SearchScreen extends StatelessWidget {
               Text("Search for products", style: TextStyles.font24BlackBold),
               DropdownButton(
                 icon: Icon(Icons.filter_list, size: 24.sp),
-                underline:
-                    SizedBox(), // Removes the underline from the dropdown
+                underline: const SizedBox(),
                 items: const [
                   DropdownMenuItem(
                     value: 'price',
