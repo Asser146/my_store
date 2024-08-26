@@ -77,27 +77,30 @@ class _MainScreenState extends State<MainScreen> {
         future: _initFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return ChangeNotifierProvider(
-              create: (context) => ItemCardProvider(),
-              child: IndexedStack(
-                index: currentPageIndex,
-                children: <Widget>[
-                  BlocProvider(
-                    create: (context) => HomeCubit(),
-                    child: const HomeScreen(),
-                  ),
-                  BlocProvider(
-                    create: (context) => SearchCubit(),
-                    child: const SearchScreen(),
-                  ),
-                  const FavouritesScreen(),
-                  const CartScreen(),
-                  BlocProvider(
-                    create: (context) => LoginCubit(type: 0),
-                    child: const ProfileScreen(),
-                  ),
-                ],
-              ),
+            return IndexedStack(
+              index: currentPageIndex,
+              children: <Widget>[
+                BlocProvider(
+                  create: (context) => HomeCubit(),
+                  child: const HomeScreen(),
+                ),
+                BlocProvider(
+                  create: (context) => SearchCubit(),
+                  child: const SearchScreen(),
+                ),
+                ChangeNotifierProvider(
+                  create: (context) => ItemCardProvider(),
+                  child: const FavouritesScreen(),
+                ),
+                ChangeNotifierProvider(
+                  create: (context) => ItemCardProvider(),
+                  child: const CartScreen(),
+                ),
+                BlocProvider(
+                  create: (context) => LoginCubit(type: 0),
+                  child: const ProfileScreen(),
+                ),
+              ],
             );
           } else if (snapshot.hasError) {
             return Center(

@@ -1,10 +1,14 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_store/core/di/dependency_injection.dart';
 import 'package:my_store/features/main%20screen/data/item.dart';
+import 'package:my_store/features/main%20screen/presentation/widgets/item_card_provider.dart';
 
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
+  final ItemCardProvider provider = getIt<ItemCardProvider>();
+
   List<Item> filteredItems = [];
 
   SearchCubit() : super(SearchInitial());

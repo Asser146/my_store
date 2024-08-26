@@ -13,7 +13,7 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ItemCardProvider>(context);
+    final provider = context.watch<SearchCubit>().provider;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,9 +40,7 @@ class SearchScreen extends StatelessWidget {
                   ),
                 ],
                 onChanged: (value) async {
-                  if (value == 'limit5') {
-                    // Implement the logic for limiting to 5 items or any other filtering logic
-                  }
+                  if (value == 'limit5') {}
                 },
               ),
             ],
@@ -52,9 +50,15 @@ class SearchScreen extends StatelessWidget {
         BlocBuilder<SearchCubit, SearchState>(
           builder: (context, state) {
             if (state is SearchLoaded) {
-              return ItemsCardsList(list: state.itemsList);
+              return ChangeNotifierProvider(
+                create: (context) => ItemCardProvider(),
+                child: ItemsCardsList(list: state.itemsList),
+              );
             } else {
-              return ItemsCardsList(list: provider.items);
+              return ChangeNotifierProvider(
+                create: (context) => ItemCardProvider(),
+                child: ItemsCardsList(list: provider.items),
+              );
             }
           },
         ),

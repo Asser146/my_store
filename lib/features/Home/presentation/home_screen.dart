@@ -13,7 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ItemCardProvider>(context);
+    final provider = context.watch<HomeCubit>().provider;
     final homeCubit = context.read<HomeCubit>();
 
     return Column(
@@ -58,7 +58,10 @@ class HomeScreen extends StatelessWidget {
                         item.category == provider.categories[currentIndex])
                     .toList();
 
-            return ItemsCardsList(list: itemsToShow);
+            return ChangeNotifierProvider(
+              create: (context) => ItemCardProvider(),
+              child: ItemsCardsList(list: itemsToShow),
+            );
           },
         ),
       ],

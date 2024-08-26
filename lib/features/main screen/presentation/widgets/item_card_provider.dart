@@ -5,6 +5,8 @@ import 'package:my_store/features/main%20screen/domain/item_repository.dart';
 import 'package:my_store/features/main%20screen/domain/hive_services.dart';
 
 class ItemCardProvider extends ChangeNotifier {
+  static final ItemCardProvider _instance = ItemCardProvider._internal();
+
   List<Item> _favorites = [];
   List<Item> _cartItems = [];
   List<Item> _items = [];
@@ -12,13 +14,19 @@ class ItemCardProvider extends ChangeNotifier {
   late final ItemRepository repo;
   late HiveServices _hiveServices;
 
+  // Private constructor
+  ItemCardProvider._internal() {
+    _initialize();
+  }
+
+  // Factory constructor returns the same instance
+  factory ItemCardProvider() {
+    return _instance;
+  }
+
   List<Item> get favorites => _favorites;
   List<Item> get cartItems => _cartItems;
   List<Item> get items => _items;
-
-  ItemCardProvider() {
-    _initialize();
-  }
 
   Future<void> _initialize() async {
     repo = getIt<ItemRepository>();
