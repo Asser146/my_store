@@ -8,7 +8,6 @@ import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
 import 'package:my_store/features/Home/presentation/home_screen.dart';
 import 'package:my_store/features/Auth/login_cubit/login_cubit.dart';
 import 'package:my_store/features/Search/search_screen.dart';
-import 'package:my_store/features/main%20screen/domain/hive_services.dart';
 import 'package:my_store/features/main%20screen/presentation/widgets/item_card_provider.dart';
 import 'package:my_store/features/profile/profile_screen.dart';
 import 'package:my_store/features/search/cubit/search_cubit.dart';
@@ -23,19 +22,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int currentPageIndex = 0;
-  late HiveServices _hiveServices;
-  late Future<void> _initFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    _hiveServices = HiveServices();
-    _initFuture = _initializeHiveServices();
-  }
-
-  Future<void> _initializeHiveServices() async {
-    await _hiveServices.init(); // Initialize Hive services
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,42 +59,30 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
-      body: FutureBuilder<void>(
-        future: _initFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return IndexedStack(
-              index: currentPageIndex,
-              children: <Widget>[
-                BlocProvider(
-                  create: (context) => HomeCubit(),
-                  child: const HomeScreen(),
-                ),
-                BlocProvider(
-                  create: (context) => SearchCubit(),
-                  child: const SearchScreen(),
-                ),
-                ChangeNotifierProvider(
-                  create: (context) => ItemCardProvider(),
-                  child: const FavouritesScreen(),
-                ),
-                ChangeNotifierProvider(
-                  create: (context) => ItemCardProvider(),
-                  child: const CartScreen(),
-                ),
-                BlocProvider(
-                  create: (context) => LoginCubit(type: 0),
-                  child: const ProfileScreen(),
-                ),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-                child: Text(
-                    'Error initializing Hive services: ${snapshot.error}'));
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
+      body: IndexedStack(
+        index: currentPageIndex,
+        children: <Widget>[
+          BlocProvider(
+            create: (context) => HomeCubit(),
+            child: const HomeScreen(),
+          ),
+          BlocProvider(
+            create: (context) => SearchCubit(),
+            child: const SearchScreen(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ItemCardProvider(),
+            child: const FavouritesScreen(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ItemCardProvider(),
+            child: const CartScreen(),
+          ),
+          BlocProvider(
+            create: (context) => LoginCubit(type: 0),
+            child: const ProfileScreen(),
+          ),
+        ],
       ),
     );
   }

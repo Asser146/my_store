@@ -6,6 +6,7 @@ import 'package:my_store/core/routing/app_router.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/features/main%20screen/data/item.dart';
 import 'package:my_store/features/main%20screen/data/rating.dart';
+import 'package:my_store/features/main%20screen/domain/hive_services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +14,8 @@ void main() async {
   await Hive.initFlutter(); // Initialize Hive
   Hive.registerAdapter(ItemAdapter());
   Hive.registerAdapter(RatingAdapter());
+  HiveServices hiveServices = HiveServices();
+  await hiveServices.init();
   runApp(MyApp());
 }
 
