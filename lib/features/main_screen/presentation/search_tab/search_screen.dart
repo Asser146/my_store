@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/core/widgets/items_cards_list.dart';
-import 'package:my_store/features/search/cubit/search_cubit.dart';
-import 'package:my_store/features/search/widgets/search_text_field.dart';
+import 'package:my_store/features/main_screen/presentation/search_tab/cubit/search_cubit.dart';
+import 'package:my_store/features/main_screen/presentation/search_tab/widgets/search_text_field.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});

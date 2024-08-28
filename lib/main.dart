@@ -11,7 +11,7 @@ import 'package:my_store/features/main_screen/domain/hive_services.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
-  await Hive.initFlutter(); // Initialize Hive
+  await Hive.initFlutter();
   Hive.registerAdapter(ItemAdapter());
   Hive.registerAdapter(RatingAdapter());
   HiveServices hiveServices = HiveServices();

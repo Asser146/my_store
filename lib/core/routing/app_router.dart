@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/widgets/item_details.dart';
-import 'package:my_store/features/Auth/login_cubit/login_cubit.dart';
-import 'package:my_store/features/Auth/login_screen.dart';
-import 'package:my_store/features/Auth/register_screen.dart';
+import 'package:my_store/features/auth/login_cubit/login_cubit.dart';
+import 'package:my_store/features/auth/login_screen.dart';
+import 'package:my_store/features/auth/register_screen.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
 
 import 'package:my_store/features/main_screen/main_screen.dart';
