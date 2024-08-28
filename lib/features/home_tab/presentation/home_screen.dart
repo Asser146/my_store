@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
-import 'package:my_store/features/Home/presentation/widgets/tabs_list.dart';
-import 'package:my_store/features/main%20screen/presentation/widgets/items_cards_list.dart';
+import 'package:my_store/features/home_tab/presentation/home_cubit/home_cubit.dart';
+import 'package:my_store/features/home_tab/presentation/widgets/tabs_list.dart';
+import 'package:my_store/core/widgets/items_cards_list.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -58,7 +58,9 @@ class HomeScreen extends StatelessWidget {
             return ItemsCardsList(
                 list: itemsToShow,
                 toggleFav: context.watch<HomeCubit>().toggleFavorite,
-                isFav: context.watch<HomeCubit>().isFavourite);
+                isFav: context.watch<HomeCubit>().isFavourite,
+                isCart: context.read<HomeCubit>().isCart,
+                toggleCart: context.watch<HomeCubit>().toggleCart);
           },
         ),
       ],

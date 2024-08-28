@@ -1,17 +1,15 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/di/dependency_injection.dart';
-import 'package:my_store/features/main%20screen/data/item.dart';
-import 'package:my_store/features/main%20screen/domain/hive_services.dart';
-import 'package:my_store/features/main%20screen/domain/item_repository.dart';
+import 'package:my_store/features/main_screen/data/item.dart';
+import 'package:my_store/features/main_screen/domain/item_repository.dart';
 
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
   final ItemRepository repo = getIt<ItemRepository>();
-  final HiveServices _hiveServices = getIt<HiveServices>();
   List<List<Item>> lists = [];
-  List<Item> searchItem = [], searchFavourites = [], searchCartItems = [];
+  List<Item> items = [], favourites = [], cartitems = [];
   List<Item> filteredItems = [];
 
   SearchCubit() : super(SearchInitial()) {
@@ -20,11 +18,10 @@ class SearchCubit extends Cubit<SearchState> {
   Future<void> init() async {
     emit(SearchLoading());
     lists = await repo.getLists();
-    searchItem = lists[0];
-    searchFavourites = lists[1];
-    searchCartItems = lists[2];
-    emit(SearchLoaded(
-        items: searchItem, fav: searchFavourites, cart: searchCartItems));
+    items = lists[0];
+    favourites = lists[1];
+    cartitems = lists[2];
+    emit(SearchLoaded(items: items, fav: favourites, cart: cartitems));
   }
 
   void search(List<Item> items, String query) {
@@ -34,24 +31,38 @@ class SearchCubit extends Cubit<SearchState> {
       filteredItems = items.where((item) {
         return item.title?.toLowerCase().contains(query.toLowerCase()) ?? false;
       }).toList();
-      emit(SearchLoaded(
-          items: filteredItems, fav: searchFavourites, cart: searchCartItems));
+      emit(
+          SearchLoaded(items: filteredItems, fav: favourites, cart: cartitems));
     }
   }
 
   Future<void> toggleFavorite(Item item) async {
     emit(SearchLoading());
-    if (searchFavourites.contains(item)) {
-      searchFavourites.remove(item);
+    if (favourites.contains(item)) {
+      favourites.remove(item);
     } else {
-      searchFavourites.add(item);
+      favourites.add(item);
     }
     await repo.toggleFav(item);
-    emit(SearchLoaded(
-        items: searchItem, fav: searchFavourites, cart: searchCartItems));
+    emit(SearchLoaded(items: items, fav: favourites, cart: cartitems));
   }
 
   bool isFavourite(Item item) {
-    return searchFavourites.contains(item);
+    return favourites.contains(item);
+  }
+
+  Future<void> toggleCart(Item item) async {
+    emit(SearchLoading());
+    if (cartitems.contains(item)) {
+      cartitems.remove(item);
+    } else {
+      cartitems.add(item);
+    }
+    await repo.toggleCart(item);
+    emit(SearchLoaded(items: items, fav: favourites, cart: cartitems));
+  }
+
+  bool isCart(Item item) {
+    return cartitems.contains(item);
   }
 }

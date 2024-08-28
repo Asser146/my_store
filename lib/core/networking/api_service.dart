@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:my_store/core/networking/api_constants.dart';
-import 'package:my_store/features/main%20screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/item.dart';
 import 'package:retrofit/retrofit.dart';
 part 'api_service.g.dart';
 

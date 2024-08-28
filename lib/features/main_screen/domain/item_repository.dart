@@ -1,7 +1,7 @@
 import 'package:my_store/core/di/dependency_injection.dart';
 import 'package:my_store/core/networking/api_service.dart';
-import 'package:my_store/features/main%20screen/data/item.dart';
-import 'package:my_store/features/main%20screen/domain/hive_services.dart';
+import 'package:my_store/features/main_screen/data/item.dart';
+import 'package:my_store/features/main_screen/domain/hive_services.dart';
 
 class ItemRepository {
   final HiveServices _hiveServices = getIt<HiveServices>();
@@ -28,6 +28,10 @@ class ItemRepository {
 
   Future<void> toggleFav(Item item) async {
     _hiveServices.toggleFavorite(item);
+  }
+
+  Future<void> toggleCart(Item item) async {
+    _hiveServices.toggleCartItem(item);
   }
 
   Future<List<List<Item>>> getLists() async {

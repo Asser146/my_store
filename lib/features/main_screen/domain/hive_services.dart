@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:my_store/features/main%20screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/item.dart';
 
 class HiveServices {
   static final HiveServices _instance = HiveServices._internal();

@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
-import 'package:my_store/features/main%20screen/data/rating.dart';
+import 'package:my_store/features/main_screen/data/rating.dart';
 
 part 'item.g.dart';
 

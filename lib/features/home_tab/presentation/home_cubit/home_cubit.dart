@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/di/dependency_injection.dart';
-import 'package:my_store/features/main%20screen/data/item.dart';
-import 'package:my_store/features/main%20screen/domain/item_repository.dart';
+import 'package:my_store/features/main_screen/data/item.dart';
+import 'package:my_store/features/main_screen/domain/item_repository.dart';
 
 part 'home_state.dart';
 
@@ -12,7 +12,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<List<Item>> lists = [];
   List<Item> homeitems = [], homefavourites = [], homecartItems = [];
 
-  HomeCubit() : super(HomeStateInitial()) {}
+  HomeCubit() : super(HomeStateInitial());
   Future<void> init() async {
     emit(HomeStateLoading());
     lists = await repo.getLists();
@@ -46,5 +46,21 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeStateLoading());
     currentTabIndex = index;
     emit(HomeStateTabChanged(index: currentTabIndex));
+  }
+
+  Future<void> toggleCart(Item item) async {
+    emit(HomeStateLoading());
+    if (homecartItems.contains(item)) {
+      homecartItems.remove(item);
+    } else {
+      homecartItems.add(item);
+    }
+    await repo.toggleCart(item);
+    emit(HomeStateItems(
+        items: homeitems, fav: homefavourites, cart: homecartItems));
+  }
+
+  bool isCart(Item item) {
+    return homecartItems.contains(item);
   }
 }

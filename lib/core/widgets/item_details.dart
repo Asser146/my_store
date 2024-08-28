@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/core/widgets/my_app_bar.dart';
-import 'package:my_store/features/main%20screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/item.dart';
 
 class ItemDetails extends StatelessWidget {
   final Item item;
@@ -12,7 +12,7 @@ class ItemDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: const MyAppBar(),
       body: Column(
         children: [
           Container(

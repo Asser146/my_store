@@ -3,17 +3,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/main%20screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/item.dart';
 
 class ItemCard extends StatelessWidget {
   final Item item;
   final bool Function(Item) isFav;
+  final bool Function(Item) isCart;
   final Future<void> Function(Item) toggleFav;
+  final Future<void> Function(Item) toggleCart;
+
   ItemCard(
       {super.key,
       required this.item,
       required this.isFav,
-      required this.toggleFav});
+      required this.toggleFav,
+      required this.isCart,
+      required this.toggleCart});
 
   @override
   Widget build(BuildContext context) {
@@ -104,13 +109,15 @@ class ItemCard extends StatelessWidget {
             ),
             const Spacer(),
             GestureDetector(
-              onTap: () {
-                // Handle adding or removing the item from the cart
+              onTap: () async {
+                await toggleCart(item);
               },
               child: Container(
                 height: 40.h,
                 decoration: BoxDecoration(
-                  color: ColorsManager.buttonColor,
+                  color: isCart(item)
+                      ? ColorsManager.inCartColor
+                      : ColorsManager.buttonColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(15.r),
                   ),

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/main%20screen/data/item.dart';
 import 'package:my_store/features/search/cubit/search_cubit.dart';
 import 'package:provider/provider.dart';
 
@@ -30,7 +29,7 @@ class SearchTextField extends StatelessWidget {
             onChanged: (query) {
               context
                   .read<SearchCubit>()
-                  .search(context.read<SearchCubit>().searchItem, query);
+                  .search(context.read<SearchCubit>().items, query);
             },
             decoration: InputDecoration(
               border: InputBorder.none,
