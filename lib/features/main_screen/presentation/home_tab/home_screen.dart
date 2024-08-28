@@ -46,18 +46,18 @@ class HomeScreen extends StatelessWidget {
         SizedBox(height: 8.h),
         BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
-            homeCubit.init();
+            homeCubit.reInitialize();
             final currentIndex = homeCubit.currentTabIndex;
             final itemsToShow = currentIndex == 0
-                ? homeCubit.homeitems
-                : homeCubit.homeitems
+                ? homeCubit.items
+                : homeCubit.items
                     .where((item) =>
                         item.category == homeCubit.categories[currentIndex])
                     .toList();
 
             return ItemsCardsList(
                 list: itemsToShow,
-                toggleFav: context.watch<HomeCubit>().toggleFavorite,
+                toggleFav: context.watch<HomeCubit>().homeToggleFav,
                 isFav: context.watch<HomeCubit>().isFavourite,
                 isCart: context.read<HomeCubit>().isCart,
                 toggleCart: context.watch<HomeCubit>().toggleCart);

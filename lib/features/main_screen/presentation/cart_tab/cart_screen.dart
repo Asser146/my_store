@@ -13,7 +13,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, state) {
-        context.watch<CartCubit>().init();
+        context.watch<CartCubit>().cartInit();
         final list = context.watch<CartCubit>().cartItems;
         final sum = list.fold<double>(
             0.0, (previousValue, item) => previousValue + (item.price ?? 0.0));

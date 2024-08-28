@@ -17,13 +17,13 @@ class FavouritesScreen extends StatelessWidget {
         BlocBuilder<FavouriteCubit, FavouriteState>(
           builder: (context, state) {
             final favouriteCubit = context.watch<FavouriteCubit>();
-            context.read<FavouriteCubit>().init();
+            context.read<FavouriteCubit>().favouritesInit();
             return ItemsCardsList(
                 list: favouriteCubit.favourites,
-                toggleFav: favouriteCubit.toggleFavorite,
+                toggleFav: favouriteCubit.favouritesToggleFav,
                 isFav: favouriteCubit.isFavourite,
                 isCart: favouriteCubit.isCart,
-                toggleCart: favouriteCubit.toggleCart);
+                toggleCart: favouriteCubit.favouritesToggleCart);
           },
         )
       ],

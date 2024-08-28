@@ -47,21 +47,21 @@ class SearchScreen extends StatelessWidget {
         SizedBox(height: 12.h),
         BlocBuilder<SearchCubit, SearchState>(
           builder: (context, state) {
-            searchCubit.init();
+            searchCubit.searchInit();
             if (state is SearchLoaded) {
               return ItemsCardsList(
                   list: state.items,
-                  toggleFav: searchCubit.toggleFavorite,
+                  toggleFav: searchCubit.searchToggleFav,
                   isFav: searchCubit.isFavourite,
                   isCart: context.read<SearchCubit>().isCart,
-                  toggleCart: searchCubit.toggleCart);
+                  toggleCart: searchCubit.searchToggleCart);
             } else {
               return ItemsCardsList(
                   list: searchCubit.items,
-                  toggleFav: searchCubit.toggleFavorite,
+                  toggleFav: searchCubit.searchToggleFav,
                   isFav: searchCubit.isFavourite,
                   isCart: context.read<SearchCubit>().isCart,
-                  toggleCart: searchCubit.toggleCart);
+                  toggleCart: searchCubit.searchToggleCart);
             }
           },
         ),

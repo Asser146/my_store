@@ -13,7 +13,7 @@ import 'package:my_store/features/main_screen/presentation/search_tab/search_scr
 List<Widget> screenBuild() {
   return [
     BlocProvider(
-      create: (context) => HomeCubit()..init(),
+      create: (context) => HomeCubit()..homeInit(),
       child: const HomeScreen(),
     ),
     BlocProvider(
@@ -21,7 +21,7 @@ List<Widget> screenBuild() {
       child: const SearchScreen(),
     ),
     BlocProvider(
-      create: (context) => FavouriteCubit()..init(),
+      create: (context) => FavouriteCubit()..favouritesInit(),
       child: const FavouritesScreen(),
     ),
     BlocProvider(
