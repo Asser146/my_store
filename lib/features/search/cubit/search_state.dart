@@ -9,11 +9,13 @@ abstract class SearchState extends Equatable {
 
 class SearchInitial extends SearchState {}
 
-class SearchLoaded extends SearchState {
-  final List<Item> itemsList;
+class SearchLoading extends SearchState {}
 
-  const SearchLoaded({required this.itemsList});
+class SearchLoaded extends SearchState {
+  final List<Item> items, fav, cart;
+  const SearchLoaded(
+      {required this.items, required this.fav, required this.cart});
 
   @override
-  List<Object> get props => [itemsList];
+  List<Object> get props => [items, fav, cart];
 }

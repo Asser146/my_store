@@ -4,8 +4,17 @@ import 'package:my_store/features/main%20screen/data/item.dart';
 import 'package:my_store/features/main%20screen/presentation/widgets/item_card.dart';
 
 class ItemsCardsList extends StatelessWidget {
-  const ItemsCardsList({super.key, required this.list});
+  const ItemsCardsList({
+    super.key,
+    required this.list,
+    required this.toggleFav,
+    required this.isFav,
+  });
+
   final List<Item> list;
+  final bool Function(Item) isFav;
+  final Future<void> Function(Item) toggleFav;
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -20,7 +29,11 @@ class ItemsCardsList extends StatelessWidget {
           ),
           itemCount: list.length,
           itemBuilder: (BuildContext context, int index) {
-            return ItemCard(item: list[index]);
+            return ItemCard(
+              item: list[index],
+              isFav: isFav,
+              toggleFav: toggleFav,
+            );
           },
         ),
       ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
 import 'package:my_store/features/main%20screen/presentation/widgets/nav_bar_items.dart';
 import 'package:my_store/features/main%20screen/presentation/widgets/screens_build.dart';
+import 'package:my_store/features/search/cubit/search_cubit.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:my_store/core/widgets/my_app_bar.dart';
 
@@ -33,10 +36,9 @@ class _MainScreenState extends State<MainScreen> {
         // backgroundColor: ColorsManager,
         handleAndroidBackButtonPress: true,
         resizeToAvoidBottomInset: true,
-        stateManagement: true,
+        stateManagement: false,
         hideNavigationBarWhenKeyboardAppears: true,
 
-        // popAllScreensOnTapOfSelectedTab: true,
         navBarStyle: NavBarStyle.style3, // Adjust the style as needed
       ),
     );

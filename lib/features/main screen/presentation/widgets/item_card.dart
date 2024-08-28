@@ -4,18 +4,19 @@ import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/main%20screen/data/item.dart';
-import 'package:my_store/features/main%20screen/presentation/widgets/item_card_provider.dart';
-import 'package:provider/provider.dart';
 
 class ItemCard extends StatelessWidget {
   final Item item;
-
-  const ItemCard({super.key, required this.item});
+  final bool Function(Item) isFav;
+  final Future<void> Function(Item) toggleFav;
+  ItemCard(
+      {super.key,
+      required this.item,
+      required this.isFav,
+      required this.toggleFav});
 
   @override
   Widget build(BuildContext context) {
-    final favoritesProvider = Provider.of<ItemCardProvider>(context);
-
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, Routes.details, arguments: item);
@@ -51,16 +52,12 @@ class ItemCard extends StatelessWidget {
                     alignment: Alignment.topRight,
                     child: IconButton(
                       icon: Icon(
-                        favoritesProvider.isFavorite(item)
-                            ? Icons.favorite
-                            : Icons.favorite_outline,
-                        color: favoritesProvider.isFavorite(item)
-                            ? ColorsManager.inCartColor
-                            : null,
+                        isFav(item) ? Icons.favorite : Icons.favorite_outline,
+                        color: isFav(item) ? ColorsManager.inCartColor : null,
                         size: 25.sp,
                       ),
-                      onPressed: () {
-                        favoritesProvider.toggleFavorite(item);
+                      onPressed: () async {
+                        await toggleFav(item);
                       },
                     ),
                   ),
@@ -101,21 +98,19 @@ class ItemCard extends StatelessWidget {
                     "${item.rating!.rate}",
                     style:
                         TextStyles.font15BlackMedium.copyWith(fontSize: 17.sp),
-                  )
+                  ),
                 ],
               ),
             ),
             const Spacer(),
             GestureDetector(
               onTap: () {
-                favoritesProvider.toggleCart(item);
+                // Handle adding or removing the item from the cart
               },
               child: Container(
                 height: 40.h,
                 decoration: BoxDecoration(
-                  color: favoritesProvider.inCart(item)
-                      ? ColorsManager.inCartColor
-                      : ColorsManager.buttonColor,
+                  color: ColorsManager.buttonColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(15.r),
                   ),
@@ -123,7 +118,7 @@ class ItemCard extends StatelessWidget {
                 width: double.infinity,
                 child: Center(
                   child: Text(
-                    favoritesProvider.inCart(item) ? "In Cart" : "Add to Cart",
+                    "Add to Cart",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.sp,

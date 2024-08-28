@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/Cart/widgets/cart_list_builder.dart';
 import 'package:my_store/features/Cart/widgets/proceed_button.dart';
-import 'package:my_store/features/main%20screen/presentation/widgets/item_card_provider.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatelessWidget {
@@ -11,9 +10,9 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final list = Provider.of<ItemCardProvider>(context).cartItems;
-    final sum = list.fold<double>(
-        0.0, (previousValue, item) => previousValue + (item.price ?? 0.0));
+    // final list = Provider.of<ItemCardProvider>(context).cartItems;
+    // final sum = list.fold<double>(
+    //     0.0, (previousValue, item) => previousValue + (item.price ?? 0.0));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,8 +24,8 @@ class CartScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 12.h),
-        CartListBuilder(list: list),
-        ProcessdButton(sum: sum)
+        // CartListBuilder(list: list),
+        // ProcessdButton(sum: sum)
       ],
     );
   }

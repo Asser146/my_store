@@ -8,9 +8,7 @@ import 'package:my_store/features/search/cubit/search_cubit.dart';
 import 'package:provider/provider.dart';
 
 class SearchTextField extends StatelessWidget {
-  final List<Item> list;
-
-  const SearchTextField({super.key, required this.list});
+  const SearchTextField({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +28,9 @@ class SearchTextField extends StatelessWidget {
           child: TextField(
             cursorColor: ColorsManager.buttonColor,
             onChanged: (query) {
-              context.read<SearchCubit>().search(list, query);
+              context
+                  .read<SearchCubit>()
+                  .search(context.read<SearchCubit>().searchItem, query);
             },
             decoration: InputDecoration(
               border: InputBorder.none,

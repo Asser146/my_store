@@ -1,16 +1,48 @@
 import 'package:my_store/core/di/dependency_injection.dart';
 import 'package:my_store/core/networking/api_service.dart';
 import 'package:my_store/features/main%20screen/data/item.dart';
+import 'package:my_store/features/main%20screen/domain/hive_services.dart';
 
 class ItemRepository {
-  Future<List<Item>> fetchAllProducts() async {
+  final HiveServices _hiveServices = getIt<HiveServices>();
+  List<Item> items = [], fav = [], cart = [];
+
+  Future<void> fetchAllProducts() async {
+    _hiveServices.init();
+    items = _hiveServices.getItems();
+
+    if (items.isEmpty) {
+      await _hiveServices.addItems(items);
+    } else {
+      fav = _hiveServices.getFavorites();
+      cart = _hiveServices.getCartItems();
+    }
     try {
       ApiService client = getIt<ApiService>();
-      final products = await client.getAllProducts();
-      return products;
+      items = await client.getAllProducts();
     } catch (e) {
       print('Error fetching products: $e');
       rethrow;
+    }
+  }
+
+  Future<void> toggleFav(Item item) async {
+    _hiveServices.toggleFavorite(item);
+  }
+
+  Future<List<List<Item>>> getLists() async {
+    List<List<Item>> lists = [];
+    if (items.isEmpty) {
+      fetchAllProducts();
+      lists.add(items);
+      lists.add(fav);
+      lists.add(cart);
+      return lists;
+    } else {
+      lists.add(items);
+      lists.add(fav);
+      lists.add(cart);
+      return lists;
     }
   }
 

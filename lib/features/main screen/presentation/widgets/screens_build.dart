@@ -11,11 +11,11 @@ import 'package:my_store/features/search/search_screen.dart';
 List<Widget> screenBuild() {
   return [
     BlocProvider(
-      create: (context) => HomeCubit(),
+      create: (context) => HomeCubit()..init(),
       child: const HomeScreen(),
     ),
     BlocProvider(
-      create: (context) => SearchCubit(),
+      create: (context) => SearchCubit()..init(),
       child: const SearchScreen(),
     ),
     const FavouritesScreen(),

@@ -2,24 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/main%20screen/presentation/widgets/item_card_provider.dart';
 import 'package:my_store/features/main%20screen/presentation/widgets/items_cards_list.dart';
 import 'package:my_store/features/search/cubit/search_cubit.dart';
 import 'package:my_store/features/search/widgets/search_text_field.dart';
-import 'package:provider/provider.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<SearchCubit>().provider;
+    final searchCubit = context.watch<SearchCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 10.h),
-        SearchTextField(list: provider.items),
+        const SearchTextField(),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w),
           child: Row(
@@ -49,16 +47,17 @@ class SearchScreen extends StatelessWidget {
         SizedBox(height: 12.h),
         BlocBuilder<SearchCubit, SearchState>(
           builder: (context, state) {
+            searchCubit.init();
             if (state is SearchLoaded) {
-              return ChangeNotifierProvider(
-                create: (context) => ItemCardProvider(),
-                child: ItemsCardsList(list: state.itemsList),
-              );
+              return ItemsCardsList(
+                  list: state.items,
+                  toggleFav: searchCubit.toggleFavorite,
+                  isFav: searchCubit.isFavourite);
             } else {
-              return ChangeNotifierProvider(
-                create: (context) => ItemCardProvider(),
-                child: ItemsCardsList(list: provider.items),
-              );
+              return ItemsCardsList(
+                  list: searchCubit.searchItem,
+                  toggleFav: searchCubit.toggleFavorite,
+                  isFav: searchCubit.isFavourite);
             }
           },
         ),

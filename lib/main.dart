@@ -16,11 +16,12 @@ void main() async {
   Hive.registerAdapter(RatingAdapter());
   HiveServices hiveServices = HiveServices();
   await hiveServices.init(); //
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final AppRouter _appRouter = AppRouter(); // Create an instance of AppRouter
+  final AppRouter _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +29,8 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          onGenerateRoute:
-              _appRouter.generateRoute, // Use the AppRouter for navigation
-          initialRoute: Routes.login, // Set the initial route
+          onGenerateRoute: _appRouter.generateRoute,
+          initialRoute: Routes.login,
         );
       },
     );
