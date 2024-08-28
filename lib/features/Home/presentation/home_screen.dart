@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
 import 'package:my_store/features/main%20screen/presentation/widgets/item_card_provider.dart';
 import 'package:my_store/features/main%20screen/presentation/widgets/items_cards_list.dart';
 import 'package:my_store/features/Home/presentation/widgets/tabs_list.dart';
+import 'package:my_store/features/main%20screen/presentation/widgets/main_screen_cubit.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,8 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<HomeCubit>().provider;
-    final homeCubit = context.read<HomeCubit>();
+    final mainCubit = context.watch<MainScreenCubit>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,16 +45,17 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8.h),
-        TabsList(provider: provider),
+        TabsList(provider: mainCubit.provider),
         SizedBox(height: 8.h),
-        BlocBuilder<HomeCubit, HomeState>(
+        BlocBuilder<MainScreenCubit, MainScreenState>(
           builder: (context, state) {
-            final currentIndex = homeCubit.currentTabIndex;
+            final currentIndex = mainCubit.currentIndex;
             final itemsToShow = currentIndex == 0
-                ? provider.items
-                : provider.items
+                ? mainCubit.provider.items
+                : mainCubit.provider.items
                     .where((item) =>
-                        item.category == provider.categories[currentIndex])
+                        item.category ==
+                        mainCubit.provider.categories[currentIndex])
                     .toList();
 
             return ChangeNotifierProvider(

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/features/Home/presentation/home_cubit/home_cubit.dart';
 import 'package:my_store/features/main%20screen/presentation/widgets/item_card_provider.dart';
+import 'package:my_store/features/main%20screen/presentation/widgets/main_screen_cubit.dart';
 
 class TabsList extends StatelessWidget {
   const TabsList({
@@ -23,12 +24,12 @@ class TabsList extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              context.read<HomeCubit>().changeTab(index);
+              context.read<MainScreenCubit>().changeTab(index);
             },
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 8.w),
               decoration: BoxDecoration(
-                color: index == context.watch<HomeCubit>().currentTabIndex
+                color: index == context.watch<MainScreenCubit>().currentIndex
                     ? ColorsManager.selectedTabColor
                     : ColorsManager.saerchTextFieldHintColor,
                 borderRadius: BorderRadius.circular(10.r),

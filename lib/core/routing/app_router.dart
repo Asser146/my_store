@@ -7,12 +7,17 @@ import 'package:my_store/features/Auth/login_screen.dart';
 import 'package:my_store/features/Auth/register_screen.dart';
 import 'package:my_store/features/main%20screen/data/item.dart';
 import 'package:my_store/features/main%20screen/main_screen.dart';
+import 'package:my_store/features/main%20screen/presentation/widgets/main_screen_cubit.dart';
 
 class AppRouter {
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.main:
-        return MaterialPageRoute(builder: (_) => const MainScreen());
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => MainScreenCubit(),
+                  child: const MainScreen(),
+                ));
       case Routes.login:
         final int type = settings.arguments as int? ?? 0;
         return MaterialPageRoute(

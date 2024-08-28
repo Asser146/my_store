@@ -13,19 +13,19 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<SearchCubit>().provider;
+    // final provider = context.watch<SearchCubit>().provider;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 10.h),
-        SearchTextField(list: provider.items),
+        // SearchTextField(list: provider.items),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 12.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Search for products", style: TextStyles.font24BlackBold),
+              Text("Search for ", style: TextStyles.font24BlackBold),
               DropdownButton(
                 icon: Icon(Icons.filter_list, size: 24.sp),
                 underline: const SizedBox(),
@@ -47,21 +47,21 @@ class SearchScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 12.h),
-        BlocBuilder<SearchCubit, SearchState>(
-          builder: (context, state) {
-            if (state is SearchLoaded) {
-              return ChangeNotifierProvider(
-                create: (context) => ItemCardProvider(),
-                child: ItemsCardsList(list: state.itemsList),
-              );
-            } else {
-              return ChangeNotifierProvider(
-                create: (context) => ItemCardProvider(),
-                child: ItemsCardsList(list: provider.items),
-              );
-            }
-          },
-        ),
+        // BlocBuilder<SearchCubit, SearchState>(
+        //   builder: (context, state) {
+        //     if (state is SearchLoaded) {
+        //       return ChangeNotifierProvider(
+        //         create: (context) => ItemCardProvider(),
+        //         child: ItemsCardsList(list: state.itemsList),
+        //       );
+        //     } else {
+        //       return ChangeNotifierProvider(
+        //         create: (context) => ItemCardProvider(),
+        //         child: ItemsCardsList(list: provider.items),
+        //       );
+        //     }
+        //   },
+        // ),
       ],
     );
   }
