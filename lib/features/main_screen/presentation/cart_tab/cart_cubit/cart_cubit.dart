@@ -12,14 +12,4 @@ class CartCubit extends Cubit<CartState> with ItemsListOperations {
     init();
     emit(CartStateItems(items: items, cart: cartItems));
   }
-
-  Future<void> cartToggleCart(Item item) async {
-    emit(CartStateLoading());
-    toggleCart(item);
-    emit(CartStateItems(items: items, cart: cartItems));
-  }
-
-  bool isCart(Item item) {
-    return cartItems.contains(item);
-  }
 }

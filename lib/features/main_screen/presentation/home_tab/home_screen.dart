@@ -11,7 +11,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeCubit = context.read<HomeCubit>();
+    context.read<HomeCubit>().reInitialize();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -42,27 +43,14 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8.h),
-        TabsList(categories: context.watch<HomeCubit>().categories),
+        TabsList(categories: context.read<HomeCubit>().categories),
         SizedBox(height: 8.h),
-        BlocBuilder<HomeCubit, HomeState>(
-          builder: (context, state) {
-            homeCubit.reInitialize();
-            final currentIndex = homeCubit.currentTabIndex;
-            final itemsToShow = currentIndex == 0
-                ? homeCubit.items
-                : homeCubit.items
-                    .where((item) =>
-                        item.category == homeCubit.categories[currentIndex])
-                    .toList();
-
-            return ItemsCardsList(
-                list: itemsToShow,
-                toggleFav: context.watch<HomeCubit>().homeToggleFav,
-                isFav: context.watch<HomeCubit>().isFavourite,
-                isCart: context.read<HomeCubit>().isCart,
-                toggleCart: context.watch<HomeCubit>().toggleCart);
-          },
-        ),
+        ItemsCardsList(
+            list: context.read<HomeCubit>().getItemsToShow(),
+            toggleFav: context.watch<HomeCubit>().toggleFavourite,
+            isFav: context.read<HomeCubit>().isFav,
+            isCart: context.read<HomeCubit>().isCart,
+            toggleCart: context.watch<HomeCubit>().toggleCart)
       ],
     );
   }

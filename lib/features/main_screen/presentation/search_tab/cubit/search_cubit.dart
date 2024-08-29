@@ -18,6 +18,7 @@ class SearchCubit extends Cubit<SearchState> with ItemsListOperations {
 
   void search(List<Item> items, String query) {
     if (query.isEmpty) {
+      filteredItems = [];
       emit(SearchInitial());
     } else {
       filteredItems = items.where((item) {
@@ -26,25 +27,5 @@ class SearchCubit extends Cubit<SearchState> with ItemsListOperations {
       emit(
           SearchLoaded(items: filteredItems, fav: favourites, cart: cartItems));
     }
-  }
-
-  Future<void> searchToggleFav(Item item) async {
-    emit(SearchLoading());
-    toggleFavourite(item);
-    emit(SearchLoaded(items: items, fav: favourites, cart: cartItems));
-  }
-
-  bool isFavourite(Item item) {
-    return favourites.contains(item);
-  }
-
-  Future<void> searchToggleCart(Item item) async {
-    emit(SearchLoading());
-    toggleCart(item);
-    emit(SearchLoaded(items: items, fav: favourites, cart: cartItems));
-  }
-
-  bool isCart(Item item) {
-    return cartItems.contains(item);
   }
 }

@@ -12,7 +12,6 @@ class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
   HomeCubit() : super(HomeStateInitial());
 
   Future<void> homeInit() async {
-    emit(HomeStateLoading());
     init();
     final List<String> cat = await repo.getCategories();
     categories.addAll(cat);
@@ -25,29 +24,16 @@ class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
     emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
   }
 
-  Future<void> homeToggleFav(Item item) async {
-    emit(HomeStateLoading());
-    toggleFavourite(item);
-    emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
-  }
-
-  bool isFavourite(Item item) {
-    return favourites.contains(item);
-  }
-
   void changeTab(int index) {
-    emit(HomeStateLoading());
     currentTabIndex = index;
     emit(HomeStateTabChanged(index: currentTabIndex));
   }
 
-  Future<void> homeToggleCart(Item item) async {
-    emit(HomeStateLoading());
-    toggleCart(item);
-    emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
-  }
-
-  bool isCart(Item item) {
-    return cartItems.contains(item);
+  List<Item> getItemsToShow() {
+    return currentTabIndex == 0
+        ? items
+        : items
+            .where((item) => item.category == categories[currentTabIndex])
+            .toList();
   }
 }

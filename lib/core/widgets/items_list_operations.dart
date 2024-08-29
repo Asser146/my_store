@@ -34,4 +34,8 @@ mixin ItemsListOperations {
     }
     await repo.toggleCart(item);
   }
+
+  bool isCart(Item item) {
+    return cartItems.contains(item);
+  }
 }

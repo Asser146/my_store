@@ -9,23 +9,19 @@ class FavouritesScreen extends StatelessWidget {
   const FavouritesScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    context.read<FavouriteCubit>().favouritesInit();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Center(child: Text("My Favourites", style: TextStyles.font24BlackBold)),
         SizedBox(height: 12.h),
-        BlocBuilder<FavouriteCubit, FavouriteState>(
-          builder: (context, state) {
-            final favouriteCubit = context.watch<FavouriteCubit>();
-            context.read<FavouriteCubit>().favouritesInit();
-            return ItemsCardsList(
-                list: favouriteCubit.favourites,
-                toggleFav: favouriteCubit.favouritesToggleFav,
-                isFav: favouriteCubit.isFavourite,
-                isCart: favouriteCubit.isCart,
-                toggleCart: favouriteCubit.favouritesToggleCart);
-          },
-        )
+        ItemsCardsList(
+            list: context.read<FavouriteCubit>().favourites,
+            toggleFav: context.watch<FavouriteCubit>().toggleFavourite,
+            isFav: context.read<FavouriteCubit>().isFav,
+            isCart: context.read<FavouriteCubit>().isCart,
+            toggleCart: context.watch<FavouriteCubit>().toggleCart)
       ],
     );
   }
