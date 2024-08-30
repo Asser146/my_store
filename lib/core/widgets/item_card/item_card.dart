@@ -24,34 +24,29 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        // Navigator.pushNamed(context, Routes.details, arguments: item);
-      },
-      child: Container(
-        width: 0.4.sw,
-        decoration: BoxDecoration(
-          border: Border.all(
-            width: 1.5.w,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(15.r),
-          ),
-          color: ColorsManager.cardColor,
+    return Container(
+      width: 0.4.sw,
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1.5.w,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 6.h),
-              child: TopBody(item: item, isFav: isFav, toggleFav: toggleFav),
-            ),
-            const Spacer(),
-            MidBody(item: item),
-            const Spacer(),
-            BottomBody(toggleCart: toggleCart, item: item, isCart: isCart),
-          ],
+        borderRadius: BorderRadius.all(
+          Radius.circular(15.r),
         ),
+        color: ColorsManager.cardColor,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 6.h),
+            child: TopBody(item: item, isFav: isFav, toggleFav: toggleFav),
+          ),
+          const Spacer(),
+          MidBody(item: item),
+          const Spacer(),
+          BottomBody(toggleCart: toggleCart, item: item, isCart: isCart),
+        ],
       ),
     );
   }

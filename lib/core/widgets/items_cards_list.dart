@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/widgets/item_card/item_card.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
 
@@ -33,12 +34,22 @@ class ItemsCardsList extends StatelessWidget {
           ),
           itemCount: list.length,
           itemBuilder: (BuildContext context, int index) {
-            return ItemCard(
-              item: list[index],
-              isFav: isFav,
-              toggleFav: toggleFav,
-              isCart: isCart,
-              toggleCart: toggleCart,
+            return GestureDetector(
+              onTap: () {
+                try {
+                  Navigator.pushNamed(context, Routes.details,
+                      arguments: list[index]);
+                } catch (e) {
+                  print("Navigation failed: $e");
+                }
+              },
+              child: ItemCard(
+                item: list[index],
+                isFav: isFav,
+                toggleFav: toggleFav,
+                isCart: isCart,
+                toggleCart: toggleCart,
+              ),
             );
           },
         ),

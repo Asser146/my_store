@@ -6,7 +6,6 @@ import 'package:my_store/features/auth/login_cubit/login_cubit.dart';
 import 'package:my_store/features/auth/login_screen.dart';
 import 'package:my_store/features/auth/register_screen.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
-
 import 'package:my_store/features/main_screen/main_screen.dart';
 
 class AppRouter {
@@ -16,24 +15,29 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const MainScreen());
       case Routes.login:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => LoginCubit()
-                    ..checkAuthStatus(), // Pass `type` to LoginCubit if needed
-                  child: const LoginScreen(), // Pass `type` to LoginScreen
-                ));
+          builder: (_) => BlocProvider(
+            create: (context) => LoginCubit()..checkAuthStatus(),
+            child: const LoginScreen(),
+          ),
+        );
       case Routes.register:
         return MaterialPageRoute(
-            builder: (_) => BlocProvider(
-                  create: (context) => LoginCubit(),
-                  child: const RegisterScreen(),
-                ));
+          builder: (_) => BlocProvider(
+            create: (context) => LoginCubit(),
+            child: const RegisterScreen(),
+          ),
+        );
       case Routes.details:
         final Item item = settings.arguments as Item;
-        return MaterialPageRoute(builder: (_) => ItemDetails(item: item));
+        return MaterialPageRoute(
+          builder: (_) => ItemDetails(item: item),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
-            body: Center(child: Text('No route defined for ${settings.name}')),
+            body: Center(
+              child: Text('No route defined for ${settings.name}'),
+            ),
           ),
         );
     }
