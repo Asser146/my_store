@@ -15,18 +15,16 @@ class AppRouter {
       case Routes.main:
         return MaterialPageRoute(builder: (_) => const MainScreen());
       case Routes.login:
-        final int type = settings.arguments as int? ?? 0;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) => LoginCubit(
-                      type: type), // Pass `type` to LoginCubit if needed
+                  create: (context) => LoginCubit()
+                    ..checkAuthStatus(), // Pass `type` to LoginCubit if needed
                   child: const LoginScreen(), // Pass `type` to LoginScreen
                 ));
       case Routes.register:
-        final int type = settings.arguments as int? ?? 1;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) => LoginCubit(type: type),
+                  create: (context) => LoginCubit(),
                   child: const RegisterScreen(),
                 ));
       case Routes.details:

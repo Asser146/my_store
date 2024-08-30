@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/theming/colors.dart';
+import 'package:my_store/features/main_screen/data/item.dart';
+
+class TopBody extends StatelessWidget {
+  const TopBody({
+    super.key,
+    required this.item,
+    required this.isFav,
+    required this.toggleFav,
+  });
+
+  final Item item;
+  final bool Function(Item p1) isFav;
+  final Future<void> Function(Item p1) toggleFav;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.center,
+          child: Image.network(
+            item.image!,
+            width: 100.r,
+            height: 100.r,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Align(
+          alignment: Alignment.topRight,
+          child: IconButton(
+            icon: Icon(
+              isFav(item) ? Icons.favorite : Icons.favorite_outline,
+              color: isFav(item) ? ColorsManager.inCartColor : null,
+              size: 25.sp,
+            ),
+            onPressed: () async {
+              await toggleFav(item);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}

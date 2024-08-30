@@ -13,28 +13,28 @@ class LoginScreen extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      body: BlocBuilder<LoginCubit, LoginState>(
-        builder: (context, state) {
-          if (state is Logined) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Navigator.pushNamed(context, Routes.main);
-            });
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is LoginInitial) {
-            return const Center(child: CircularProgressIndicator());
+      body: BlocListener<LoginCubit, LoginState>(
+        listener: (context, state) async {
+          if (context.watch<LoginCubit>().authState || state is Logined) {
+            Navigator.pushNamed(context, Routes.main);
           } else if (state is RegisterStarted) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Navigator.pushNamed(context, Routes.register);
-            });
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            return SingleChildScrollView(
-              child: LoginBody(
-                  usernameController: usernameController,
-                  passwordController: passwordController),
-            );
+            Navigator.pushNamed(context, Routes.register);
           }
         },
+        child: BlocBuilder<LoginCubit, LoginState>(
+          builder: (context, state) {
+            if (state is LoginInitial) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return SingleChildScrollView(
+                child: LoginBody(
+                  usernameController: usernameController,
+                  passwordController: passwordController,
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }

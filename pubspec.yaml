@@ -23,7 +23,7 @@ dependencies:
   get_it: ^7.6.4
   # Automatically generate code for converting to and from JSON by annotating Dart classes
   json_serializable: ^6.7.1
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   # Networking
   dio: ^5.3.3
   retrofit: ^4.0.3
@@ -40,6 +40,7 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   persistent_bottom_nav_bar: ^6.2.1
   shimmer: ^3.0.0
+  bloc: ^8.1.4
 
 dev_dependencies:
   flutter_test:
