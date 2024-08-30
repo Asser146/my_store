@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_store/core/helpers/item_list_params.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
 import 'package:my_store/core/widgets/items_list_operations.dart';
 
@@ -8,7 +9,7 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
   final List<String> categories = ["ALL"];
   int currentTabIndex = 0;
-
+  late ItemsListParams params;
   HomeCubit() : super(HomeStateInitial());
 
   Future<void> homeInit() async {
@@ -35,5 +36,15 @@ class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
         : items
             .where((item) => item.category == categories[currentTabIndex])
             .toList();
+  }
+
+  ItemsListParams getParams() {
+    params = ItemsListParams(
+        list: getItemsToShow(),
+        toggleFav: toggleFavourite,
+        isFav: isFav,
+        isCart: isCart,
+        toggleCart: toggleCart);
+    return params;
   }
 }

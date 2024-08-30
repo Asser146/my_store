@@ -45,14 +45,7 @@ class SearchScreen extends StatelessWidget {
           ),
         ),
         SizedBox(height: 12.h),
-        ItemsCardsList(
-            list: context.read<SearchCubit>().filteredItems.isEmpty
-                ? context.read<SearchCubit>().items
-                : context.read<SearchCubit>().filteredItems,
-            toggleFav: context.watch<SearchCubit>().toggleFavourite,
-            isFav: context.read<SearchCubit>().isFav,
-            isCart: context.read<SearchCubit>().isCart,
-            toggleCart: context.watch<SearchCubit>().toggleCart)
+        ItemsCardsList(params: context.watch<SearchCubit>().getParams())
       ],
     );
   }

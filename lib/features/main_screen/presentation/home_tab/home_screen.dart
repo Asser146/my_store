@@ -45,12 +45,7 @@ class HomeScreen extends StatelessWidget {
         SizedBox(height: 8.h),
         TabsList(categories: context.read<HomeCubit>().categories),
         SizedBox(height: 8.h),
-        ItemsCardsList(
-            list: context.read<HomeCubit>().getItemsToShow(),
-            toggleFav: context.watch<HomeCubit>().toggleFavourite,
-            isFav: context.read<HomeCubit>().isFav,
-            isCart: context.read<HomeCubit>().isCart,
-            toggleCart: context.watch<HomeCubit>().toggleCart)
+        ItemsCardsList(params: context.watch<HomeCubit>().getParams())
       ],
     );
   }
