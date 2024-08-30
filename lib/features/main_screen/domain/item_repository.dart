@@ -37,7 +37,7 @@ class ItemRepository {
   Future<List<List<Item>>> getLists() async {
     List<List<Item>> lists = [];
     if (items.isEmpty) {
-      fetchAllProducts();
+      limit5Products('5');
       lists.add(items);
       lists.add(fav);
       lists.add(cart);
@@ -61,11 +61,25 @@ class ItemRepository {
     }
   }
 
-  Future<List<Item>> limit5Products() async {
+  Future<void> limit5Products(String limit) async {
+    _hiveServices.clearBoxes();
+    List<Item> newFav = [], newCart = [];
     try {
       ApiService client = getIt<ApiService>();
-      final products = await client.limit5Products();
-      return products;
+      final products = await client.limit5Products(limit);
+
+      for (var product in products) {
+        if (fav.contains(product)) {
+          newFav.add(product);
+        }
+        if (cart.contains(product)) {
+          newCart.add(product);
+        }
+      }
+      items = products;
+      fav = newFav;
+      cart = newCart;
+      _hiveServices.addItems(items);
     } catch (e) {
       print('Error fetching products: $e');
       rethrow;

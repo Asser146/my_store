@@ -27,16 +27,14 @@ class HomeScreen extends StatelessWidget {
                 underline: const SizedBox(),
                 items: const [
                   DropdownMenuItem(
-                    value: 'price',
-                    child: Text('Price'),
-                  ),
-                  DropdownMenuItem(
                     value: 'limit5',
                     child: Text('Limit 5'),
                   ),
                 ],
                 onChanged: (value) async {
-                  if (value == 'limit5') {}
+                  if (value == 'limit5') {
+                    context.read<HomeCubit>().limit5();
+                  }
                 },
               ),
             ],

@@ -17,9 +17,6 @@ class HiveServices {
     _itemsBox = await Hive.openBox<Item>('itemsBox');
     _favoritesBox = await Hive.openBox<Item>('favoritesBox');
     _cartBox = await Hive.openBox<Item>('cartBox');
-    // _cartBox.clear();
-    // _itemsBox.clear();
-    // _cartBox.clear();
   }
 
   List<Item> getItems() {
@@ -66,15 +63,9 @@ class HiveServices {
     return _cartBox.values.toList();
   }
 
-  Future<void> clearFavorites() async {
-    await _favoritesBox.clear();
-  }
-
-  Future<void> clearCartItems() async {
+  Future<void> clearBoxes() async {
     await _cartBox.clear();
-  }
-
-  Future<void> clearItems() async {
     await _itemsBox.clear();
+    await _cartBox.clear();
   }
 }

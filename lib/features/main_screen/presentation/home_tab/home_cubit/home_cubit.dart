@@ -8,6 +8,7 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
   final List<String> categories = ["ALL"];
   int currentTabIndex = 0;
+  int base = 0;
 
   HomeCubit() : super(HomeStateInitial());
 
@@ -35,5 +36,12 @@ class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
         : items
             .where((item) => item.category == categories[currentTabIndex])
             .toList();
+  }
+
+  Future<void> limit5() async {
+    emit(HomeStateLoading());
+    base += 5;
+    await repo.limit5Products(base.toString());
+    emit(HomeStateTabChanged(index: currentTabIndex));
   }
 }

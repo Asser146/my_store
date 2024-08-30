@@ -92,7 +92,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<Item>> limit5Products() async {
+  Future<List<Item>> limit5Products(String limit) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -104,7 +104,7 @@ class _ApiService implements ApiService {
     )
         .compose(
           _dio.options,
-          'products?limit=5',
+          'products?limit=${limit}',
           queryParameters: queryParameters,
           data: _data,
         )
