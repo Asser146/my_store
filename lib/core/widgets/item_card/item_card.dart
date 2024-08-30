@@ -26,7 +26,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, Routes.details, arguments: item);
+        // Navigator.pushNamed(context, Routes.details, arguments: item);
       },
       child: Container(
         width: 0.4.sw,
