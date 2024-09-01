@@ -14,37 +14,33 @@ class TabsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 20.h,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: categories.length, // Number of categories
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              context.read<HomeCubit>().changeTab(index);
-            },
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 8.w),
-              decoration: BoxDecoration(
-                color: index == context.watch<HomeCubit>().currentTabIndex
-                    ? ColorsManager.selectedTabColor
-                    : ColorsManager.saerchTextFieldHintColor,
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.w),
-                child: Text(
-                  categories[index],
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.sp,
+    return DefaultTabController(
+      length: categories.length, // Number of categories
+      child: TabBar(
+        onTap: (index) {
+          context.read<HomeCubit>().changeTab(index);
+        },
+        isScrollable: true,
+        tabAlignment: TabAlignment.center,
+
+        // Removes the default line indicator
+        labelColor: Colors.white,
+        unselectedLabelColor: ColorsManager.saerchTextFieldHintColor,
+        tabs: categories
+            .map(
+              (category) => Tab(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: Text(
+                    category,
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
-        },
+            )
+            .toList(),
       ),
     );
   }

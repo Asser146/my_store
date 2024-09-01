@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/routing/routes.dart';
+import 'package:my_store/core/widgets/skeleton_list.dart';
 import 'package:my_store/features/auth/login_cubit/login_cubit.dart';
 import 'package:my_store/features/auth/widgets/register_body.dart';
 
@@ -13,22 +14,10 @@ class RegisterScreen extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
-      body: BlocBuilder<LoginCubit, LoginState>(
-        builder: (context, state) {
-          if (state is Logined) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              Navigator.pushNamed(context, Routes.main);
-            });
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            return SingleChildScrollView(
-              child: RegisterBody(
-                  usernameController: usernameController,
-                  passwordController: passwordController),
-            );
-          }
-        },
-      ),
-    );
+        body: SingleChildScrollView(
+      child: RegisterBody(
+          usernameController: usernameController,
+          passwordController: passwordController),
+    ));
   }
 }

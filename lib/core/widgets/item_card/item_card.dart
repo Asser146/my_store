@@ -37,10 +37,7 @@ class ItemCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 6.h),
-            child: TopBody(item: item, isFav: isFav, toggleFav: toggleFav),
-          ),
+          TopBody(item: item, isFav: isFav, toggleFav: toggleFav),
           const Spacer(),
           MidBody(item: item),
           const Spacer(),

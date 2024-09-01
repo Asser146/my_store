@@ -17,31 +17,34 @@ class TopBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Align(
-          alignment: Alignment.center,
-          child: Image.network(
-            item.image!,
-            width: 100.r,
-            height: 100.r,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Align(
-          alignment: Alignment.topRight,
-          child: IconButton(
-            icon: Icon(
-              isFav(item) ? Icons.favorite : Icons.favorite_outline,
-              color: isFav(item) ? ColorsManager.inCartColor : null,
-              size: 25.sp,
+    return Container(
+      color: Colors.white,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Image.network(
+              item.image!,
+              width: 100.r,
+              height: 120.r,
+              fit: BoxFit.cover,
             ),
-            onPressed: () async {
-              await toggleFav(item);
-            },
           ),
-        ),
-      ],
+          Align(
+            alignment: Alignment.topRight,
+            child: IconButton(
+              icon: Icon(
+                isFav(item) ? Icons.favorite : Icons.favorite_outline,
+                color: isFav(item) ? ColorsManager.inCartColor : null,
+                size: 25.sp,
+              ),
+              onPressed: () async {
+                await toggleFav(item);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

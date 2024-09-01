@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/routing/routes.dart';
-import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/Auth/widgets/login_button.dart';
 
@@ -20,16 +19,7 @@ class LoginBody extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height, // Full screen height
       width: MediaQuery.of(context).size.width, // Full screen width
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            ColorsManager.saerchTextFieldHintColor, // Start color
-            Colors.green, // End color
-          ],
-        ),
-      ),
+
       child: Center(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 150.h),

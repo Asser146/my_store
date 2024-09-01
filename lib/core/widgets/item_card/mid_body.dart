@@ -22,6 +22,7 @@ class MidBody extends StatelessWidget {
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -34,6 +35,7 @@ class MidBody extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
+                  color: Colors.white,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -43,7 +45,10 @@ class MidBody extends StatelessWidget {
               SizedBox(width: 5.w),
               Text(
                 "${item.rating!.rate}",
-                style: TextStyles.font15BlackMedium.copyWith(fontSize: 17.sp),
+                style: TextStyles.font15BlackMedium.copyWith(
+                  fontSize: 17.sp,
+                  color: Colors.white,
+                ),
               ),
             ],
           ),

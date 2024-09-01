@@ -16,7 +16,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           bottomRight: Radius.circular(22.sp),
         ),
       ),
-      backgroundColor: ColorsManager.buttonColor,
+      backgroundColor: ColorsManager.secondaryColor,
       centerTitle: true,
       title: const Text("A-Store"),
       actions: [

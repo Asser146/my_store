@@ -22,9 +22,12 @@ class _BottomBarState extends State<BottomBar> {
           currentIndex = index;
         });
       },
-      selectedItemColor: ColorsManager.buttonColor,
+      selectedItemColor: ColorsManager
+          .secondaryColor, // Set the selected tab icon color to purple
       unselectedItemColor: ColorsManager.bottombarIconsColor,
-      selectedLabelStyle: TextStyles.font12greenRegular,
+      selectedLabelStyle: TextStyles.font12greenRegular.copyWith(
+          color: ColorsManager
+              .secondaryColor), // Set the selected tab label color to purple
       unselectedLabelStyle: TextStyle(color: ColorsManager.bottombarIconsColor),
       items: [
         BottomNavigationBarItem(

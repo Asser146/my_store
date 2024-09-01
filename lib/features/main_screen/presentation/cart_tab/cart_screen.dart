@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/main_screen/presentation/cart_tab/cart_cubit/cart_cubit.dart';
 import 'package:my_store/features/main_screen/presentation/cart_tab/widgets/cart_list_builder.dart';
@@ -19,19 +20,22 @@ class CartScreen extends StatelessWidget {
         final sum = list.fold<double>(
             0.0, (previousValue, item) => previousValue + (item.price ?? 0.0));
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                "My Cart",
-                style: TextStyles.font24BlackBold,
+        return Container(
+          color: ColorsManager.primaryColor,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  "My Cart",
+                  style: TextStyles.font24BlackBold,
+                ),
               ),
-            ),
-            SizedBox(height: 12.h),
-            CartListBuilder(list: list),
-            ProcessdButton(sum: sum)
-          ],
+              SizedBox(height: 12.h),
+              CartListBuilder(list: list),
+              ProcessdButton(sum: sum)
+            ],
+          ),
         );
       },
     );

@@ -7,6 +7,7 @@ import 'package:my_store/features/main_screen/presentation/favourites_tab/favour
 import 'package:my_store/features/main_screen/presentation/favourites_tab/favourites_screen.dart';
 import 'package:my_store/features/main_screen/presentation/home_tab/home_cubit/home_cubit.dart';
 import 'package:my_store/features/main_screen/presentation/home_tab/home_screen.dart';
+import 'package:my_store/features/main_screen/presentation/profile_tab/cubit/profile_cubit.dart';
 import 'package:my_store/features/main_screen/presentation/profile_tab/profile_screen.dart';
 import 'package:my_store/features/main_screen/presentation/search_tab/cubit/search_cubit.dart';
 import 'package:my_store/features/main_screen/presentation/search_tab/search_screen.dart';
@@ -30,7 +31,7 @@ List<Widget> screenBuild() {
       child: const CartScreen(),
     ),
     BlocProvider(
-      create: (context) => LoginCubit(type: 2),
+      create: (context) => ProfileCubit(),
       child: const ProfileScreen(),
     ),
   ];
