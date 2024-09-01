@@ -6,6 +6,7 @@ class ItemsListParams {
   final bool Function(Item) isFav;
   final bool Function(Item) isCart;
   final Future<void> Function(Item) toggleCart;
+  int? index;
 
   ItemsListParams({
     required this.list,
@@ -13,5 +14,6 @@ class ItemsListParams {
     required this.isFav,
     required this.isCart,
     required this.toggleCart,
+    this.index,
   });
 }

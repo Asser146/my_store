@@ -12,26 +12,31 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: ColorsManager.primaryColor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Profile", style: TextStyles.font24BlackBold),
-          SizedBox(height: 12.h),
-          TextButton(
-              onPressed: () {
-                context.read<ProfileCubit>().logout();
-                Navigator.of(context, rootNavigator: true)
-                    .pushNamed(Routes.login);
-              },
-              child: const Text("Logout")),
-          TextButton(
-              onPressed: () {
-                context.read<ProfileCubit>().deleteAccount();
-                Navigator.of(context, rootNavigator: true)
-                    .pushNamed(Routes.register);
-              },
-              child: const Text("Delete Account")),
-        ],
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Profile",
+                style:
+                    TextStyles.font24BlackBold.copyWith(color: Colors.white)),
+            SizedBox(height: 12.h),
+            TextButton(
+                onPressed: () {
+                  context.read<ProfileCubit>().logout();
+                  Navigator.of(context, rootNavigator: true)
+                      .pushNamed(Routes.login);
+                },
+                child: const Text("Logout")),
+            TextButton(
+                onPressed: () {
+                  context.read<ProfileCubit>().deleteAccount();
+                  Navigator.of(context, rootNavigator: true)
+                      .pushNamed(Routes.register);
+                },
+                child: const Text("Delete Account")),
+          ],
+        ),
       ),
     );
   }

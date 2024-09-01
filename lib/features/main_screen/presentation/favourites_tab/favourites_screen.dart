@@ -20,7 +20,7 @@ class FavouritesScreen extends StatelessWidget {
           Center(
               child: Text("My Favourites", style: TextStyles.font24BlackBold)),
           SizedBox(height: 12.h),
-          ItemsCardsList(params: context.watch<FavouriteCubit>().getParams())
+          ItemsCardsList(params: context.watch<FavouriteCubit>().params)
         ],
       ),
     );

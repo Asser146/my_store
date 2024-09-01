@@ -34,7 +34,7 @@ class BottomBody extends StatelessWidget {
         width: double.infinity,
         child: Center(
           child: Text(
-            "Add to Cart",
+            isCart(item) ? "In Cart" : "Ad to Cart",
             style: TextStyle(
               color: Colors.white,
               fontSize: 16.sp,

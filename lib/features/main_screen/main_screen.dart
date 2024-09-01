@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/features/main_screen/presentation/widgets/nav_bar_items.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:my_store/core/widgets/my_app_bar.dart';
@@ -36,6 +37,7 @@ class _MainScreenState extends State<MainScreen> {
         resizeToAvoidBottomInset: true,
         stateManagement: false,
         hideNavigationBarWhenKeyboardAppears: true,
+        backgroundColor: ColorsManager.primaryColor,
 
         navBarStyle: NavBarStyle.style3, // Adjust the style as needed
       ),

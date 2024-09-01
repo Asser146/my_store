@@ -9,7 +9,6 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
   final List<String> categories = ["ALL"];
   int currentTabIndex = 0;
-  late ItemsListParams params;
   HomeCubit() : super(HomeStateInitial());
 
   Future<void> homeInit() async {
@@ -30,7 +29,7 @@ class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
     emit(HomeStateTabChanged(index: currentTabIndex));
   }
 
-  List<Item> getItemsToShow() {
+  List<Item> get itemsToShow {
     return currentTabIndex == 0
         ? items
         : items
@@ -38,13 +37,13 @@ class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
             .toList();
   }
 
-  ItemsListParams getParams() {
-    params = ItemsListParams(
-        list: getItemsToShow(),
-        toggleFav: toggleFavourite,
-        isFav: isFav,
-        isCart: isCart,
-        toggleCart: toggleCart);
-    return params;
+  ItemsListParams get params {
+    return ItemsListParams(
+      list: itemsToShow,
+      toggleFav: toggleFavourite,
+      isFav: isFav,
+      isCart: isCart,
+      toggleCart: toggleCart,
+    );
   }
 }

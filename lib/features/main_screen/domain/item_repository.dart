@@ -9,13 +9,13 @@ class ItemRepository {
 
   Future<void> fetchAllProducts() async {
     _hiveServices.init();
-    items = _hiveServices.getItems();
+    items = _hiveServices.items;
 
     if (items.isEmpty) {
       await _hiveServices.addItems(items);
     } else {
-      fav = _hiveServices.getFavorites();
-      cart = _hiveServices.getCartItems();
+      fav = _hiveServices.favorites;
+      cart = _hiveServices.cartItems;
     }
     try {
       ApiService client = getIt<ApiService>();

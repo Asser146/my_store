@@ -8,31 +8,31 @@ List<PersistentBottomNavBarItem> navBarsItems() {
       icon: const Icon(CupertinoIcons.home),
       title: "Home",
       activeColorPrimary: ColorsManager.secondaryColor,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      inactiveColorPrimary: CupertinoColors.white,
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.search),
       title: "Search",
       activeColorPrimary: ColorsManager.secondaryColor,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      inactiveColorPrimary: CupertinoColors.white,
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.heart),
       title: "Favourites",
       activeColorPrimary: ColorsManager.secondaryColor,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      inactiveColorPrimary: CupertinoColors.white,
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.cart),
       title: "Cart",
       activeColorPrimary: ColorsManager.secondaryColor,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      inactiveColorPrimary: CupertinoColors.white,
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.person),
       title: "Profile",
       activeColorPrimary: ColorsManager.secondaryColor,
-      inactiveColorPrimary: CupertinoColors.systemGrey,
+      inactiveColorPrimary: CupertinoColors.white,
     ),
   ];
 }

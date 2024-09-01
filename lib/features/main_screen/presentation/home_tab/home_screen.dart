@@ -19,38 +19,17 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 5.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Recent products",
-                    style: TextStyles.font24BlackBold
-                        .copyWith(color: Colors.white)),
-                DropdownButton(
-                  icon: Icon(Icons.filter_list, size: 24.sp),
-                  underline: const SizedBox(),
-                  items: const [
-                    DropdownMenuItem(
-                      value: 'price',
-                      child: Text('Price'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'limit5',
-                      child: Text('Limit 5'),
-                    ),
-                  ],
-                  onChanged: (value) async {
-                    if (value == 'limit5') {}
-                  },
-                ),
-              ],
-            ),
+            child: Text("Categories",
+                style:
+                    TextStyles.font24BlackBold.copyWith(color: Colors.white)),
           ),
           SizedBox(height: 8.h),
           TabsList(categories: context.read<HomeCubit>().categories),
           SizedBox(height: 8.h),
-          ItemsCardsList(params: context.watch<HomeCubit>().getParams())
+          ItemsCardsList(params: context.watch<HomeCubit>().params)
         ],
       ),
     );

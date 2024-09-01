@@ -8,7 +8,6 @@ part 'favourite_state.dart';
 
 class FavouriteCubit extends Cubit<FavouriteState> with ItemsListOperations {
   FavouriteCubit() : super(FavouriteStateInitial());
-  late ItemsListParams params;
 
   Future<void> favouritesInit() async {
     emit(FavouriteStateInitial());
@@ -16,13 +15,12 @@ class FavouriteCubit extends Cubit<FavouriteState> with ItemsListOperations {
     emit(FavouriteStateItems(items: items, fav: favourites, cart: cartItems));
   }
 
-  ItemsListParams getParams() {
-    params = ItemsListParams(
+  ItemsListParams get params{
+    return ItemsListParams(
         list: favourites,
         toggleFav: toggleFavourite,
         isFav: isFav,
         isCart: isCart,
         toggleCart: toggleCart);
-    return params;
   }
 }

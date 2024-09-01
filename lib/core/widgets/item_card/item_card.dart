@@ -41,7 +41,7 @@ class ItemCard extends StatelessWidget {
           const Spacer(),
           MidBody(item: item),
           const Spacer(),
-          BottomBody(toggleCart: toggleCart, item: item, isCart: isCart),
+          // BottomBody(toggleCart: toggleCart, item: item, isCart: isCart),
         ],
       ),
     );

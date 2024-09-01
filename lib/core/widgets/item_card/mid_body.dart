@@ -24,7 +24,7 @@ class MidBody extends StatelessWidget {
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
-            maxLines: 1,
+            maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
           Row(
