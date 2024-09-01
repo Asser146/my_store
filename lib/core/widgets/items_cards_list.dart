@@ -28,16 +28,13 @@ class ItemsCardsList extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                params.index = index;
                 Navigator.of(context, rootNavigator: true)
-                    .pushNamed(Routes.details, arguments: params);
+                    .pushNamed(Routes.details, arguments: params.list[index]);
               },
               child: ItemCard(
                 item: params.list[index],
                 isFav: params.isFav,
                 toggleFav: params.toggleFav,
-                isCart: params.isCart,
-                toggleCart: params.toggleCart,
               ),
             );
           },

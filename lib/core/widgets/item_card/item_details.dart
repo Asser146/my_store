@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_store/core/helpers/item_list_params.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
+import 'package:my_store/core/widgets/cubit/item_details_cubit.dart';
 import 'package:my_store/core/widgets/my_app_bar.dart';
+import 'package:my_store/features/main_screen/data/item.dart';
 
-class ItemDetails extends StatefulWidget {
-  final ItemsListParams params;
-  const ItemDetails({Key? key, required this.params}) : super(key: key);
+class ItemDetails extends StatelessWidget {
+  const ItemDetails({super.key});
 
-  @override
-  _ItemDetailsState createState() => _ItemDetailsState();
-}
-
-class _ItemDetailsState extends State<ItemDetails> {
   @override
   Widget build(BuildContext context) {
-    final item = widget.params.list[widget.params.index!];
+    final Item item = context.read<ItemDetailsCubit>().item;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const MyAppBar(),
@@ -68,18 +65,18 @@ class _ItemDetailsState extends State<ItemDetails> {
                           const Spacer(),
                           IconButton(
                             icon: Icon(
-                              widget.params.isFav(item)
+                              context.watch<ItemDetailsCubit>().isFav(item)
                                   ? Icons.favorite
                                   : Icons.favorite_outline,
-                              color: widget.params.isFav(item)
-                                  ? ColorsManager.inCartColor
-                                  : null,
+                              color:
+                                  context.watch<ItemDetailsCubit>().isFav(item)
+                                      ? ColorsManager.inCartColor
+                                      : null,
                               size: 25.sp,
                             ),
-                            onPressed: () async {
-                              await widget.params.toggleFav(item);
-                              setState(() {});
-                            },
+                            onPressed: () async => await context
+                                .read<ItemDetailsCubit>()
+                                .toggleFavourite(item),
                           ),
                         ],
                       ),
@@ -97,17 +94,13 @@ class _ItemDetailsState extends State<ItemDetails> {
             ),
           ),
           GestureDetector(
-            onTap: () async {
-              await widget.params.toggleCart(item);
-
-              setState(() {});
-            },
+            onTap: () => context.read<ItemDetailsCubit>().toggleDetailFav(),
             child: Container(
               color: ColorsManager.primaryColor,
               child: Container(
                 height: 40.h,
                 decoration: BoxDecoration(
-                  color: widget.params.isCart(item)
+                  color: context.watch<ItemDetailsCubit>().isCart(item)
                       ? ColorsManager.inCartColor
                       : ColorsManager.buttonColor,
                   borderRadius: BorderRadius.all(
@@ -117,7 +110,9 @@ class _ItemDetailsState extends State<ItemDetails> {
                 width: double.infinity,
                 child: Center(
                   child: Text(
-                    widget.params.isCart(item) ? "In Cart" : "Ad to Cart",
+                    context.watch<ItemDetailsCubit>().isCart(item)
+                        ? "In Cart"
+                        : "Add to Cart",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.sp,
