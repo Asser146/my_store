@@ -6,18 +6,21 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final storage = const FlutterSecureStorage();
-  bool authState = false;
-  LoginCubit() : super(LoginInitial());
+  final int type;
+  LoginCubit({required this.type}) : super(LoginInitial()) {
+    if (type == 0) {
+      checkAuthStatus();
+    } else if (type == 1) {
+      logout();
+    }
+  }
 
   Future<void> checkAuthStatus() async {
     emit(LoginInitial());
     final String? tok = await storage.read(key: "token");
     if (tok != null) {
-      authState = true;
       emit(Logined());
     } else {
-      authState = false;
-
       emit(RegisterStarted());
     }
   }

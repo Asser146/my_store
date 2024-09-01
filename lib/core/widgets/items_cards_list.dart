@@ -28,12 +28,8 @@ class ItemsCardsList extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                try {
-                  Navigator.pushNamed(context, Routes.details,
-                      arguments: params.list[index]);
-                } catch (e) {
-                  print("Navigation failed: $e");
-                }
+                Navigator.of(context, rootNavigator: true)
+                    .pushNamed(Routes.details, arguments: params.list[index]);
               },
               child: ItemCard(
                 item: params.list[index],

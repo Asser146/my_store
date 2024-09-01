@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/auth/widgets/login_button.dart';
+import 'package:my_store/features/Auth/widgets/login_button.dart';
 
 class LoginBody extends StatelessWidget {
   const LoginBody({

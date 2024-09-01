@@ -27,6 +27,7 @@ class _MainScreenState extends State<MainScreen> {
       appBar: const MyAppBar(),
       body: PersistentTabView(
         context,
+
         controller: _controller,
         screens: screenBuild(),
         items: navBarsItems(),

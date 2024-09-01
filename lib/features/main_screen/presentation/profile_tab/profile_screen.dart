@@ -17,13 +17,15 @@ class ProfileScreen extends StatelessWidget {
         TextButton(
             onPressed: () {
               context.read<LoginCubit>().logout();
-              Navigator.pushNamed(context, Routes.login, arguments: 1);
+              Navigator.of(context, rootNavigator: true)
+                  .pushNamed(Routes.login, arguments: 1);
             },
             child: Text("Logout")),
         TextButton(
             onPressed: () {
               context.read<LoginCubit>().deleteAccount();
-              Navigator.pushNamed(context, Routes.register);
+              Navigator.of(context, rootNavigator: true)
+                  .pushNamed(Routes.register);
             },
             child: Text("Delete Account")),
       ],
