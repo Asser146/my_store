@@ -10,8 +10,6 @@ class FavouritesScreen extends StatelessWidget {
   const FavouritesScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    context.read<FavouriteCubit>().favouritesInit();
-
     return Container(
       color: ColorsManager.primaryColor,
       child: Column(

@@ -9,7 +9,9 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
   final List<String> categories = ["ALL"];
   int currentTabIndex = 0;
-  HomeCubit() : super(HomeStateInitial());
+  HomeCubit() : super(HomeStateInitial()) {
+    homeInit();
+  }
 
   Future<void> homeInit() async {
     init();
@@ -37,13 +39,36 @@ class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
             .toList();
   }
 
+  Future<void> toggleHomeFavourite(Item item) async {
+    emit(HomeStateLoading());
+    await toggleFavourite(item);
+    emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
+  }
+
+  Future<void> toggleHomeCart(Item item) async {
+    emit(HomeStateLoading());
+    await toggleCart(item);
+    emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
+  }
+
+  bool isHomeFavourite(Item item) {
+    emit(HomeStateLoading());
+    return isFav(item);
+  }
+
+  bool isHomeCart(Item item) {
+    emit(HomeStateLoading());
+    return isCart(item);
+  }
+
   ItemsListParams get params {
+    reInitialize();
     return ItemsListParams(
       list: itemsToShow,
-      toggleFav: toggleFavourite,
-      isFav: isFav,
-      isCart: isCart,
-      toggleCart: toggleCart,
+      toggleFav: toggleHomeFavourite,
+      isFav: isHomeFavourite,
+      isCart: isHomeCart,
+      toggleCart: toggleHomeCart,
     );
   }
 }

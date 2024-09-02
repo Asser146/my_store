@@ -8,7 +8,6 @@ part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> with ItemsListOperations {
   List<Item> filteredItems = [];
-  late ItemsListParams params;
 
   SearchCubit() : super(SearchInitial());
 
@@ -31,13 +30,36 @@ class SearchCubit extends Cubit<SearchState> with ItemsListOperations {
     }
   }
 
-  ItemsListParams getParams() {
-    params = ItemsListParams(
-        list: filteredItems.isEmpty ? items : filteredItems,
-        toggleFav: toggleFavourite,
-        isFav: isFav,
-        isCart: isCart,
-        toggleCart: toggleCart);
-    return params;
+  Future<void> toggleSearchFavourite(Item item) async {
+    emit(SearchLoading());
+    await toggleFavourite(item);
+    emit(SearchLoaded(items: items, fav: favourites, cart: cartItems));
+  }
+
+  Future<void> toggleSearchCart(Item item) async {
+    emit(SearchLoading());
+    await toggleCart(item);
+    emit(SearchLoaded(items: items, fav: favourites, cart: cartItems));
+  }
+
+  bool isSearchFavourite(Item item) {
+    emit(SearchLoading());
+    return isFav(item);
+  }
+
+  bool isSearchCart(Item item) {
+    emit(SearchLoading());
+    return isCart(item);
+  }
+
+  ItemsListParams get params {
+    searchInit();
+    return ItemsListParams(
+      list: filteredItems.isEmpty ? items : filteredItems,
+      toggleFav: toggleSearchFavourite,
+      isFav: isSearchFavourite,
+      isCart: isSearchCart,
+      toggleCart: toggleSearchCart,
+    );
   }
 }

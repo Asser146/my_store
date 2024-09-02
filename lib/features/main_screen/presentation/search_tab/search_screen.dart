@@ -12,8 +12,6 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<SearchCubit>().searchInit();
-
     return Container(
       color: ColorsManager.primaryColor,
       child: Column(
@@ -48,7 +46,7 @@ class SearchScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 12.h),
-          ItemsCardsList(params: context.watch<SearchCubit>().getParams())
+          ItemsCardsList(params: context.watch<SearchCubit>().params)
         ],
       ),
     );

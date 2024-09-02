@@ -14,15 +14,15 @@ import 'package:my_store/features/main_screen/presentation/search_tab/search_scr
 List<Widget> screenBuild() {
   return [
     BlocProvider(
-      create: (context) => HomeCubit()..homeInit(),
+      create: (context) => HomeCubit(),
       child: const HomeScreen(),
     ),
     BlocProvider(
-      create: (context) => SearchCubit()..init(),
+      create: (context) => SearchCubit(),
       child: const SearchScreen(),
     ),
     BlocProvider(
-      create: (context) => FavouriteCubit()..favouritesInit(),
+      create: (context) => FavouriteCubit(),
       child: const FavouritesScreen(),
     ),
     BlocProvider(

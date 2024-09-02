@@ -12,32 +12,22 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<CartCubit>().cartInit();
-
-    return BlocBuilder<CartCubit, CartState>(
-      builder: (context, state) {
-        final list = context.watch<CartCubit>().cartItems;
-        final sum = list.fold<double>(
-            0.0, (previousValue, item) => previousValue + (item.price ?? 0.0));
-
-        return Container(
-          color: ColorsManager.primaryColor,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text(
-                  "My Cart",
-                  style: TextStyles.font24BlackBold,
-                ),
-              ),
-              SizedBox(height: 12.h),
-              CartListBuilder(list: list),
-              ProcessdButton(sum: sum)
-            ],
+    return Container(
+      color: ColorsManager.primaryColor,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Text(
+              "My Cart",
+              style: TextStyles.font24BlackBold,
+            ),
           ),
-        );
-      },
+          SizedBox(height: 12.h),
+          CartListBuilder(list: context.watch<CartCubit>().list),
+          ProcessdButton(sum: context.watch<CartCubit>().sum)
+        ],
+      ),
     );
   }
 }

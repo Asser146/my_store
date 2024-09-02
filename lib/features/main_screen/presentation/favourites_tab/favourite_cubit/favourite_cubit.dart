@@ -15,12 +15,36 @@ class FavouriteCubit extends Cubit<FavouriteState> with ItemsListOperations {
     emit(FavouriteStateItems(items: items, fav: favourites, cart: cartItems));
   }
 
+  Future<void> toggleFavScreenFavourite(Item item) async {
+    emit(FavouriteStateLoading());
+    await toggleFavourite(item);
+    emit(FavouriteStateItems(items: items, fav: favourites, cart: cartItems));
+  }
+
+  Future<void> togglefavScreenCart(Item item) async {
+    emit(FavouriteStateLoading());
+    await toggleCart(item);
+    emit(FavouriteStateItems(items: items, fav: favourites, cart: cartItems));
+  }
+
+  bool isFavScreenFavourite(Item item) {
+    emit(FavouriteStateLoading());
+    return isFav(item);
+  }
+
+  bool isFavScreenCart(Item item) {
+    emit(FavouriteStateLoading());
+    return isCart(item);
+  }
+
   ItemsListParams get params {
+    favouritesInit();
     return ItemsListParams(
-        list: favourites,
-        toggleFav: toggleFavourite,
-        isFav: isFav,
-        isCart: isCart,
-        toggleCart: toggleCart);
+      list: favourites,
+      toggleFav: toggleFavScreenFavourite,
+      isFav: isFavScreenFavourite,
+      isCart: isFavScreenCart,
+      toggleCart: togglefavScreenCart,
+    );
   }
 }

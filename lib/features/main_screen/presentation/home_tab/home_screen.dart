@@ -12,8 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<HomeCubit>().reInitialize();
-
     return Container(
       color: ColorsManager.primaryColor,
       child: Column(
