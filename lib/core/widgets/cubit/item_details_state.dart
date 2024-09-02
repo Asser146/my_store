@@ -1,20 +1,29 @@
 part of 'item_details_cubit.dart';
 
-class ItemDetailsState extends Equatable {
+abstract class ItemDetailsState extends Equatable {
   const ItemDetailsState();
 
   @override
   List<Object> get props => [];
 }
 
-class ItemDetailsInitial extends ItemDetailsState {}
+class ItemDetailsStateInitial extends ItemDetailsState {}
 
-class ItemDetailsValues extends ItemDetailsState {
-  final Item item;
-  final bool isFav, isCart;
-  const ItemDetailsValues(
-      {required this.item, required this.isFav, required this.isCart});
+class ItemDetailsStateLoading extends ItemDetailsState {}
+
+class ItemDetailsStateItems extends ItemDetailsState {
+  final List<Item> items, fav, cart;
+  const ItemDetailsStateItems(
+      {required this.items, required this.fav, required this.cart});
 
   @override
-  List<Object> get props => [item, isFav, isCart];
+  List<Object> get props => [items, fav, cart];
+}
+
+class ItemDetailsStateTabChanged extends ItemDetailsState {
+  final int index;
+  const ItemDetailsStateTabChanged({required this.index});
+
+  @override
+  List<Object> get props => [index];
 }

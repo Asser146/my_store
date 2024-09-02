@@ -8,12 +8,26 @@ import 'package:my_store/core/widgets/my_app_bar.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
 
 class ItemDetails extends StatelessWidget {
-  const ItemDetails({super.key});
+  const ItemDetails(
+      {super.key,
+      required this.item,
+      required this.isFav,
+      required this.isCart,
+      required this.toggleFav,
+      required this.toggleCart});
+  final Item item;
+  final bool Function(Item) isFav;
+  final bool Function(Item) isCart;
+
+  final Future<void> Function(Item) toggleFav;
+  final Future<void> Function(Item) toggleCart;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ItemDetailsCubit, ItemDetailsState>(
       builder: (context, state) {
+        context.read<ItemDetailsCubit>().reInitialize();
+
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: const MyAppBar(),
@@ -77,20 +91,16 @@ class ItemDetails extends StatelessWidget {
                               const Spacer(),
                               IconButton(
                                 icon: Icon(
-                                  context.watch<ItemDetailsCubit>().isDetailsFav
+                                  isFav(item)
                                       ? Icons.favorite
                                       : Icons.favorite_outline,
-                                  color: context
-                                          .watch<ItemDetailsCubit>()
-                                          .isDetailsFav
+                                  color: isFav(item)
                                       ? ColorsManager.inCartColor
                                       : null,
                                   size: 25.sp,
                                 ),
-                                onPressed: () {
-                                  context
-                                      .read<ItemDetailsCubit>()
-                                      .toggleDetailsFavorite();
+                                onPressed: () async {
+                                  await toggleFav(item);
                                 },
                               ),
                             ],
@@ -109,15 +119,15 @@ class ItemDetails extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: () {
-                  context.read<ItemDetailsCubit>().toggleDetailsCart();
+                onTap: () async {
+                  await toggleCart(item);
                 },
                 child: Container(
                   color: ColorsManager.primaryColor,
                   child: Container(
                     height: 40.h,
                     decoration: BoxDecoration(
-                      color: context.watch<ItemDetailsCubit>().isDetailsCart
+                      color: isCart(item)
                           ? ColorsManager.inCartColor
                           : ColorsManager.buttonColor,
                       borderRadius: BorderRadius.all(
@@ -127,9 +137,7 @@ class ItemDetails extends StatelessWidget {
                     width: double.infinity,
                     child: Center(
                       child: Text(
-                        context.watch<ItemDetailsCubit>().isDetailsCart
-                            ? "In Cart"
-                            : "Add to Cart",
+                        isCart(item) ? "In Cart" : "Ad to Cart",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.sp,

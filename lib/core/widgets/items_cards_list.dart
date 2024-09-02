@@ -28,8 +28,9 @@ class ItemsCardsList extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
+                params.item = params.list[index];
                 Navigator.of(context, rootNavigator: true)
-                    .pushNamed(Routes.details, arguments: params.list[index]);
+                    .pushNamed(Routes.details, arguments: params);
               },
               child: ItemCard(
                 item: params.list[index],
