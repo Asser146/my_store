@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/helpers/item_list_params.dart';
 import 'package:my_store/core/routing/routes.dart';
-import 'package:my_store/core/widgets/item_card/item_card.dart';
+import 'package:my_store/core/widgets/item_card_list/item_card.dart';
 
 class ItemsCardsList extends StatelessWidget {
   const ItemsCardsList({
@@ -27,11 +27,8 @@ class ItemsCardsList extends StatelessWidget {
           itemCount: params.list.length,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
-              onTap: () {
-                params.item = params.list[index];
-                Navigator.of(context, rootNavigator: true)
-                    .pushNamed(Routes.details, arguments: params);
-              },
+              onTap: () => Navigator.of(context, rootNavigator: true)
+                  .pushNamed(Routes.details, arguments: params.list[index]),
               child: ItemCard(
                 item: params.list[index],
                 isFav: params.isFav,

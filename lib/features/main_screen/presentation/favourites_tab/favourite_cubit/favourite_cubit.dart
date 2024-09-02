@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/helpers/item_list_params.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
-import 'package:my_store/core/widgets/items_list_operations.dart';
+import 'package:my_store/core/widgets/item_card_list/items_list_operations.dart';
 
 part 'favourite_state.dart';
 
@@ -15,7 +15,7 @@ class FavouriteCubit extends Cubit<FavouriteState> with ItemsListOperations {
     emit(FavouriteStateItems(items: items, fav: favourites, cart: cartItems));
   }
 
-  ItemsListParams get params{
+  ItemsListParams get params {
     return ItemsListParams(
         list: favourites,
         toggleFav: toggleFavourite,

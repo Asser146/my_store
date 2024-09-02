@@ -12,18 +12,11 @@ class ItemDetailsStateInitial extends ItemDetailsState {}
 class ItemDetailsStateLoading extends ItemDetailsState {}
 
 class ItemDetailsStateItems extends ItemDetailsState {
-  final List<Item> items, fav, cart;
+  final List<Item> items;
+  final bool fav, cart;
   const ItemDetailsStateItems(
       {required this.items, required this.fav, required this.cart});
 
   @override
   List<Object> get props => [items, fav, cart];
-}
-
-class ItemDetailsStateTabChanged extends ItemDetailsState {
-  final int index;
-  const ItemDetailsStateTabChanged({required this.index});
-
-  @override
-  List<Object> get props => [index];
 }

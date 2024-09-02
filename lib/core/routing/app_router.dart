@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_store/core/helpers/item_list_params.dart';
 import 'package:my_store/core/routing/routes.dart';
-import 'package:my_store/core/widgets/cubit/item_details_cubit.dart';
-import 'package:my_store/core/widgets/item_card/item_details.dart';
+import 'package:my_store/core/widgets/item_details/item_details_cubit/item_details_cubit.dart';
+import 'package:my_store/core/widgets/item_details/item_details.dart';
 import 'package:my_store/features/auth/login_cubit/login_cubit.dart';
 import 'package:my_store/features/auth/login_screen.dart';
 import 'package:my_store/features/auth/register_screen.dart';
@@ -18,9 +17,8 @@ class AppRouter {
       case Routes.login:
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) =>
-                      LoginCubit(), // Pass `type` to LoginCubit if needed
-                  child: const LoginScreen(), // Pass `type` to LoginScreen
+                  create: (context) => LoginCubit(),
+                  child: const LoginScreen(),
                 ));
       case Routes.register:
         return MaterialPageRoute(
@@ -29,18 +27,11 @@ class AppRouter {
                   child: const RegisterScreen(),
                 ));
       case Routes.details:
-        final ItemsListParams params = settings.arguments as ItemsListParams;
-        final item = params.item;
+        final Item item = settings.arguments as Item;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
-                  create: (context) => ItemDetailsCubit(item)..detailsInit(),
-                  child: ItemDetails(
-                    item: item!,
-                    isFav: params.isFav,
-                    isCart: params.isCart,
-                    toggleFav: params.toggleFav,
-                    toggleCart: params.toggleCart,
-                  ),
+                  create: (context) => ItemDetailsCubit(item),
+                  child: const ItemDetails(),
                 ),
             settings: settings);
       default:
