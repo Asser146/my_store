@@ -35,8 +35,6 @@ class ItemsCardsList extends StatelessWidget {
                 item: params.list[index],
                 isFav: params.isFav,
                 toggleFav: params.toggleFav,
-                isCart: params.isCart,
-                toggleCart: params.toggleCart,
               ),
             );
           },

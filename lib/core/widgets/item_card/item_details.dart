@@ -5,6 +5,7 @@ import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/core/widgets/cubit/item_details_cubit.dart';
 import 'package:my_store/core/widgets/my_app_bar.dart';
+import 'package:my_store/features/main_screen/data/item.dart';
 
 class ItemDetails extends StatelessWidget {
   const ItemDetails({super.key});

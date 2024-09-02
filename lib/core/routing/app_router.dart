@@ -30,6 +30,7 @@ class AppRouter {
                 ));
       case Routes.details:
         final Item item = settings.arguments as Item;
+        final Item item = settings.arguments as Item;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) =>
