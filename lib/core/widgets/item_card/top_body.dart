@@ -28,6 +28,9 @@ class TopBody extends StatelessWidget {
               width: 100.r,
               height: 120.r,
               fit: BoxFit.cover,
+              // loadingBuilder: (context, loadingWidget, event) {
+              //   return const CircularProgressIndicator();
+              // },
             ),
           ),
           Align(

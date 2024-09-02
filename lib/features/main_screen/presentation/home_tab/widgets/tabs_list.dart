@@ -22,25 +22,35 @@ class TabsList extends StatelessWidget {
         },
         isScrollable: true,
         tabAlignment: TabAlignment.center,
-
-        // Removes the default line indicator
+        dividerColor: Colors.transparent, // Removes the default line indicator
         labelColor: Colors.white,
         unselectedLabelColor: ColorsManager.saerchTextFieldHintColor,
-        tabs: categories
-            .map(
-              (category) => Tab(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  child: Text(
-                    category,
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                    ),
+        indicator: const BoxDecoration(), // Removes the default indicator
+        tabs: categories.map(
+          (category) {
+            final isSelected = categories.indexOf(category) ==
+                context.watch<HomeCubit>().currentTabIndex;
+            return Tab(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                decoration: BoxDecoration(
+                  color:
+                      isSelected ? ColorsManager.secondaryColor : Colors.white,
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+                child: Text(
+                  category,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: isSelected
+                        ? Colors.white
+                        : ColorsManager.saerchTextFieldHintColor,
                   ),
                 ),
               ),
-            )
-            .toList(),
+            );
+          },
+        ).toList(),
       ),
     );
   }
