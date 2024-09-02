@@ -28,7 +28,7 @@ class ItemsCardsList extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () {
-                params.index = index;
+                params.item = params.list[index];
                 Navigator.of(context, rootNavigator: true)
                     .pushNamed(Routes.details, arguments: params);
               },
@@ -36,8 +36,6 @@ class ItemsCardsList extends StatelessWidget {
                 item: params.list[index],
                 isFav: params.isFav,
                 toggleFav: params.toggleFav,
-                isCart: params.isCart,
-                toggleCart: params.toggleCart,
               ),
             );
           },

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/helpers/item_list_params.dart';
 import 'package:my_store/core/routing/routes.dart';
-import 'package:my_store/core/widgets/item_details.dart';
+import 'package:my_store/core/widgets/cubit/item_details_cubit.dart';
+import 'package:my_store/core/widgets/item_card/item_details.dart';
 import 'package:my_store/features/auth/login_cubit/login_cubit.dart';
 import 'package:my_store/features/auth/login_screen.dart';
 import 'package:my_store/features/auth/register_screen.dart';
@@ -28,9 +29,20 @@ class AppRouter {
                   child: const RegisterScreen(),
                 ));
       case Routes.details:
-        final ItemsListParams param = settings.arguments as ItemsListParams;
+        final ItemsListParams params = settings.arguments as ItemsListParams;
+        final item = params.item;
         return MaterialPageRoute(
-            builder: (_) => ItemDetails(params: param), settings: settings);
+            builder: (_) => BlocProvider(
+                  create: (context) => ItemDetailsCubit(item)..detailsInit(),
+                  child: ItemDetails(
+                    item: item!,
+                    isFav: params.isFav,
+                    isCart: params.isCart,
+                    toggleFav: params.toggleFav,
+                    toggleCart: params.toggleCart,
+                  ),
+                ),
+            settings: settings);
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
