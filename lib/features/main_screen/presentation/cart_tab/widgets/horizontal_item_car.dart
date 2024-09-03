@@ -40,29 +40,31 @@ class HorizontaItemCar extends StatelessWidget {
               height: 100.r,
               fit: BoxFit.cover,
             ),
-            const Spacer(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Item Title",
-                  style: TextStyles.font14darkrBold,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  "${item.price! * context.watch<CartCubit>().getCartQuantity(item.id!)}",
-                  style:
-                      TextStyles.font12greenRegular.copyWith(fontSize: 20.sp),
-                ),
-              ],
+            SizedBox(width: 8.w), // Add some space between image and text
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    item.title!,
+                    style: TextStyles.font14darkrBold
+                        .copyWith(color: Colors.white),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(height: 10.h),
+                  Text(
+                    "${item.price! * context.watch<CartCubit>().getCartQuantity(item.id!)}",
+                    style:
+                        TextStyles.font12greenRegular.copyWith(fontSize: 20.sp),
+                  ),
+                ],
+              ),
             ),
-            const Spacer(),
             Center(
               child: CartQuantityController(item: item),
-            )
+            ),
           ],
         ),
       ),

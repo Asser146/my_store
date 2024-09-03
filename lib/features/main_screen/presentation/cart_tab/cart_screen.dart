@@ -14,20 +14,35 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: ColorsManager.primaryColor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Text(
-              "My Cart",
-              style: TextStyles.font24BlackBold,
+      child: context.watch<CartCubit>().list.isEmpty
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/parcel 1.png',
+                  width: 200.w,
+                  height: 200.h,
+                ),
+                Text("Your Cart is Empty :(",
+                    style: TextStyles.font24limeExtraBold
+                        .copyWith(color: Colors.white))
+              ],
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Text(
+                    "Cart",
+                    style: TextStyles.font24BlackBold
+                        .copyWith(color: Colors.white),
+                  ),
+                ),
+                SizedBox(height: 12.h),
+                CartListBuilder(list: context.watch<CartCubit>().list),
+                ProcessdButton(sum: context.watch<CartCubit>().sum)
+              ],
             ),
-          ),
-          SizedBox(height: 12.h),
-          CartListBuilder(list: context.watch<CartCubit>().list),
-          ProcessdButton(sum: context.watch<CartCubit>().sum)
-        ],
-      ),
     );
   }
 }
