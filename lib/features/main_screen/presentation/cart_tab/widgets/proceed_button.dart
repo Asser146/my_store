@@ -21,7 +21,7 @@ class ProcessdButton extends StatelessWidget {
           width: double.infinity,
           height: 40.h,
           decoration: BoxDecoration(
-            color: ColorsManager.buttonColor,
+            color: ColorsManager.secondaryColor,
             border: Border.all(
               color: ColorsManager.selectedTabColor,
               width: 1.r,
