@@ -26,13 +26,18 @@ mixin ItemsListOperations {
     return favourites.contains(item);
   }
 
-  Future<void> toggleCart(Item item) async {
-    if (cartItems.contains(item)) {
-      cartItems.remove(item);
-    } else {
+  Future<void> toggleCart(Item item, int direction) async {
+    int quantity = repo.getQuantity(item.id!);
+    if (direction > 0 && !cartItems.contains(item)) {
       cartItems.add(item);
+    } else if (direction < 0 && quantity == 1) {
+      cartItems.remove(item);
     }
-    await repo.toggleCart(item);
+    await repo.toggleCart(item, direction);
+  }
+
+  int getQuantity(int itemId) {
+    return repo.getQuantity(itemId);
   }
 
   bool isCart(Item item) {

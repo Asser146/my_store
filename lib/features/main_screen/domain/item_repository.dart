@@ -30,24 +30,17 @@ class ItemRepository {
     _hiveServices.toggleFavorite(item);
   }
 
-  Future<void> toggleCart(Item item) async {
-    _hiveServices.toggleCartItem(item);
+  Future<void> toggleCart(Item item, int direction) async {
+    _hiveServices.toggleCartItem(item, direction);
+  }
+
+  int getQuantity(int itemId) {
+    return _hiveServices.getQuantity(itemId) ?? 0;
   }
 
   Future<List<List<Item>>> getLists() async {
-    List<List<Item>> lists = [];
-    if (items.isEmpty) {
-      fetchAllProducts();
-      lists.add(items);
-      lists.add(fav);
-      lists.add(cart);
-      return lists;
-    } else {
-      lists.add(items);
-      lists.add(fav);
-      lists.add(cart);
-      return lists;
-    }
+    items.isEmpty ? fetchAllProducts() : null;
+    return [items, fav, cart];
   }
 
   Future<List<String>> getCategories() async {

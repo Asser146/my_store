@@ -45,9 +45,9 @@ class HomeCubit extends Cubit<HomeState> with ItemsListOperations {
     emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
   }
 
-  Future<void> toggleHomeCart(Item item) async {
+  Future<void> toggleHomeCart(Item item, int direction) async {
     emit(HomeStateLoading());
-    await toggleCart(item);
+    await toggleCart(item, direction);
     emit(HomeStateItems(items: items, fav: favourites, cart: cartItems));
   }
 

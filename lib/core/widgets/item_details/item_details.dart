@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
+import 'package:my_store/core/theming/styles.dart';
+import 'package:my_store/core/widgets/item_details/details_quantity_controller.dart';
 import 'package:my_store/core/widgets/item_details/item_details_cubit/item_details_cubit.dart';
 import 'package:my_store/core/widgets/item_details/item_description.dart';
 import 'package:my_store/core/widgets/my_app_bar.dart';
@@ -32,7 +34,7 @@ class ItemDetails extends StatelessWidget {
           ItemDescription(item: item),
           GestureDetector(
             onTap: () async {
-              await context.read<ItemDetailsCubit>().toggleDetailsCart(item);
+              await context.read<ItemDetailsCubit>().toggleDetailsCart(item, 1);
             },
             child: Container(
               color: ColorsManager.primaryColor,
@@ -40,25 +42,19 @@ class ItemDetails extends StatelessWidget {
                 height: 40.h,
                 decoration: BoxDecoration(
                   color: context.watch<ItemDetailsCubit>().isDetailsCart(item)
-                      ? ColorsManager.inCartColor
+                      ? ColorsManager.secondaryColor
                       : ColorsManager.buttonColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(15.r),
                   ),
                 ),
                 width: double.infinity,
-                child: Center(
-                  child: Text(
-                    context.watch<ItemDetailsCubit>().isDetailsCart(item)
-                        ? "In Cart"
-                        : "Add to Cart",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                child: context.watch<ItemDetailsCubit>().isDetailsCart(item)
+                    ? DetailsQuantityController(item: item)
+                    : Center(
+                        child: Text("Add to Cart",
+                            style: TextStyles.font26whiteRegular),
+                      ),
               ),
             ),
           )

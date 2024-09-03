@@ -5,7 +5,7 @@ class ItemsListParams {
   final Future<void> Function(Item) toggleFav;
   final bool Function(Item) isFav;
   final bool Function(Item) isCart;
-  final Future<void> Function(Item) toggleCart;
+  final Future<void> Function(Item, int) toggleCart;
   int? index;
   Item? item;
 

@@ -36,9 +36,9 @@ class SearchCubit extends Cubit<SearchState> with ItemsListOperations {
     emit(SearchLoaded(items: items, fav: favourites, cart: cartItems));
   }
 
-  Future<void> toggleSearchCart(Item item) async {
+  Future<void> toggleSearchCart(Item item, int direction) async {
     emit(SearchLoading());
-    await toggleCart(item);
+    await toggleCart(item, direction);
     emit(SearchLoaded(items: items, fav: favourites, cart: cartItems));
   }
 

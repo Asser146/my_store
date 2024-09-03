@@ -21,7 +21,18 @@ class CartCubit extends Cubit<CartState> with ItemsListOperations {
   }
 
   double get sum {
-    return list.fold<double>(
-        0.0, (previousValue, item) => previousValue + (item.price ?? 0.0));
+    double total = 0.0;
+    for (var item in cartItems) {
+      total += item.price! * getQuantity(item.id!);
+    }
+    return total;
+  }
+
+  void toggleQuantity(Item item, int direction) {
+    toggleCart(item, direction);
+  }
+
+  int getCartQuantity(int itemId) {
+    return getQuantity(itemId);
   }
 }

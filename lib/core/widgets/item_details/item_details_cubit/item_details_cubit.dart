@@ -26,9 +26,9 @@ class ItemDetailsCubit extends Cubit<ItemDetailsState>
         items: items, fav: isFav(item), cart: isCart(item)));
   }
 
-  Future<void> toggleDetailsCart(Item item) async {
+  Future<void> toggleDetailsCart(Item item, int direction) async {
     emit(ItemDetailsStateLoading());
-    await toggleCart(item);
+    await toggleCart(item, direction);
     emit(ItemDetailsStateItems(
         items: items, fav: isFav(item), cart: isCart(item)));
   }
@@ -41,5 +41,15 @@ class ItemDetailsCubit extends Cubit<ItemDetailsState>
   bool isDetailsCart(Item item) {
     emit(ItemDetailsStateLoading());
     return isCart(item);
+  }
+
+  void toggleQuantity(Item item, int direction) {
+    toggleCart(item, direction);
+    emit(ItemDetailsStateItems(
+        items: items, fav: isFav(item), cart: isCart(item)));
+  }
+
+  int getDetailsQuantity(int itemId) {
+    return getQuantity(itemId);
   }
 }

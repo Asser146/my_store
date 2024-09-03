@@ -21,9 +21,9 @@ class FavouriteCubit extends Cubit<FavouriteState> with ItemsListOperations {
     emit(FavouriteStateItems(items: items, fav: favourites, cart: cartItems));
   }
 
-  Future<void> togglefavScreenCart(Item item) async {
+  Future<void> togglefavScreenCart(Item item, int direction) async {
     emit(FavouriteStateLoading());
-    await toggleCart(item);
+    await toggleCart(item, direction);
     emit(FavouriteStateItems(items: items, fav: favourites, cart: cartItems));
   }
 
