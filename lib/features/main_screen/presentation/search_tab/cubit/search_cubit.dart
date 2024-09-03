@@ -55,7 +55,7 @@ class SearchCubit extends Cubit<SearchState> with ItemsListOperations {
   ItemsListParams get params {
     searchInit();
     return ItemsListParams(
-      list: filteredItems.isEmpty ? items : filteredItems,
+      list: filteredItems,
       toggleFav: toggleSearchFavourite,
       isFav: isSearchFavourite,
       isCart: isSearchCart,

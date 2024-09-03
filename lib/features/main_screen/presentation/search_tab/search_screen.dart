@@ -15,38 +15,25 @@ class SearchScreen extends StatelessWidget {
     return Container(
       color: ColorsManager.primaryColor,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 10.h),
           const SearchTextField(),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("Search for products", style: TextStyles.font24BlackBold),
-                DropdownButton(
-                  icon: Icon(Icons.filter_list, size: 24.sp),
-                  underline: const SizedBox(),
-                  items: const [
-                    DropdownMenuItem(
-                      value: 'price',
-                      child: Text('Price'),
-                    ),
-                    DropdownMenuItem(
-                      value: 'limit5',
-                      child: Text('Limit 5'),
-                    ),
-                  ],
-                  onChanged: (value) async {
-                    if (value == 'limit5') {}
-                  },
-                ),
-              ],
-            ),
-          ),
           SizedBox(height: 12.h),
-          ItemsCardsList(params: context.watch<SearchCubit>().params)
+          context.watch<SearchCubit>().params.list.isEmpty
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/search 1.png',
+                      width: 200.w,
+                      height: 200.h,
+                    ),
+                    Text("Search for products",
+                        style: TextStyles.font24BlackBold
+                            .copyWith(color: Colors.white)),
+                  ],
+                )
+              : ItemsCardsList(params: context.watch<SearchCubit>().params)
         ],
       ),
     );
