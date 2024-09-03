@@ -42,6 +42,7 @@ dependencies:
   shimmer: ^3.0.0
   bloc: ^8.1.4
   rxdart: ^0.27.4
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
@@ -53,5 +54,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # assets:
-    # - assets/icons/
+  assets:
+    - assets/svgs/noCart.svg
