@@ -25,9 +25,9 @@ class TopBody extends StatelessWidget {
             alignment: Alignment.center,
             child: Image.network(
               item.image!,
-              width: 100.r,
-              height: 150.r,
-              fit: BoxFit.cover,
+              // width: 100.r,
+              height: 165.r,
+              fit: BoxFit.contain,
               // loadingBuilder: (context, loadingWidget, event) {
               //   return const CircularProgressIndicator();
               // },
@@ -36,15 +36,12 @@ class TopBody extends StatelessWidget {
           Align(
             alignment: Alignment.topRight,
             child: IconButton(
-              icon: Icon(
-                isFav(item) ? Icons.favorite : Icons.favorite_outline,
-                color: isFav(item) ? ColorsManager.removeColor : null,
-                size: 25.sp,
-              ),
-              onPressed: () async {
-                await toggleFav(item);
-              },
-            ),
+                icon: Icon(
+                  isFav(item) ? Icons.favorite : Icons.favorite_outline,
+                  color: isFav(item) ? ColorsManager.removeColor : null,
+                  size: 25.sp,
+                ),
+                onPressed: () async => await toggleFav(item)),
           ),
         ],
       ),

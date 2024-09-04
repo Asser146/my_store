@@ -20,41 +20,41 @@ class ItemDetails extends StatelessWidget {
       appBar: const MyAppBar(),
       body: Column(
         children: [
-          Container(
+          SizedBox(
             height: 200.h,
             width: double.infinity,
-            color: Colors.white,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 8.h),
-              child: Image.network(
-                context.watch<ItemDetailsCubit>().item.image!,
-              ),
+            child: Image.network(
+              context.watch<ItemDetailsCubit>().item.image!,
+              fit: BoxFit.contain,
             ),
           ),
           ItemDescription(item: item),
-          GestureDetector(
-            onTap: () async {
-              await context.read<ItemDetailsCubit>().toggleDetailsCart(item, 1);
-            },
-            child: Container(
-              color: ColorsManager.darkPrimaryColor,
-              child: Container(
-                height: 40.h,
-                decoration: BoxDecoration(
-                  color: context.watch<ItemDetailsCubit>().isDetailsCart(item)
-                      ? ColorsManager.secondaryColor
-                      : ColorsManager.addColor,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(15.r),
+          Container(
+            color: Theme.of(context).cardColor,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+              child: GestureDetector(
+                onTap: () async => await context
+                    .read<ItemDetailsCubit>()
+                    .toggleDetailsCart(item, 1),
+                child: Container(
+                  height: 35.h,
+                  decoration: BoxDecoration(
+                    color: context.watch<ItemDetailsCubit>().isDetailsCart(item)
+                        ? ColorsManager.secondaryColor
+                        : ColorsManager.addColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20.r),
+                    ),
                   ),
+                  width: double.infinity,
+                  child: context.watch<ItemDetailsCubit>().isDetailsCart(item)
+                      ? DetailsQuantityController(item: item)
+                      : Center(
+                          child: Text("Add to Cart",
+                              style: TextStyles.buttonTextWhite),
+                        ),
                 ),
-                width: double.infinity,
-                child: context.watch<ItemDetailsCubit>().isDetailsCart(item)
-                    ? DetailsQuantityController(item: item)
-                    : Center(
-                        child: Text("Add to Cart",
-                            style: TextStyles.cardDetailsDarkMode),
-                      ),
               ),
             ),
           )

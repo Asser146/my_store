@@ -21,7 +21,7 @@ class ItemsCardsList extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 8.w,
-            mainAxisSpacing: 5.h,
+            mainAxisSpacing: 8.h,
             childAspectRatio: 0.7,
           ),
           itemCount: params.list.length,

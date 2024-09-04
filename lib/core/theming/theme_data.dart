@@ -9,6 +9,10 @@ var lightThemeData = ThemeData(
   cardColor: ColorsManager.lightCardColor,
   hintColor: ColorsManager.iconLightModeColor,
   disabledColor: Colors.black,
+  iconTheme: const IconThemeData(
+    color: Colors.black,
+    size: 20.0,
+  ),
   textTheme: TextTheme(
       labelMedium: TextStyles.cardDetailsLightMode,
       labelSmall: TextStyles.cardSmallLabelLightMode,
@@ -19,6 +23,10 @@ var lightThemeData = ThemeData(
 var darkThemeData = ThemeData(
   brightness: Brightness.dark,
   primaryColor: ColorsManager.darkPrimaryColor,
+  iconTheme: const IconThemeData(
+    color: Colors.white, // Color for the icon
+    size: 20.0, // Size of the icon
+  ),
   disabledColor: Colors.white,
   scaffoldBackgroundColor: ColorsManager.darkPrimaryColor,
   cardColor: ColorsManager.darkCardColor,

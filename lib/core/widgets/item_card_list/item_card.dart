@@ -19,6 +19,8 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 281.r,
+      width: 161.r,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(15.r),

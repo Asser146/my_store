@@ -19,7 +19,7 @@ class ItemDescription extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: ColorsManager.darkPrimaryColor,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.r),
             topRight: Radius.circular(30.r),
@@ -34,9 +34,7 @@ class ItemDescription extends StatelessWidget {
               children: [
                 Text(
                   item.title!,
-                  style: TextStyles.font14darkrBold
-                      .copyWith(color: Colors.white)
-                      .copyWith(fontSize: 25.sp),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 SizedBox(height: 20.h),
                 Row(
@@ -78,9 +76,7 @@ class ItemDescription extends StatelessWidget {
                 SizedBox(height: 15.h),
                 Text(
                   context.watch<ItemDetailsCubit>().item.description!,
-                  style: TextStyles.hintTextLightMode
-                      .copyWith(color: Colors.white)
-                      .copyWith(fontSize: 20.sp),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],
             ),

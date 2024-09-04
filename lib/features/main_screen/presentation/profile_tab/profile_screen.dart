@@ -12,13 +12,11 @@ class ProfileScreen extends StatelessWidget {
     return Container(
       color: Theme.of(context).primaryColor,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 5.w),
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Profile",
-                style: TextStyles.titleLargeLightMode
-                    .copyWith(color: Colors.white)),
+            Text("Profile", style: Theme.of(context).textTheme.titleLarge),
             SizedBox(height: 12.h),
             TextButton(
                 onPressed: () {

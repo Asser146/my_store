@@ -33,7 +33,7 @@ class DetailsQuantityController extends StatelessWidget {
               .watch<ItemDetailsCubit>()
               .getDetailsQuantity(item.id!)
               .toString(),
-          style: TextStyles.font26whiteRegular.copyWith(fontSize: 30.sp),
+          style: TextStyles.buttonTextWhite,
         ),
         IconButton(
           onPressed: () {
