@@ -21,49 +21,52 @@ class HorizontaItemCar extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 8.w),
       child: Container(
         decoration: BoxDecoration(
-          color: ColorsManager.cardColor,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.all(Radius.circular(18.r)),
-          border: Border.all(
-            color: Colors.black,
-            width: 2.r,
-          ),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 5.h),
+        padding: EdgeInsets.only(right: 10.w, top: 5.h, bottom: 5.h, left: 3.w),
         width: double.infinity,
         height: 100.h,
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.network(
               item.image!,
-              width: 100.r,
-              height: 100.r,
-              fit: BoxFit.cover,
+              width: 80.r,
+              height: 80.r,
+              fit: BoxFit.contain,
             ),
             SizedBox(width: 8.w), // Add some space between image and text
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
                     item.title!,
-                    style: TextStyles.font14darkrBold
-                        .copyWith(color: Colors.white),
+                    style: Theme.of(context).textTheme.labelMedium,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 10.h),
                   Text(
-                    "${item.price! * context.watch<CartCubit>().getCartQuantity(item.id!)}",
-                    style:
-                        TextStyles.font12greenRegular.copyWith(fontSize: 20.sp),
+                    "Rating:   ${item.rating!.rate}",
+                    style: Theme.of(context).textTheme.labelMedium,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),
             ),
-            Center(
-              child: CartQuantityController(item: item),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  "${item.price! * context.watch<CartCubit>().getCartQuantity(item.id!)}",
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+                CartQuantityController(item: item),
+              ],
             ),
           ],
         ),

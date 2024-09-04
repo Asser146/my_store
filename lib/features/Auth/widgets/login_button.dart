@@ -52,6 +52,6 @@ class LoginButton extends StatelessWidget {
           }
         },
         child: Text('Login',
-            style: TextStyles.font24BlackBold.copyWith(fontSize: 20.sp)));
+            style: TextStyles.titleLargeLightMode.copyWith(fontSize: 20.sp)));
   }
 }

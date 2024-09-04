@@ -16,8 +16,8 @@ class SearchTextField extends StatelessWidget {
         width: double.infinity,
         height: 45.h, // Adjust height if needed
         decoration: BoxDecoration(
-          color: ColorsManager
-              .bottombarIconsColor, // Background color of the container
+          color:
+              Theme.of(context).cardColor, // Background color of the container
           borderRadius: BorderRadius.all(
             Radius.circular(20.r),
           ), // Circular border radius
@@ -25,7 +25,7 @@ class SearchTextField extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: TextField(
-            cursorColor: ColorsManager.buttonColor,
+            cursorColor: ColorsManager.addColor,
             onChanged: (query) {
               context
                   .read<SearchCubit>()
@@ -34,7 +34,7 @@ class SearchTextField extends StatelessWidget {
             decoration: InputDecoration(
               border: InputBorder.none,
               hintText: 'Type to Search ...',
-              hintStyle: TextStyles.font15BlackMedium.copyWith(fontSize: 20),
+              hintStyle: Theme.of(context).textTheme.titleMedium,
             ),
           ),
         ),

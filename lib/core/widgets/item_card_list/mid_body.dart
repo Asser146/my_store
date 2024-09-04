@@ -19,11 +19,7 @@ class MidBody extends StatelessWidget {
         children: [
           Text(
             item.title!,
-            style: TextStyle(
-              fontSize: 16.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+            style: Theme.of(context).textTheme.labelMedium,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
@@ -32,11 +28,7 @@ class MidBody extends StatelessWidget {
             children: [
               Text(
                 "${item.price!.toStringAsFixed(2)} \$",
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: Theme.of(context).textTheme.labelSmall,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -45,11 +37,8 @@ class MidBody extends StatelessWidget {
               SizedBox(width: 5.w),
               Text(
                 "${item.rating!.rate}",
-                style: TextStyles.font15BlackMedium.copyWith(
-                  fontSize: 17.sp,
-                  color: Colors.white,
-                ),
-              ),
+                style: Theme.of(context).textTheme.labelSmall,
+              )
             ],
           ),
         ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/widgets/item_card_list/mid_body.dart';
 import 'package:my_store/core/widgets/item_card_list/top_body.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
@@ -20,15 +19,11 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 0.4.sw,
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 1.5.w,
-        ),
         borderRadius: BorderRadius.all(
           Radius.circular(15.r),
         ),
-        color: ColorsManager.cardColor,
+        color: Theme.of(context).cardColor,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

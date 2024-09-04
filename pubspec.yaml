@@ -53,7 +53,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Circular Std
+      fonts:
+        - asset: assets/fonts/circular-std-medium-500.ttf
+          weight: 500
 
   assets:
-    - assets/svgs/noCart.svg
     - assets/images/
+   

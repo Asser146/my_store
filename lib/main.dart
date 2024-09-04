@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:my_store/core/di/dependency_injection.dart';
-import 'package:my_store/core/helpers/bloc_observer.dart';
 import 'package:my_store/core/routing/app_router.dart';
 import 'package:my_store/core/routing/routes.dart';
-import 'package:my_store/core/theming/colors.dart';
+import 'package:my_store/core/theming/theme_data.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
 import 'package:my_store/features/main_screen/data/rating.dart';
 import 'package:my_store/features/main_screen/domain/hive_services.dart';
@@ -16,14 +14,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
 
-  // Initialize Hive
   await Hive.initFlutter();
   Hive.registerAdapter(ItemAdapter());
   Hive.registerAdapter(RatingAdapter());
   HiveServices hiveServices = HiveServices();
   await hiveServices.init();
 
-  // Initialize Secure Storage
   const storage = FlutterSecureStorage();
 
   final String? token = await storage.read(key: "token");
@@ -44,9 +40,9 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: (context, child) {
         return MaterialApp(
-          theme: ThemeData(
-            scaffoldBackgroundColor: ColorsManager.primaryColor,
-          ),
+          theme: lightThemeData,
+          darkTheme: darkThemeData,
+          themeMode: ThemeMode.system,
           debugShowCheckedModeBanner: false,
           onGenerateRoute: _appRouter.generateRoute,
           initialRoute: initialRoute,

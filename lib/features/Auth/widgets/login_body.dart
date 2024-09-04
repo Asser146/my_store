@@ -58,7 +58,7 @@ class LoginBody extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text("New to A-Store?",
-                          style: TextStyles.font15BlackMedium
+                          style: TextStyles.hintTextLightMode
                               .copyWith(fontSize: 18.sp)),
                       TextButton(
                         onPressed: () {
@@ -68,7 +68,7 @@ class LoginBody extends StatelessWidget {
                           );
                         },
                         child: Text("Register",
-                            style: TextStyles.font15BlackMedium
+                            style: TextStyles.hintTextLightMode
                                 .copyWith(fontSize: 20.sp, color: Colors.blue)),
                       )
                     ],

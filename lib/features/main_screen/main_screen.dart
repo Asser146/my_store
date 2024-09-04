@@ -30,14 +30,14 @@ class _MainScreenState extends State<MainScreen> {
         context,
         controller: _controller,
         screens: screenBuild(),
-        items: navBarsItems(),
+        items: navBarsItems(Theme.of(context).hintColor),
         confineToSafeArea: true,
         // backgroundColor: ColorsManager,
         handleAndroidBackButtonPress: true,
         resizeToAvoidBottomInset: true,
         stateManagement: false,
         hideNavigationBarWhenKeyboardAppears: true,
-        backgroundColor: ColorsManager.primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
 
         navBarStyle: NavBarStyle.style3, // Adjust the style as needed
       ),

@@ -26,7 +26,7 @@ class TopBody extends StatelessWidget {
             child: Image.network(
               item.image!,
               width: 100.r,
-              height: 120.r,
+              height: 150.r,
               fit: BoxFit.cover,
               // loadingBuilder: (context, loadingWidget, event) {
               //   return const CircularProgressIndicator();
@@ -38,7 +38,7 @@ class TopBody extends StatelessWidget {
             child: IconButton(
               icon: Icon(
                 isFav(item) ? Icons.favorite : Icons.favorite_outline,
-                color: isFav(item) ? ColorsManager.inCartColor : null,
+                color: isFav(item) ? ColorsManager.removeColor : null,
                 size: 25.sp,
               ),
               onPressed: () async {

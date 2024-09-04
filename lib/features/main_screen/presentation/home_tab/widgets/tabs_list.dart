@@ -23,8 +23,7 @@ class TabsList extends StatelessWidget {
         isScrollable: true,
         tabAlignment: TabAlignment.center,
         dividerColor: Colors.transparent, // Removes the default line indicator
-        labelColor: Colors.white,
-        unselectedLabelColor: ColorsManager.saerchTextFieldHintColor,
+        unselectedLabelColor: Theme.of(context).cardColor,
         indicator: const BoxDecoration(), // Removes the default indicator
         tabs: categories.map(
           (category) {
@@ -34,8 +33,9 @@ class TabsList extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
                 decoration: BoxDecoration(
-                  color:
-                      isSelected ? ColorsManager.secondaryColor : Colors.white,
+                  color: isSelected
+                      ? ColorsManager.secondaryColor
+                      : Theme.of(context).cardColor,
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Text(
@@ -44,7 +44,7 @@ class TabsList extends StatelessWidget {
                     fontSize: 16.sp,
                     color: isSelected
                         ? Colors.white
-                        : ColorsManager.saerchTextFieldHintColor,
+                        : Theme.of(context).disabledColor,
                   ),
                 ),
               ),

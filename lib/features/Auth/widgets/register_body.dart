@@ -67,14 +67,14 @@ class RegisterBody extends StatelessWidget {
                         }
                       },
                       child: Text('Register',
-                          style: TextStyles.font24BlackBold
+                          style: TextStyles.titleLargeLightMode
                               .copyWith(fontSize: 20.sp))),
                   SizedBox(height: 15.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text("Already Have an Account?",
-                          style: TextStyles.font15BlackMedium
+                          style: TextStyles.hintTextLightMode
                               .copyWith(fontSize: 18.sp)),
                       TextButton(
                         onPressed: () {
@@ -82,7 +82,7 @@ class RegisterBody extends StatelessWidget {
                               arguments: 1);
                         },
                         child: Text("Login",
-                            style: TextStyles.font15BlackMedium
+                            style: TextStyles.hintTextLightMode
                                 .copyWith(fontSize: 20.sp, color: Colors.blue)),
                       )
                     ],

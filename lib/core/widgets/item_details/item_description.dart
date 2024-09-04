@@ -19,7 +19,7 @@ class ItemDescription extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: ColorsManager.primaryColor,
+          color: ColorsManager.darkPrimaryColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(30.r),
             topRight: Radius.circular(30.r),
@@ -53,7 +53,7 @@ class ItemDescription extends StatelessWidget {
                                     .rating!
                                     .rate! >=
                                 i + 1
-                            ? ColorsManager.selectedTabColor
+                            ? ColorsManager.starColor
                             : Colors.grey[600],
                       ),
                     const Spacer(),
@@ -63,7 +63,7 @@ class ItemDescription extends StatelessWidget {
                             ? Icons.favorite
                             : Icons.favorite_outline,
                         color: context.watch<ItemDetailsCubit>().isFav(item)
-                            ? ColorsManager.inCartColor
+                            ? ColorsManager.removeColor
                             : null,
                         size: 25.sp,
                       ),
@@ -78,7 +78,7 @@ class ItemDescription extends StatelessWidget {
                 SizedBox(height: 15.h),
                 Text(
                   context.watch<ItemDetailsCubit>().item.description!,
-                  style: TextStyles.font15BlackMedium
+                  style: TextStyles.hintTextLightMode
                       .copyWith(color: Colors.white)
                       .copyWith(fontSize: 20.sp),
                 ),

@@ -13,24 +13,20 @@ class ProcessdButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
+        padding: EdgeInsets.symmetric(horizontal: 8.w),
         child: Container(
           width: double.infinity,
           height: 40.h,
           decoration: BoxDecoration(
-            color: ColorsManager.secondaryColor,
-            border: Border.all(
-              color: ColorsManager.selectedTabColor,
-              width: 1.r,
-            ),
-          ),
+              color: ColorsManager.secondaryColor,
+              borderRadius: BorderRadius.all(Radius.circular(20.r))),
           child: Center(
               child: Text(
-            "Proceed: $sum \$",
-            style: TextStyles.font24BlackBold,
+            "Checkout",
+            style: TextStyles.buttonTextWhite,
           )),
         ),
       ),

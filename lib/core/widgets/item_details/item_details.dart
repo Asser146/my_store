@@ -37,13 +37,13 @@ class ItemDetails extends StatelessWidget {
               await context.read<ItemDetailsCubit>().toggleDetailsCart(item, 1);
             },
             child: Container(
-              color: ColorsManager.primaryColor,
+              color: ColorsManager.darkPrimaryColor,
               child: Container(
                 height: 40.h,
                 decoration: BoxDecoration(
                   color: context.watch<ItemDetailsCubit>().isDetailsCart(item)
                       ? ColorsManager.secondaryColor
-                      : ColorsManager.buttonColor,
+                      : ColorsManager.addColor,
                   borderRadius: BorderRadius.all(
                     Radius.circular(15.r),
                   ),
@@ -53,7 +53,7 @@ class ItemDetails extends StatelessWidget {
                     ? DetailsQuantityController(item: item)
                     : Center(
                         child: Text("Add to Cart",
-                            style: TextStyles.font26whiteRegular),
+                            style: TextStyles.cardDetailsDarkMode),
                       ),
               ),
             ),

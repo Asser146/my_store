@@ -18,31 +18,40 @@ class CartQuantityController extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(
-          onPressed: () {
-            context.read<CartCubit>().toggleQuantity(item, -1);
-          },
-          icon: Icon(
-            Icons.remove,
-            color: ColorsManager.inCartColor,
-            size: 25.sp,
-          ),
-        ),
-        Text(
-          context.watch<CartCubit>().getCartQuantity(item.id!).toString(),
-          style: TextStyles.font26whiteRegular.copyWith(fontSize: 26.sp),
-        ),
-        IconButton(
-          onPressed: () {
-            context.read<CartCubit>().toggleQuantity(item, 1);
-          },
-          icon: Icon(
-            Icons.add,
-            color: ColorsManager.buttonColor,
-            size: 25.sp,
-          ),
-        )
+        ControlButton(item: item, direction: -1),
+        SizedBox(width: 8.w),
+        ControlButton(item: item, direction: 1)
       ],
+    );
+  }
+}
+
+class ControlButton extends StatelessWidget {
+  const ControlButton({
+    super.key,
+    required this.item,
+    required this.direction,
+  });
+
+  final Item item;
+  final int direction;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.read<CartCubit>().toggleQuantity(item, direction),
+      child: Container(
+        decoration: const BoxDecoration(
+            shape: BoxShape.circle, color: ColorsManager.secondaryColor),
+        child: Padding(
+          padding: EdgeInsets.all(5.r),
+          child: Icon(
+            direction > 0 ? Icons.add : Icons.remove,
+            color: Theme.of(context).disabledColor,
+            size: 25.sp,
+          ),
+        ),
+      ),
     );
   }
 }
