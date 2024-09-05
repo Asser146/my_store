@@ -7,7 +7,7 @@ var lightThemeData = ThemeData(
   primaryColor: Colors.white,
   scaffoldBackgroundColor: Colors.white,
   cardColor: ColorsManager.lightCardColor,
-  hintColor: ColorsManager.iconLightModeColor,
+  hintColor: ColorsManager.cartDetailsLightColor,
   disabledColor: Colors.black,
   iconTheme: const IconThemeData(
     color: Colors.black,
@@ -17,7 +17,8 @@ var lightThemeData = ThemeData(
       labelMedium: TextStyles.cardDetailsLightMode,
       labelSmall: TextStyles.cardSmallLabelLightMode,
       titleLarge: TextStyles.titleLargeLightMode,
-      titleMedium: TextStyles.hintTextLightMode),
+      titleMedium: TextStyles.hintTextLightMode,
+      bodySmall: TextStyles.cardDetailsLightMode),
 );
 
 var darkThemeData = ThemeData(
@@ -30,10 +31,11 @@ var darkThemeData = ThemeData(
   disabledColor: Colors.white,
   scaffoldBackgroundColor: ColorsManager.darkPrimaryColor,
   cardColor: ColorsManager.darkCardColor,
-  hintColor: ColorsManager.iconDarkModeColor,
+  hintColor: ColorsManager.cartDetailsDarkColor,
   textTheme: TextTheme(
       labelMedium: TextStyles.cardDetailsDarkMode,
       labelSmall: TextStyles.cardSmallLabelDarkMode,
       titleLarge: TextStyles.titleLargeDarkMode,
-      titleMedium: TextStyles.hintTextDarkMode),
+      titleMedium: TextStyles.hintTextDarkMode,
+      bodySmall: TextStyles.cardSmallLabelDarkMode),
 );

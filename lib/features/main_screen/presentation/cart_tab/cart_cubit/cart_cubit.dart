@@ -35,4 +35,9 @@ class CartCubit extends Cubit<CartState> with ItemsListOperations {
   int getCartQuantity(int itemId) {
     return getQuantity(itemId);
   }
+
+  void removeAll() {
+    cartItems.clear();
+    removeAllCart();
+  }
 }

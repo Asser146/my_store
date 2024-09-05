@@ -26,6 +26,11 @@ class HiveServices {
     _quantityBox = await Hive.openBox<int>('quantityBox');
   }
 
+  void clearCart() {
+    _cartBox.deleteAll(cartItems);
+    _quantityBox.clear();
+  }
+
   List<Item> get items {
     return _itemsBox.values.toList();
   }

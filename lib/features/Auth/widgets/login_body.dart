@@ -35,8 +35,8 @@ class LoginBody extends StatelessWidget {
                   SizedBox(height: 35.h),
                   Text(
                     "A-Store",
-                    style: TextStyles.font26whiteRegular
-                        .copyWith(color: Colors.black),
+                    // style: TextStyles.font26whiteRegular
+                    //     .copyWith(color: Colors.black),
                   ),
                   SizedBox(height: 50.h),
                   TextField(

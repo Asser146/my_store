@@ -43,4 +43,8 @@ mixin ItemsListOperations {
   bool isCart(Item item) {
     return cartItems.contains(item);
   }
+
+  void removeAllCart() {
+    repo.removeCart();
+  }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/theming/colors.dart';
+import 'package:my_store/core/theming/styles.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({super.key});
@@ -18,7 +19,8 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       backgroundColor: ColorsManager.secondaryColor,
       centerTitle: true,
-      title: const Text("A-Store"),
+      title: Text("A-Store",
+          style: TextStyles.buttonTextWhite.copyWith(fontSize: 20.sp)),
       actions: [
         Padding(
           padding: EdgeInsets.only(right: 15.w),

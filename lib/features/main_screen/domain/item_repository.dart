@@ -26,6 +26,10 @@ class ItemRepository {
     }
   }
 
+  void removeCart() {
+    _hiveServices.clearCart();
+  }
+
   Future<void> toggleFav(Item item) async {
     _hiveServices.toggleFavorite(item);
   }

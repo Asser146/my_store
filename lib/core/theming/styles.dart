@@ -50,22 +50,12 @@ class TextStyles {
   static TextStyle hintTextDarkMode =
       hintTextLightMode.copyWith(color: Colors.white);
 
-  static TextStyle font12witeRegular = TextStyle(
-    fontSize: 12.sp,
-    fontWeight: FontWeightHelper.regular,
-    color: Colors.white,
-    // fontFamily: 'Tajawal'
+  static TextStyle cartDetailsLightMode = TextStyle(
+    fontSize: 15.sp,
+    fontWeight: FontWeightHelper.medium,
+    fontFamily: 'Circular Std',
+    color: ColorsManager.cartDetailsLightColor,
   );
-  static TextStyle font26whiteRegular = TextStyle(
-    color: Colors.white,
-    fontSize: 28.sp,
-    fontWeight: FontWeightHelper.regular,
-    // fontFamily: 'Tajawal'
-  );
-  static TextStyle font24limeExtraBold = TextStyle(
-    fontSize: 24.sp,
-    // color: ColorsManager.limeColor,
-    fontWeight: FontWeight.w800,
-    // fontFamily: 'Tajawal'
-  );
+  static TextStyle cartDetailsDarkMode =
+      cartDetailsLightMode.copyWith(color: ColorsManager.cartDetailsDarkColor);
 }

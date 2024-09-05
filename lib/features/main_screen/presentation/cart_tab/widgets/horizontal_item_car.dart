@@ -49,7 +49,7 @@ class HorizontaItemCar extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    "Rating:   ${item.rating!.rate}",
+                    "Quantity:  ${context.watch<CartCubit>().getCartQuantity(item.id!)}",
                     style: Theme.of(context).textTheme.labelMedium,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -62,7 +62,7 @@ class HorizontaItemCar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  "${item.price! * context.watch<CartCubit>().getCartQuantity(item.id!)}",
+                  "\$ ${item.price! * context.watch<CartCubit>().getCartQuantity(item.id!)}",
                   style: Theme.of(context).textTheme.labelSmall,
                 ),
                 CartQuantityController(item: item),

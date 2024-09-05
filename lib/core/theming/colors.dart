@@ -15,4 +15,7 @@ class ColorsManager {
 
   static const Color darkPrimaryColor = Color(0xff1D182A);
   static const Color secondaryColor = Color(0xff8E6CEF);
+
+  static Color? cartDetailsLightColor = Colors.grey[700];
+  static Color? cartDetailsDarkColor = Colors.grey[400];
 }
