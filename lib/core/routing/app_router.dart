@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/widgets/item_details/item_details_cubit/item_details_cubit.dart';
-import 'package:my_store/core/widgets/item_details/item_details.dart';
+import 'package:my_store/core/widgets/item_details/item_details_screen.dart';
 import 'package:my_store/features/auth/login_cubit/login_cubit.dart';
 import 'package:my_store/features/auth/login_screen.dart';
 import 'package:my_store/features/auth/register_screen.dart';
@@ -31,7 +31,7 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) => ItemDetailsCubit(item),
-                  child: const ItemDetails(),
+                  child: const ItemDetailsScreen(),
                 ),
             settings: settings);
       default:

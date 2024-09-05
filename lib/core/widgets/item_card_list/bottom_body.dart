@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
 
-class MidBody extends StatelessWidget {
-  const MidBody({
+class BottomBody extends StatelessWidget {
+  const BottomBody({
     super.key,
     required this.item,
   });

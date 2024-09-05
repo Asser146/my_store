@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_store/core/widgets/item_card_list/mid_body.dart';
+import 'package:my_store/core/widgets/item_card_list/bottom_body.dart';
 import 'package:my_store/core/widgets/item_card_list/top_body.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
 
@@ -32,7 +32,7 @@ class ItemCard extends StatelessWidget {
         children: [
           TopBody(item: item, isFav: isFav, toggleFav: toggleFav),
           const Spacer(),
-          MidBody(item: item),
+          BottomBody(item: item),
         ],
       ),
     );
