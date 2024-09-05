@@ -27,8 +27,8 @@ class HiveServices {
   }
 
   void clearCart() {
-    _cartBox.deleteAll(cartItems);
     _quantityBox.clear();
+    _cartBox.clear();
   }
 
   List<Item> get items {

@@ -37,7 +37,8 @@ class CartScreen extends StatelessWidget {
                 SizedBox(height: 8.h),
                 CartListBuilder(list: context.watch<CartCubit>().list),
                 const CartDetails(),
-                ProcessdButton(sum: context.watch<CartCubit>().sum)
+                ProcessdButton(
+                    sum: double.parse(context.watch<CartCubit>().sum))
               ],
             ),
     );

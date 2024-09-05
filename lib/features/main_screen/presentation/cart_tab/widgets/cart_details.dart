@@ -46,7 +46,7 @@ class CartDetails extends StatelessWidget {
             children: [
               Text("Total", style: Theme.of(context).textTheme.bodyMedium),
               Text(
-                "\$ ${context.watch<CartCubit>().sum + shippingCost + tax}",
+                "\$ ${double.parse(context.watch<CartCubit>().sum) + shippingCost + tax}",
                 style: Theme.of(context).textTheme.labelSmall,
               )
             ],

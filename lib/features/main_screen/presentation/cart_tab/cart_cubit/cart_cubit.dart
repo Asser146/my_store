@@ -20,12 +20,12 @@ class CartCubit extends Cubit<CartState> with ItemsListOperations {
     return cartItems;
   }
 
-  double get sum {
+  String get sum {
     double total = 0.0;
     for (var item in cartItems) {
       total += item.price! * getQuantity(item.id!);
     }
-    return total;
+    return total.toStringAsFixed(2);
   }
 
   void toggleQuantity(Item item, int direction) {
