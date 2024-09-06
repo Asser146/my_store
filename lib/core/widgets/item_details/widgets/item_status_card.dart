@@ -35,7 +35,7 @@ class ItemStatusCard extends StatelessWidget {
                   child: Text("In Cart", style: TextStyles.buttonTextWhite),
                 )
               : Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  padding: EdgeInsets.symmetric(horizontal: 25.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

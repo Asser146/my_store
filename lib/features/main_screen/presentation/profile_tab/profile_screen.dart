@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/routing/routes.dart';
-import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/features/main_screen/presentation/profile_tab/cubit/profile_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {

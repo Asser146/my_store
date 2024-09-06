@@ -25,7 +25,7 @@ class QuantityCard extends StatelessWidget {
         height: 50.h,
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(20.r),
+          borderRadius: BorderRadius.circular(25.r),
         ),
         width: double.infinity,
         child: Padding(
