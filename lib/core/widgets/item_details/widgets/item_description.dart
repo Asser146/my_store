@@ -39,10 +39,8 @@ class ItemDescription extends StatelessWidget {
                 children: [
                   for (int i = 0; i < 5; i++)
                     Icon(
-                      item.rating!.rate! >= i + 1
-                          ? Icons.star
-                          : Icons.star_border,
-                      color: item.rating!.rate! >= i + 1
+                      item.rating! >= i + 1 ? Icons.star : Icons.star_border,
+                      color: item.rating! >= i + 1
                           ? ColorsManager.starColor
                           : Colors.grey[600],
                     ),

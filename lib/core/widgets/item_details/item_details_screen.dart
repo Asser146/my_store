@@ -23,7 +23,7 @@ class ItemDetailsScreen extends StatelessWidget {
             height: 200.h,
             width: double.infinity,
             child: Image.network(
-              item.image!,
+              item.images![0],
               fit: BoxFit.contain,
             ),
           ),

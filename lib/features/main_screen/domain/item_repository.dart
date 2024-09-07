@@ -1,5 +1,6 @@
 import 'package:my_store/core/di/dependency_injection.dart';
 import 'package:my_store/core/networking/api_service.dart';
+import 'package:my_store/features/main_screen/data/base_response.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
 import 'package:my_store/features/main_screen/domain/hive_services.dart';
 
@@ -9,6 +10,7 @@ class ItemRepository {
 
   Future<void> fetchAllProducts() async {
     _hiveServices.init();
+    // _hiveServices.clearBoxes();
     items = _hiveServices.items;
 
     if (items.isEmpty) {
@@ -19,7 +21,10 @@ class ItemRepository {
     }
     try {
       ApiService client = getIt<ApiService>();
-      items = await client.getAllProducts();
+      BaseResponse response = await client.getAllProducts();
+
+      items = response.items ?? [];
+      print('Received categories: $items');
     } catch (e) {
       print('Error fetching products: $e');
       rethrow;
@@ -51,21 +56,30 @@ class ItemRepository {
     try {
       ApiService client = getIt<ApiService>();
       final categories = await client.getCategories();
-      return categories;
+
+      // Initialize an empty list to store category names
+      List<String> categoriesNames = [];
+      print('Received categories: $categories');
+      // Extract the name from each category object and add it to the list
+      for (var category in categories) {
+        categoriesNames.add(category.name ?? "NA");
+      }
+
+      return categoriesNames;
     } catch (e) {
       print('Error fetching categories: $e');
-      rethrow;
+      rethrow; // Rethrow the error after logging it
     }
   }
 
-  Future<List<Item>> limit5Products() async {
-    try {
-      ApiService client = getIt<ApiService>();
-      final products = await client.limit5Products();
-      return products;
-    } catch (e) {
-      print('Error fetching products: $e');
-      rethrow;
-    }
-  }
+  // Future<List<Item>> limit5Products() async {
+  //   try {
+  //     ApiService client = getIt<ApiService>();
+  //     final products = await client.limit5Products();
+  //     return products;
+  //   } catch (e) {
+  //     print('Error fetching products: $e');
+  //     rethrow;
+  //   }
+  // }
 }

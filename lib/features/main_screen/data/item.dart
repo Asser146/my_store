@@ -9,39 +9,38 @@ part 'item.g.dart'; // Assuming you are using json_serializable
 @JsonSerializable()
 class Item extends Equatable {
   @HiveField(0)
-  int? id;
+  final int? id;
   @HiveField(1)
-  String? title;
+  final String? title;
   @HiveField(2)
-  String? description;
+  final String? description;
   @HiveField(3)
-  String? category;
+  final String? category;
   @HiveField(4)
-  double? price;
+  final double? price;
   @HiveField(5)
-  double? discountPercentage;
+  final double? discountPercentage;
   @HiveField(6)
-  double? rating;
+  final double? rating;
   @HiveField(7)
-  int? stock;
+  final int? stock;
   @HiveField(8)
-  List<String>? tags;
+  final List<String>? tags;
   @HiveField(9)
-  String? brand;
+  final String? brand;
   @HiveField(10)
-  String? warrantyInformation;
+  final String? warrantyInformation;
   @HiveField(11)
-  String? availabilityStatus;
+  final String? availabilityStatus;
   @HiveField(12)
-  List<Reviews>? reviews;
+  final List<Reviews>? reviews;
   @HiveField(13)
-  String? returnPolicy;
+  final String? returnPolicy;
   @HiveField(14)
-  List<String>? images;
+  final List<String>? images;
   @HiveField(15)
-  String? thumbnail;
-
-  Item({
+  final String? thumbnail;
+  const Item({
     this.id,
     this.title,
     this.description,

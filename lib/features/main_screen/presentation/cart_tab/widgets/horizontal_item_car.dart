@@ -31,7 +31,7 @@ class HorizontaItemCar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.network(
-              item.image!,
+              item.images![0],
               width: 80.r,
               height: 80.r,
               fit: BoxFit.contain,

@@ -7,7 +7,7 @@ import 'package:my_store/core/routing/app_router.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/theming/theme_data.dart';
 import 'package:my_store/features/main_screen/data/item.dart';
-import 'package:my_store/features/main_screen/data/rating.dart';
+import 'package:my_store/features/main_screen/data/reviews.dart';
 import 'package:my_store/features/main_screen/domain/hive_services.dart';
 
 void main() async {
@@ -16,7 +16,7 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(ItemAdapter());
-  Hive.registerAdapter(RatingAdapter());
+  Hive.registerAdapter(ReviewsAdapter());
   HiveServices hiveServices = HiveServices();
   await hiveServices.init();
 

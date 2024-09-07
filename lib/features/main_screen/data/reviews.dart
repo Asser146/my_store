@@ -7,7 +7,7 @@ part 'reviews.g.dart';
 @JsonSerializable()
 class Reviews {
   @HiveField(0)
-  int? rating;
+  double? rating;
   @HiveField(1)
   String? comment;
   @HiveField(2)

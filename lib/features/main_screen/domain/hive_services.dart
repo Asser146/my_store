@@ -15,15 +15,12 @@ class HiveServices {
   HiveServices._internal();
 
   Future<void> init() async {
-    // Make sure you register the adapter before opening the box
-    if (!Hive.isAdapterRegistered(ItemAdapter().typeId)) {
-      Hive.registerAdapter(ItemAdapter());
-    }
-
     _itemsBox = await Hive.openBox<Item>('itemsBox');
     _favoritesBox = await Hive.openBox<Item>('favoritesBox');
     _cartBox = await Hive.openBox<Item>('cartBox');
     _quantityBox = await Hive.openBox<int>('quantityBox');
+    print("here");
+    // clearBoxes();
   }
 
   void clearCart() {

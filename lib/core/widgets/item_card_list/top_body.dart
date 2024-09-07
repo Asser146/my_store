@@ -24,7 +24,7 @@ class TopBody extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: Image.network(
-              item.image!,
+              item.images![0],
               // width: 100.r,
               height: 165.r,
               fit: BoxFit.contain,

@@ -17,7 +17,7 @@ class ReviewsAdapter extends TypeAdapter<Reviews> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Reviews(
-      rating: fields[0] as int?,
+      rating: fields[0] as double?,
       comment: fields[1] as String?,
       date: fields[2] as String?,
       reviewerName: fields[3] as String?,
@@ -57,7 +57,7 @@ class ReviewsAdapter extends TypeAdapter<Reviews> {
 // **************************************************************************
 
 Reviews _$ReviewsFromJson(Map<String, dynamic> json) => Reviews(
-      rating: (json['rating'] as num?)?.toInt(),
+      rating: (json['rating'] as num?)?.toDouble(),
       comment: json['comment'] as String?,
       date: json['date'] as String?,
       reviewerName: json['reviewerName'] as String?,

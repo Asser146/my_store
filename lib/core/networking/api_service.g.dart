@@ -14,7 +14,7 @@ class _ApiService implements ApiService {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://fakestoreapi.com/';
+    baseUrl ??= 'https://dummyjson.com/';
   }
 
   final Dio _dio;
@@ -24,12 +24,12 @@ class _ApiService implements ApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<Item>> getAllProducts() async {
+  Future<BaseResponse> getAllProducts() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<Item>>(Options(
+    final _options = _setStreamType<BaseResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -45,12 +45,10 @@ class _ApiService implements ApiService {
           _dio.options.baseUrl,
           baseUrl,
         )));
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<Item> _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseResponse _value;
     try {
-      _value = _result.data!
-          .map((dynamic i) => Item.fromJson(i as Map<String, dynamic>))
-          .toList();
+      _value = BaseResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -59,12 +57,12 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<List<String>> getCategories() async {
+  Future<List<Categories>> getCategories() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<String>>(Options(
+    final _options = _setStreamType<List<Categories>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -81,43 +79,10 @@ class _ApiService implements ApiService {
           baseUrl,
         )));
     final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<String> _value;
-    try {
-      _value = _result.data!.cast<String>();
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<List<Item>> limit5Products() async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<Item>>(Options(
-      method: 'GET',
-      headers: _headers,
-      extra: _extra,
-    )
-        .compose(
-          _dio.options,
-          'products?limit=5',
-          queryParameters: queryParameters,
-          data: _data,
-        )
-        .copyWith(
-            baseUrl: _combineBaseUrls(
-          _dio.options.baseUrl,
-          baseUrl,
-        )));
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<Item> _value;
+    late List<Categories> _value;
     try {
       _value = _result.data!
-          .map((dynamic i) => Item.fromJson(i as Map<String, dynamic>))
+          .map((dynamic i) => Categories.fromJson(i as Map<String, dynamic>))
           .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);

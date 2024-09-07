@@ -35,7 +35,7 @@ class BottomBody extends StatelessWidget {
               const Icon(Icons.star, color: Colors.orangeAccent),
               SizedBox(width: 5.w),
               Text(
-                "${item.rating!.rate}",
+                "${item.rating!}",
                 style: Theme.of(context).textTheme.labelSmall,
               )
             ],
