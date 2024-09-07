@@ -38,7 +38,9 @@ class TopBody extends StatelessWidget {
             child: IconButton(
                 icon: Icon(
                   isFav(item) ? Icons.favorite : Icons.favorite_outline,
-                  color: isFav(item) ? ColorsManager.removeColor : null,
+                  color: isFav(item)
+                      ? ColorsManager.removeColor
+                      : ColorsManager.cartDetailsLightColor,
                   size: 25.sp,
                 ),
                 onPressed: () async => await toggleFav(item)),

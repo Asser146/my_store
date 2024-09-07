@@ -41,7 +41,7 @@ class QuantityCard extends StatelessWidget {
               SizedBox(width: 20.w),
               Text(
                 quantity.toString(),
-                style: TextStyles.buttonTextWhite,
+                style: Theme.of(context).textTheme.labelMedium,
               ),
               SizedBox(width: 20.w),
               QuantityButton(item: item, direction: 1),

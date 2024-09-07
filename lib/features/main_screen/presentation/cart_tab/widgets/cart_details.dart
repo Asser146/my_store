@@ -20,7 +20,8 @@ class CartDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Subtotal", style: Theme.of(context).textTheme.bodyMedium),
-              Text("\$ ${context.watch<CartCubit>().sum}")
+              Text("\$ ${context.watch<CartCubit>().sum}",
+                  style: Theme.of(context).textTheme.titleMedium)
             ],
           ),
           SizedBox(height: 20.h),
@@ -29,7 +30,8 @@ class CartDetails extends StatelessWidget {
             children: [
               Text("Shipping Cost",
                   style: Theme.of(context).textTheme.bodyMedium),
-              Text("\$ $shippingCost")
+              Text("\$ $shippingCost",
+                  style: Theme.of(context).textTheme.titleMedium)
             ],
           ),
           SizedBox(height: 20.h),
@@ -37,7 +39,7 @@ class CartDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Tax", style: Theme.of(context).textTheme.bodyMedium),
-              Text("\$ $tax")
+              Text("\$ $tax", style: Theme.of(context).textTheme.titleMedium)
             ],
           ),
           SizedBox(height: 20.h),
