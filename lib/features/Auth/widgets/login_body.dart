@@ -45,10 +45,8 @@ class LoginBody extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleSmall),
               SizedBox(width: 10.w),
               GestureDetector(
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  Routes.register,
-                ),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(Routes.register),
                 child: Text("Creat One",
                     style: Theme.of(context)
                         .textTheme
