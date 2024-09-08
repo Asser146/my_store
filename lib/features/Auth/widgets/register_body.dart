@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/routing/routes.dart';
-import 'package:my_store/core/theming/styles.dart';
-import 'package:my_store/features/auth/login_cubit/login_cubit.dart';
+import 'package:my_store/core/theming/font_weight_helper.dart';
+import 'package:my_store/features/auth/widgets/custom_text_field.dart';
+import 'package:my_store/features/auth/widgets/login_button.dart';
 
 class RegisterBody extends StatelessWidget {
   const RegisterBody({
@@ -17,81 +17,51 @@ class RegisterBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height, // Full screen height
-      width: MediaQuery.of(context).size.width, // Full screen width
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 150.h),
-          child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.w),
-              child: Column(
-                children: [
-                  SizedBox(height: 35.h),
-                  Text(
-                    "A-Store",
-                    // style: TextStyles.font26whiteRegular
-                    //     .copyWith(color: Colors.black),
-                  ),
-                  SizedBox(height: 50.h),
-                  TextField(
-                    controller: usernameController,
-                    decoration: const InputDecoration(labelText: 'Username'),
-                  ),
-                  SizedBox(height: 20.h),
-                  TextField(
-                    controller: passwordController,
-                    decoration: const InputDecoration(labelText: 'Password'),
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 50.h),
-                  ElevatedButton(
-                      onPressed: () {
-                        final username = usernameController.text;
-                        final password = passwordController.text;
-                        final token = username + password;
-
-                        if (token.isNotEmpty) {
-                          context.read<LoginCubit>().register(token);
-                          Navigator.of(context).pushNamed(Routes.main);
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Invalid credentials')),
-                          );
-                        }
-                      },
-                      child: Text('Register',
-                          style: TextStyles.titleLargeLightMode
-                              .copyWith(fontSize: 20.sp))),
-                  SizedBox(height: 15.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text("Already Have an Account?",
-                          style: TextStyles.hintTextLightMode
-                              .copyWith(fontSize: 18.sp)),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, Routes.login,
-                              arguments: 1);
-                        },
-                        child: Text("Login",
-                            style: TextStyles.hintTextLightMode
-                                .copyWith(fontSize: 20.sp, color: Colors.blue)),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 80.h),
+          Text("Register",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(fontSize: 30.sp)),
+          SizedBox(height: 30.h),
+          CustomTextField(controller: usernameController, hintText: "E-mail"),
+          SizedBox(height: 10.h),
+          CustomTextField(controller: usernameController, hintText: "Username"),
+          SizedBox(height: 10.h),
+          CustomTextField(controller: passwordController, hintText: "Password"),
+          SizedBox(height: 15.h),
+          CustomTextField(
+              controller: passwordController, hintText: "Confirm Password"),
+          SizedBox(height: 15.h),
+          LoginButton(
+              usernameController: usernameController,
+              passwordController: passwordController,
+              submit: "Sign Up"),
+          SizedBox(height: 10.h),
+          Row(
+            children: [
+              Text("Already have an Account?",
+                  style: Theme.of(context).textTheme.titleSmall),
+              SizedBox(width: 10.w),
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  Routes.login,
+                ),
+                child: Text("Sign in",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleSmall!
+                        .copyWith(fontWeight: FontWeightHelper.bold)),
+              )
+            ],
           ),
-        ),
+        ],
       ),
     );
   }
