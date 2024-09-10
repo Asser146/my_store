@@ -11,24 +11,24 @@ List<PersistentBottomNavBarItem> navBarsItems(Color hintColor) {
       activeColorPrimary: ColorsManager.secondaryColor,
       inactiveColorPrimary: hintColor,
     ),
-    PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.search),
-      title: "Search",
-      activeColorPrimary: ColorsManager.secondaryColor,
-      inactiveColorPrimary: hintColor,
-    ),
-    PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.heart),
-      title: "Favourites",
-      activeColorPrimary: ColorsManager.secondaryColor,
-      inactiveColorPrimary: hintColor,
-    ),
-    PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.cart),
-      title: "Cart",
-      activeColorPrimary: ColorsManager.secondaryColor,
-      inactiveColorPrimary: hintColor,
-    ),
+    // PersistentBottomNavBarItem(
+    //   icon: const Icon(CupertinoIcons.search),
+    //   title: "Search",
+    //   activeColorPrimary: ColorsManager.secondaryColor,
+    //   inactiveColorPrimary: hintColor,
+    // ),
+    // PersistentBottomNavBarItem(
+    //   icon: const Icon(CupertinoIcons.heart),
+    //   title: "Favourites",
+    //   activeColorPrimary: ColorsManager.secondaryColor,
+    //   inactiveColorPrimary: hintColor,
+    // ),
+    // PersistentBottomNavBarItem(
+    //   icon: const Icon(CupertinoIcons.cart),
+    //   title: "Cart",
+    //   activeColorPrimary: ColorsManager.secondaryColor,
+    //   inactiveColorPrimary: hintColor,
+    // ),
     PersistentBottomNavBarItem(
       icon: const Icon(CupertinoIcons.person),
       title: "Profile",

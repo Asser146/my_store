@@ -1,30 +1,30 @@
 import 'package:my_store/core/di/dependency_injection.dart';
 import 'package:my_store/core/networking/api_service.dart';
 import 'package:my_store/features/main_screen/data/base_response.dart';
-import 'package:my_store/features/main_screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/product.dart';
 import 'package:my_store/features/main_screen/domain/hive_services.dart';
 
-class ItemRepository {
+class ProductRepository {
   final HiveServices _hiveServices = getIt<HiveServices>();
-  List<Item> items = [], fav = [], cart = [];
+  List<Product> products = [], fav = [], cart = [];
 
   Future<void> fetchAllProducts() async {
     _hiveServices.init();
     // _hiveServices.clearBoxes();
-    items = _hiveServices.items;
+    products = _hiveServices.products;
 
-    if (items.isEmpty) {
-      await _hiveServices.addItems(items);
+    if (products.isEmpty) {
+      await _hiveServices.addProducts(products);
     } else {
       fav = _hiveServices.favorites;
-      cart = _hiveServices.cartItems;
+      cart = _hiveServices.cartProducts;
     }
     try {
       ApiService client = getIt<ApiService>();
       BaseResponse response = await client.getAllProducts();
 
-      items = response.items ?? [];
-      print('Received categories: $items');
+      products = response.products ?? [];
+      print('Received products: $products');
     } catch (e) {
       print('Error fetching products: $e');
       rethrow;
@@ -35,21 +35,21 @@ class ItemRepository {
     _hiveServices.clearCart();
   }
 
-  Future<void> toggleFav(Item item) async {
-    _hiveServices.toggleFavorite(item);
+  Future<void> toggleFav(Product product) async {
+    _hiveServices.toggleFavorite(product);
   }
 
-  Future<void> toggleCart(Item item, int direction) async {
-    _hiveServices.toggleCartItem(item, direction);
+  Future<void> toggleCart(Product product, int direction) async {
+    _hiveServices.toggleCartProduct(product, direction);
   }
 
-  int getQuantity(int itemId) {
-    return _hiveServices.getQuantity(itemId) ?? 0;
+  int getQuantity(int productId) {
+    return _hiveServices.getQuantity(productId) ?? 0;
   }
 
-  Future<List<List<Item>>> getLists() async {
-    items.isEmpty ? fetchAllProducts() : null;
-    return [items, fav, cart];
+  Future<List<List<Product>>> getLists() async {
+    products.isEmpty ? fetchAllProducts() : null;
+    return [products, fav, cart];
   }
 
   Future<List<String>> getCategories() async {
@@ -71,15 +71,4 @@ class ItemRepository {
       rethrow; // Rethrow the error after logging it
     }
   }
-
-  // Future<List<Item>> limit5Products() async {
-  //   try {
-  //     ApiService client = getIt<ApiService>();
-  //     final products = await client.limit5Products();
-  //     return products;
-  //   } catch (e) {
-  //     print('Error fetching products: $e');
-  //     rethrow;
-  //   }
-  // }
 }

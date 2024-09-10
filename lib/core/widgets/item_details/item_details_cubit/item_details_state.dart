@@ -12,7 +12,7 @@ class ItemDetailsStateInitial extends ItemDetailsState {}
 class ItemDetailsStateLoading extends ItemDetailsState {}
 
 class ItemDetailsStateItems extends ItemDetailsState {
-  final List<Item> items;
+  final List<Product> items;
   final bool fav, cart;
   const ItemDetailsStateItems(
       {required this.items, required this.fav, required this.cart});

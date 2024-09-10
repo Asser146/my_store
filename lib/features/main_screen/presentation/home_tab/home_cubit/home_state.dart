@@ -12,7 +12,7 @@ class HomeStateInitial extends HomeState {}
 class HomeStateLoading extends HomeState {}
 
 class HomeStateItems extends HomeState {
-  final List<Item> items, fav, cart;
+  final List<Product> items, fav, cart;
   const HomeStateItems(
       {required this.items, required this.fav, required this.cart});
 

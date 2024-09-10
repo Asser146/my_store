@@ -6,7 +6,7 @@ import 'package:my_store/core/widgets/item_details/item_details_screen.dart';
 import 'package:my_store/features/auth/login_cubit/login_cubit.dart';
 import 'package:my_store/features/auth/login_screen.dart';
 import 'package:my_store/features/auth/register_screen.dart';
-import 'package:my_store/features/main_screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/product.dart';
 import 'package:my_store/features/main_screen/main_screen.dart';
 
 class AppRouter {
@@ -27,7 +27,7 @@ class AppRouter {
                   child: const RegisterScreen(),
                 ));
       case Routes.details:
-        final Item item = settings.arguments as Item;
+        final Product item = settings.arguments as Product;
         return MaterialPageRoute(
             builder: (_) => BlocProvider(
                   create: (context) => ItemDetailsCubit(item),

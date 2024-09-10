@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:my_store/core/networking/api_constants.dart';
 import 'package:my_store/features/main_screen/data/base_response.dart';
 import 'package:my_store/features/main_screen/data/categories.dart';
-import 'package:my_store/features/main_screen/data/item.dart';
+
 import 'package:retrofit/retrofit.dart';
 part 'api_service.g.dart';
 
@@ -15,7 +15,4 @@ abstract class ApiService {
 
   @GET(ApiConstants.categories)
   Future<List<Categories>> getCategories();
-
-  // @GET(ApiConstants.limit5)
-  // Future<List<Item>> limit5Products();
 }

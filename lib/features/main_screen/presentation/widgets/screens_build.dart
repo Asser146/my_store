@@ -17,18 +17,18 @@ List<Widget> screenBuild() {
       create: (context) => HomeCubit(),
       child: const HomeScreen(),
     ),
-    BlocProvider(
-      create: (context) => SearchCubit(),
-      child: const SearchScreen(),
-    ),
-    BlocProvider(
-      create: (context) => FavouriteCubit(),
-      child: const FavouritesScreen(),
-    ),
-    BlocProvider(
-      create: (context) => CartCubit(),
-      child: const CartScreen(),
-    ),
+    // BlocProvider(
+    //   create: (context) => SearchCubit(),
+    //   child: const SearchScreen(),
+    // ),
+    // BlocProvider(
+    //   create: (context) => FavouriteCubit(),
+    //   child: const FavouritesScreen(),
+    // ),
+    // BlocProvider(
+    //   create: (context) => CartCubit(),
+    //   child: const CartScreen(),
+    // ),
     BlocProvider(
       create: (context) => ProfileCubit(),
       child: const ProfileScreen(),

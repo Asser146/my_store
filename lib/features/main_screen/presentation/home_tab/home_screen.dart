@@ -22,9 +22,9 @@ class HomeScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleLarge),
           ),
           SizedBox(height: 8.h),
-          // TabsList(categories: context.read<HomeCubit>().categories),
+          TabsList(categories: context.read<HomeCubit>().categories),
           SizedBox(height: 8.h),
-          // ItemsCardsList(params: context.watch<HomeCubit>().params)
+          ItemsCardsList(params: context.watch<HomeCubit>().params)
         ],
       ),
     );

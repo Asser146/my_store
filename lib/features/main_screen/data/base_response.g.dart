@@ -7,8 +7,8 @@ part of 'base_response.dart';
 // **************************************************************************
 
 BaseResponse _$BaseResponseFromJson(Map<String, dynamic> json) => BaseResponse(
-      items: (json['items'] as List<dynamic>?)
-          ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
+      products: (json['products'] as List<dynamic>?)
+          ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
           .toList(),
       total: (json['total'] as num?)?.toInt(),
       skip: (json['skip'] as num?)?.toInt(),
@@ -17,7 +17,7 @@ BaseResponse _$BaseResponseFromJson(Map<String, dynamic> json) => BaseResponse(
 
 Map<String, dynamic> _$BaseResponseToJson(BaseResponse instance) =>
     <String, dynamic>{
-      'items': instance.items,
+      'products': instance.products,
       'total': instance.total,
       'skip': instance.skip,
       'limit': instance.limit,

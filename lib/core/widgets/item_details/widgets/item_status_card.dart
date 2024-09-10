@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
 import 'package:my_store/core/theming/styles.dart';
 import 'package:my_store/core/widgets/item_details/item_details_cubit/item_details_cubit.dart';
-import 'package:my_store/features/main_screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/product.dart';
 
 class ItemStatusCard extends StatelessWidget {
   const ItemStatusCard({
@@ -12,7 +12,7 @@ class ItemStatusCard extends StatelessWidget {
     required this.item,
   });
 
-  final Item item;
+  final Product item;
 
   @override
   Widget build(BuildContext context) {

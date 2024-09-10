@@ -1,11 +1,11 @@
 import 'package:hive/hive.dart';
-import 'package:my_store/features/main_screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/product.dart';
 
 class HiveServices {
   static final HiveServices _instance = HiveServices._internal();
-  late Box<Item> _favoritesBox;
-  late Box<Item> _cartBox;
-  late Box<Item> _itemsBox;
+  late Box<Product> _favoritesBox;
+  late Box<Product> _cartBox;
+  late Box<Product> _productsBox;
   late Box<int> _quantityBox;
 
   factory HiveServices() {
@@ -15,11 +15,10 @@ class HiveServices {
   HiveServices._internal();
 
   Future<void> init() async {
-    _itemsBox = await Hive.openBox<Item>('itemsBox');
-    _favoritesBox = await Hive.openBox<Item>('favoritesBox');
-    _cartBox = await Hive.openBox<Item>('cartBox');
-    _quantityBox = await Hive.openBox<int>('quantityBox');
-    print("here");
+    _productsBox = await Hive.openBox<Product>('productsBox');
+    _favoritesBox = await Hive.openBox<Product>('productsfavoritesBox');
+    _cartBox = await Hive.openBox<Product>('productscartBox');
+    _quantityBox = await Hive.openBox<int>('productsquantityBox');
     // clearBoxes();
   }
 
@@ -28,69 +27,69 @@ class HiveServices {
     _cartBox.clear();
   }
 
-  List<Item> get items {
-    return _itemsBox.values.toList();
+  List<Product> get products {
+    return _productsBox.values.toList();
   }
 
-  Future<void> addItems(List<Item> itemsList) async {
-    for (Item item in itemsList) {
-      await _itemsBox.put(item.id, item);
+  Future<void> addProducts(List<Product> productsList) async {
+    for (Product product in productsList) {
+      await _productsBox.put(product.id, product);
     }
   }
 
-  // Favorite Items Methods
-  bool isFavorite(Item item) {
-    return _favoritesBox.containsKey(item.id);
+  // Favorite Products Methods
+  bool isFavorite(Product product) {
+    return _favoritesBox.containsKey(product.id);
   }
 
-  Future<void> toggleFavorite(Item item) async {
-    if (isFavorite(item)) {
-      await _favoritesBox.delete(item.id);
+  Future<void> toggleFavorite(Product product) async {
+    if (isFavorite(product)) {
+      await _favoritesBox.delete(product.id);
     } else {
-      await _favoritesBox.put(item.id, item.copyWith());
+      await _favoritesBox.put(product.id, product.copyWith());
     }
   }
 
-  List<Item> get favorites {
+  List<Product> get favorites {
     return _favoritesBox.values.toList();
   }
 
-  // Cart Items Methods
-  bool isInCart(Item item) {
-    return _cartBox.containsKey(item.id);
+  // Cart Products Methods
+  bool isInCart(Product product) {
+    return _cartBox.containsKey(product.id);
   }
 
-  Future<void> toggleCartItem(Item item, int direction) async {
+  Future<void> toggleCartProduct(Product product, int direction) async {
     if (direction > 0) {
-      if (isInCart(item)) {
-        await _quantityBox.put(item.id!, _quantityBox.get(item.id)! + 1);
+      if (isInCart(product)) {
+        await _quantityBox.put(product.id!, _quantityBox.get(product.id)! + 1);
       } else {
-        await _cartBox.put(item.id, item.copyWith());
-        await _quantityBox.put(item.id!, 1);
+        await _cartBox.put(product.id, product.copyWith());
+        await _quantityBox.put(product.id!, 1);
       }
     } else {
-      if (_quantityBox.containsKey(item.id)) {
-        await _quantityBox.put(item.id!, _quantityBox.get(item.id)! - 1);
+      if (_quantityBox.containsKey(product.id)) {
+        await _quantityBox.put(product.id!, _quantityBox.get(product.id)! - 1);
       }
-      if (_quantityBox.get(item.id) == 0) {
-        await _cartBox.delete(item.id);
-        await _quantityBox.delete(item.id);
+      if (_quantityBox.get(product.id) == 0) {
+        await _cartBox.delete(product.id);
+        await _quantityBox.delete(product.id);
       }
     }
   }
 
-  int getQuantity(int itemId) {
-    return _quantityBox.get(itemId, defaultValue: 0)!;
+  int getQuantity(int productId) {
+    return _quantityBox.get(productId, defaultValue: 0)!;
   }
 
-  List<Item> get cartItems {
+  List<Product> get cartProducts {
     return _cartBox.values.toList();
   }
 
   Future<void> clearBoxes() async {
     await _favoritesBox.clear();
     await _cartBox.clear();
-    await _itemsBox.clear();
+    await _productsBox.clear();
     await _quantityBox.clear();
   }
 }

@@ -1,13 +1,13 @@
-import 'package:my_store/features/main_screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/product.dart';
 
 class ItemsListParams {
-  final List<Item> list;
-  final Future<void> Function(Item) toggleFav;
-  final bool Function(Item) isFav;
-  final bool Function(Item) isCart;
-  final Future<void> Function(Item, int) toggleCart;
+  final List<Product> list;
+  final Future<void> Function(Product) toggleFav;
+  final bool Function(Product) isFav;
+  final bool Function(Product) isCart;
+  final Future<void> Function(Product, int) toggleCart;
   int? index;
-  Item? item;
+  Product? item;
 
   ItemsListParams(
       {required this.list,

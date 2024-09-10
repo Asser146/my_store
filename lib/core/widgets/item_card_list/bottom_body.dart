@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:my_store/features/main_screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/product.dart';
 
 class BottomBody extends StatelessWidget {
   const BottomBody({
@@ -8,7 +8,7 @@ class BottomBody extends StatelessWidget {
     required this.item,
   });
 
-  final Item item;
+  final Product item;
 
   @override
   Widget build(BuildContext context) {

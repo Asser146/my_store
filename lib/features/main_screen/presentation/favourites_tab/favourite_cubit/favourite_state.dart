@@ -1,21 +1,21 @@
-part of 'favourite_cubit.dart';
+// part of 'favourite_cubit.dart';
 
-abstract class FavouriteState extends Equatable {
-  const FavouriteState();
+// abstract class FavouriteState extends Equatable {
+//   const FavouriteState();
 
-  @override
-  List<Object> get props => [];
-}
+//   @override
+//   List<Object> get props => [];
+// }
 
-class FavouriteStateInitial extends FavouriteState {}
+// class FavouriteStateInitial extends FavouriteState {}
 
-class FavouriteStateLoading extends FavouriteState {}
+// class FavouriteStateLoading extends FavouriteState {}
 
-class FavouriteStateItems extends FavouriteState {
-  final List<Item> items, fav, cart;
-  const FavouriteStateItems(
-      {required this.items, required this.fav, required this.cart});
+// class FavouriteStateItems extends FavouriteState {
+//   final List<Item> items, fav, cart;
+//   const FavouriteStateItems(
+//       {required this.items, required this.fav, required this.cart});
 
-  @override
-  List<Object> get props => [items, fav, cart];
-}
+//   @override
+//   List<Object> get props => [items, fav, cart];
+// }

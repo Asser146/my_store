@@ -1,46 +1,73 @@
-import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:my_store/features/main_screen/data/reviews.dart';
+import 'package:my_store/features/main_screen/data/review.dart';
 
-part 'item.g.dart'; // Assuming you are using json_serializable
+part 'product.g.dart';
 
-@HiveType(typeId: 0) // Specify a unique typeId for Hive
+@HiveType(typeId: 0)
 @JsonSerializable()
-class Item extends Equatable {
+class Product {
   @HiveField(0)
-  final int? id;
+  int? id;
+
   @HiveField(1)
-  final String? title;
+  String? title;
+
   @HiveField(2)
-  final String? description;
+  String? description;
+
   @HiveField(3)
-  final String? category;
+  String? category;
+
   @HiveField(4)
-  final double? price;
+  double? price;
+
   @HiveField(5)
-  final double? discountPercentage;
+  double? discountPercentage;
+
   @HiveField(6)
-  final double? rating;
+  double? rating;
+
   @HiveField(7)
-  final int? stock;
+  int? stock;
+
   @HiveField(8)
-  final List<String>? tags;
+  List<String>? tags;
+
   @HiveField(9)
-  final String? brand;
+  String? brand;
+
   @HiveField(10)
-  final String? warrantyInformation;
+  String? sku;
+
   @HiveField(11)
-  final String? availabilityStatus;
+  int? weight;
+
   @HiveField(12)
-  final List<Reviews>? reviews;
+  String? warrantyInformation;
+
   @HiveField(13)
-  final String? returnPolicy;
+  String? shippingInformation;
+
   @HiveField(14)
-  final List<String>? images;
+  String? availabilityStatus;
+
   @HiveField(15)
-  final String? thumbnail;
-  const Item({
+  List<Review>? reviews;
+
+  @HiveField(16)
+  String? returnPolicy;
+
+  @HiveField(17)
+  int? minimumOrderQuantity;
+
+  @HiveField(18)
+  List<String>? images;
+
+  @HiveField(19)
+  String? thumbnail;
+
+  Product({
     this.id,
     this.title,
     this.description,
@@ -51,39 +78,20 @@ class Item extends Equatable {
     this.stock,
     this.tags,
     this.brand,
+    this.sku,
+    this.weight,
     this.warrantyInformation,
+    this.shippingInformation,
     this.availabilityStatus,
     this.reviews,
     this.returnPolicy,
+    this.minimumOrderQuantity,
     this.images,
     this.thumbnail,
   });
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ItemToJson(this);
-
-  @override
-  List<Object?> get props => [
-        id,
-        title,
-        description,
-        category,
-        price,
-        discountPercentage,
-        rating,
-        stock,
-        tags,
-        brand,
-        warrantyInformation,
-        availabilityStatus,
-        reviews,
-        returnPolicy,
-        images,
-        thumbnail,
-      ];
-
-  Item copyWith({
+  // The copyWith method
+  Product copyWith({
     int? id,
     String? title,
     String? description,
@@ -94,14 +102,18 @@ class Item extends Equatable {
     int? stock,
     List<String>? tags,
     String? brand,
+    String? sku,
+    int? weight,
     String? warrantyInformation,
+    String? shippingInformation,
     String? availabilityStatus,
-    List<Reviews>? reviews,
+    List<Review>? reviews,
     String? returnPolicy,
+    int? minimumOrderQuantity,
     List<String>? images,
     String? thumbnail,
   }) {
-    return Item(
+    return Product(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
@@ -112,12 +124,21 @@ class Item extends Equatable {
       stock: stock ?? this.stock,
       tags: tags ?? this.tags,
       brand: brand ?? this.brand,
+      sku: sku ?? this.sku,
+      weight: weight ?? this.weight,
       warrantyInformation: warrantyInformation ?? this.warrantyInformation,
+      shippingInformation: shippingInformation ?? this.shippingInformation,
       availabilityStatus: availabilityStatus ?? this.availabilityStatus,
       reviews: reviews ?? this.reviews,
       returnPolicy: returnPolicy ?? this.returnPolicy,
+      minimumOrderQuantity: minimumOrderQuantity ?? this.minimumOrderQuantity,
       images: images ?? this.images,
       thumbnail: thumbnail ?? this.thumbnail,
     );
   }
+
+  // JSON serialization
+  factory Product.fromJson(Map<String, dynamic> json) =>
+      _$ProductFromJson(json);
+  Map<String, dynamic> toJson() => _$ProductToJson(this);
 }

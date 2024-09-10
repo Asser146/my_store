@@ -6,8 +6,7 @@ import 'package:my_store/core/di/dependency_injection.dart';
 import 'package:my_store/core/routing/app_router.dart';
 import 'package:my_store/core/routing/routes.dart';
 import 'package:my_store/core/theming/theme_data.dart';
-import 'package:my_store/features/main_screen/data/item.dart';
-import 'package:my_store/features/main_screen/data/reviews.dart';
+import 'package:my_store/features/main_screen/data/product.dart';
 import 'package:my_store/features/main_screen/domain/hive_services.dart';
 
 void main() async {
@@ -15,8 +14,7 @@ void main() async {
   setupGetIt();
 
   await Hive.initFlutter();
-  Hive.registerAdapter(ItemAdapter());
-  Hive.registerAdapter(ReviewsAdapter());
+  Hive.registerAdapter(ProductAdapter());
   HiveServices hiveServices = HiveServices();
   await hiveServices.init();
 

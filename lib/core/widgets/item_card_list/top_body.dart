@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_store/core/theming/colors.dart';
-import 'package:my_store/features/main_screen/data/item.dart';
+import 'package:my_store/features/main_screen/data/product.dart';
 
 class TopBody extends StatelessWidget {
   const TopBody({
@@ -11,9 +11,9 @@ class TopBody extends StatelessWidget {
     required this.toggleFav,
   });
 
-  final Item item;
-  final bool Function(Item p1) isFav;
-  final Future<void> Function(Item p1) toggleFav;
+  final Product item;
+  final bool Function(Product p1) isFav;
+  final Future<void> Function(Product p1) toggleFav;
 
   @override
   Widget build(BuildContext context) {

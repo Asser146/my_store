@@ -1,11 +1,11 @@
 import 'package:my_store/core/di/dependency_injection.dart';
-import 'package:my_store/features/main_screen/data/item.dart';
-import 'package:my_store/features/main_screen/domain/item_repository.dart';
+import 'package:my_store/features/main_screen/data/product.dart';
+import 'package:my_store/features/main_screen/domain/product_repository.dart';
 
 mixin ItemsListOperations {
-  List<List<Item>> lists = [];
-  List<Item> items = [], favourites = [], cartItems = [];
-  final ItemRepository repo = getIt<ItemRepository>();
+  List<List<Product>> lists = [];
+  List<Product> items = [], favourites = [], cartItems = [];
+  final ProductRepository repo = getIt<ProductRepository>();
   void init() async {
     lists = await repo.getLists();
     items = lists[0];
@@ -13,7 +13,7 @@ mixin ItemsListOperations {
     cartItems = lists[2];
   }
 
-  Future<void> toggleFavourite(Item item) async {
+  Future<void> toggleFavourite(Product item) async {
     if (favourites.contains(item)) {
       favourites.remove(item);
     } else {
@@ -22,11 +22,11 @@ mixin ItemsListOperations {
     await repo.toggleFav(item);
   }
 
-  bool isFav(Item item) {
+  bool isFav(Product item) {
     return favourites.contains(item);
   }
 
-  Future<void> toggleCart(Item item, int direction) async {
+  Future<void> toggleCart(Product item, int direction) async {
     int quantity = repo.getQuantity(item.id!);
     if (direction > 0 && !cartItems.contains(item)) {
       cartItems.add(item);
@@ -40,7 +40,7 @@ mixin ItemsListOperations {
     return repo.getQuantity(itemId);
   }
 
-  bool isCart(Item item) {
+  bool isCart(Product item) {
     return cartItems.contains(item);
   }
 
