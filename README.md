@@ -40,7 +40,3 @@ A cross-platform e-commerce Flutter application.
 
 - **Notifications**
   - Firebase Cloud Messaging integration for push notifications
-
-## Getting Started
-
-See the rest of this file for setup and build instructions.
